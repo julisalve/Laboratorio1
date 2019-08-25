@@ -7,6 +7,7 @@
 int esNumeroInt (long *numeroLong, int *numeroInt);
 int calcularNumeroMaximo (int numero, int *numeroMaximo, int *contador);
 int calcularNumeroMinimo (int numero, int *numeroMinimo, int *contador);
+int calcularPromedioYCantidadDeNumerosIngresados (int *numeroInt, int *contador, int *acumulador);
 
 int main(void)
 {
@@ -17,6 +18,9 @@ int main(void)
     int numeroMinimo;
     int contadorMaximo=0;
     int contadorMinimo=0;
+    float promedio;
+    int acumuladorParaPromedio=0;
+    int contadorCantidadNumerosIngresados=0;
 
 
 
@@ -33,7 +37,7 @@ int main(void)
         }
         else
         {
-            printf("Error, ingrese otro numero");
+            printf("Error, ingrese otro numero \n");
             scanf("%ld", &numeroLongIngresado);
         }
 
@@ -47,15 +51,23 @@ int main(void)
 
         }
 
+        if(calcularPromedioYCantidadDeNumerosIngresados (&numeroInt, &contadorCantidadNumerosIngresados, &acumuladorParaPromedio)==0)
+        {
+
+        }
 
 
     }
 
     while(respuesta==0);
 
+    promedio=(float)acumuladorParaPromedio/(float)contadorCantidadNumerosIngresados;
+
+
     printf("El numero maximo es: %d \n",numeroMaximo);
     printf("El numero minimo es: %d \n",numeroMinimo);
-    //printf("El promedio es: %d \n", promedio);
+    printf("El promedio es: %f \n", promedio);
+    printf("La cantidad de numeros ingresados es: %d \n",contadorCantidadNumerosIngresados);
 
 
 
@@ -127,4 +139,19 @@ int calcularNumeroMinimo (int numero, int *numeroMinimo, int *contador)
 
 
 
-//int calcularPromedio (int )
+int calcularPromedioYCantidadDeNumerosIngresados (int *numeroInt, int *contador, int *acumulador)
+{
+    int retorno =0;
+
+
+
+        *contador=*contador+1;
+        *acumulador=*acumulador+*numeroInt;
+
+
+
+
+    return retorno;
+
+
+}
