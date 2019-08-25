@@ -7,7 +7,7 @@
 int esNumeroInt (long *numeroLong, int *numeroInt);
 int calcularNumeroMaximo (int numero, int *numeroMaximo, int *contador);
 int calcularNumeroMinimo (int numero, int *numeroMinimo, int *contador);
-int calcularPromedioYCantidadDeNumerosIngresados (int *numeroInt, int *contador, int *acumulador);
+int calcularAcumuladorYCantidadDeNumerosIngresados (int *numeroInt, int *contador, int *acumulador);
 
 int main(void)
 {
@@ -51,7 +51,7 @@ int main(void)
 
         }
 
-        if(calcularPromedioYCantidadDeNumerosIngresados (&numeroInt, &contadorCantidadNumerosIngresados, &acumuladorParaPromedio)==0)
+        if(calcularAcumuladorYCantidadDeNumerosIngresados (&numeroInt, &contadorCantidadNumerosIngresados, &acumuladorParaPromedio)==0)
         {
 
         }
@@ -139,7 +139,7 @@ int calcularNumeroMinimo (int numero, int *numeroMinimo, int *contador)
 
 
 
-int calcularPromedioYCantidadDeNumerosIngresados (int *numeroInt, int *contador, int *acumulador)
+int calcularAcumuladorYCantidadDeNumerosIngresados (int *numeroInt, int *contador, int *acumulador)
 {
     int retorno =0;
 
