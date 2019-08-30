@@ -21,3 +21,20 @@ int getIn(int *resultado,
 		  int minimo,
 		  int maximo,
 		  int reintentos);
+
+
+float getFloat(float *resultado,
+				char *mensaje,
+				char *mensajeError,
+				float minimo,
+				float maximo,
+				int reintentos);
+
+char getChar (char *resultadoChar,
+			  char *mensajeChar,
+			  char *mensajeErrorChar,
+			  char minimo,
+			  char maximo,
+			  int reintentos);
+
+
