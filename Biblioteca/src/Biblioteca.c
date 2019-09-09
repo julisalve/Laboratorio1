@@ -328,16 +328,14 @@ int ordenarInsertionDescendente(int array[],int limite)
  	 	 for(i=1;i<limite;i++)
  	 	 {
  	 		j=i;
- 	 		bufferInt=array[j-1];
- 	 		 while(array[j]<bufferInt && j>=0)
- 	 		 {
 
+ 	 		 while(array[j]<array[j-1] && j>0)
+ 	 		 {
+ 	 			 bufferInt=array[j-1];
  	 			 array[j-1]=array[j];
  	 			 array[j]=bufferInt;
  	 			j--;
- 	 			printf("la j vale %d \n",j);
- 	 			printf("el buffer vale %d \n",bufferInt);
-  	 		 }
+ 	 		 }
  	 	 }
  	 }return retorno;
 }
