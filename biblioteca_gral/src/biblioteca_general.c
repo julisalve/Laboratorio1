@@ -201,7 +201,7 @@ int isNumber(char *resultado,
 	   	int cantidad;
 	   	int contador=0;
 	   	cantidad=strlen(buffer);
-	   	while(buffer[i] != '\0' && (buffer[i] > '0' || buffer[i] < '9'))
+	   	while(buffer[i] != '\0' && (buffer[i] > '0' && buffer[i] < '9'))
 			  {
 				contador++;
 				i++;
@@ -216,7 +216,7 @@ int isNumber(char *resultado,
 	{
 		printf("%s",mensajeError);
 	}
-		return retorno;
+	return retorno;
 }
 
 int esLetra(char *resultado,
@@ -238,8 +238,75 @@ int esLetra(char *resultado,
 			contador++;
 			i++;
 		   }
-
 if(cantidad==contador)
+	{
+	strncpy(resultado,buffer,maximo+1);
+	retorno = 0;
+	}
+else
+{
+	printf("%s",mensajeError);
+}
+	return retorno;
+}
+
+
+int esAlfaNumerico(char *resultado,
+			char *mensaje,
+			char *mensajeError,
+			int minimo,
+			int maximo,
+			int reintentos)
+{
+	int retorno =-1;
+	int i=0;
+	char buffer[4096];
+	strncpy(buffer,resultado,maximo+1);//strncpy(buffer,resultado,maximo+1);
+   	int cantidad;
+   	int contador=0;
+   	cantidad=strlen(buffer);
+   	while((buffer[i] != '\0' && buffer[i]== ' ') || (buffer[i] >= 'a' && buffer[i] <= 'z')|| (buffer[i] >= 'A' && buffer[i] <= 'Z')||(buffer[i] > '0' && buffer[i] < '9'))
+		  {
+			contador++;
+			i++;
+		   }
+if(cantidad==contador)
+	{
+	strncpy(resultado,buffer,maximo+1);
+	retorno = 0;
+	}
+else
+{
+	printf("%s",mensajeError);
+}
+	return retorno;
+}
+
+int esTelefono(char *resultado,
+			char *mensaje,
+			char *mensajeError,
+			int minimo,
+			int maximo,
+			int reintentos)
+{
+	int retorno =-1;
+	int i=0;
+	char buffer[4096];
+	strncpy(buffer,resultado,maximo+1);//strncpy(buffer,resultado,maximo+1);
+   	int cantidad;
+   	int contador=0;
+   	int contadorGuion=0;
+   	cantidad=strlen(buffer);
+   	while(buffer[i] != '\0' && buffer[i]=='-' && (buffer[i] > '0' && buffer[i] < '9'))
+		  {
+			contador++;
+			i++;
+		   }
+   	if(buffer[i]=='-')
+   		{
+   		contadorGuion++;
+   		}
+if(cantidad==contador && contadorGuion==1)
 	{
 	strncpy(resultado,buffer,maximo+1);
 	retorno = 0;
@@ -330,9 +397,85 @@ int getDni(char *resultado,
 	return retorno;
 	}
 
+int getDomicilio(char *resultado,
+				char *mensaje,
+				char *mensajeError,
+				int minimo,
+				int maximo,
+				int reintentos)
+{
+	int retorno=-1;
+	char buffer[4096];
+
+	do{
+		getString(buffer,
+
+					mensaje,
+					mensajeError,
+					minimo,
+					maximo,
+					reintentos);
+		}while (esAlfaNumerico(buffer,
+			mensaje,
+			mensajeError,
+			minimo,
+			maximo,
+			reintentos)!=0);
 
 
+			if(esAlfaNumerico(buffer,
+					mensaje,
+					mensajeError,
+					minimo,
+					maximo,
+					reintentos)==0)
+			{
+		       	  strncpy(resultado,buffer,maximo+1);
+		       	  retorno = 0;
 
+			}
+	return retorno;
+	}
+
+int getTelefono(char *resultado,
+				char *mensaje,
+				char *mensajeError,
+				int minimo,
+				int maximo,
+				int reintentos)
+{
+	int retorno=-1;
+	char buffer[4096];
+
+	do{
+		getString(buffer,
+
+					mensaje,
+					mensajeError,
+					minimo,
+					maximo,
+					reintentos);
+		}while (esTelefono(buffer,
+			mensaje,
+			mensajeError,
+			minimo,
+			maximo,
+			reintentos)!=0);
+
+
+			if(esTelefono(buffer,
+					mensaje,
+					mensajeError,
+					minimo,
+					maximo,
+					reintentos)==0)
+			{
+		       	  strncpy(resultado,buffer,maximo+1);
+		       	  retorno = 0;
+
+			}
+	return retorno;
+	}
 
 
 int initArrayInt(int array[],int limite,int valor ) //permite inicializar en un valor y le suma 1 al valor de cada posicion del array.

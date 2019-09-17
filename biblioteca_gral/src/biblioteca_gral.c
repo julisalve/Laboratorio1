@@ -29,12 +29,30 @@ int main()
 						2,
 						15,
 						2);
-
+		getNombre(bEmpleado.apellido,
+						"Ingrese apellido \n",
+						"No es un apellido valido\n",
+						2,
+						20,
+						2);
 		getDni(bEmpleado.dni,
 						"Ingrese DNI \n",
 						"No es un dni valido \n",
 						3,
 						8,
+						2);
+		getDomicilio(bEmpleado.domicilio,
+						"Ingrese su domicilio",
+						"NO es un domicilio valido",
+						2,
+						200,
+						2);
+
+		getTelefono(bEmpleado.telefono,
+						"Ingrese su numero de telefono con un guion",
+						"No es un numero de telefono valido",
+						9,
+						11,
 						2);
 
 		bEmpleado.idEmpleado = idEmpleado;

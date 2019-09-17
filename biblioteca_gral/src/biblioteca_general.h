@@ -82,6 +82,20 @@ int esLetra(char *resultado,
 			int maximo,
 			int reintentos);
 
+int esAlfaNumerico(char *resultado,
+			char *mensaje,
+			char *mensajeError,
+			int minimo,
+			int maximo,
+			int reintentos);
+
+int esTelefono(char *resultado,
+			char *mensaje,
+			char *mensajeError,
+			int minimo,
+			int maximo,
+			int reintentos);
+
 int getNombre(char *resultado,
 				char *mensaje,
 				char *mensajeError,
@@ -90,6 +104,20 @@ int getNombre(char *resultado,
 				int reintentos);
 
 int getDni(char *resultado,
+				char *mensaje,
+				char *mensajeError,
+				int minimo,
+				int maximo,
+				int reintentos);
+
+int getDomicilio(char *resultado,
+				char *mensaje,
+				char *mensajeError,
+				int minimo,
+				int maximo,
+				int reintentos);
+
+int getTelefono(char *resultado,
 				char *mensaje,
 				char *mensajeError,
 				int minimo,
