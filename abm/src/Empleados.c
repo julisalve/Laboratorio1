@@ -69,13 +69,20 @@ int buscarEmpleadoPorId(struct sEmpleado *aArray, int cantidad, int id)
 int bajaEmpleadoPorId(struct sEmpleado *aArray, int cantidad,int id)
 {
 	int retorno =EXIT_ERROR;
+	char respuesta;
 	int i = buscarLugarLibreEmpleado(aArray,cantidad);
 	int idCoincide= buscarEmpleadoPorId(aArray, cantidad,id);
 
 	if(aArray != NULL && cantidad > 0 && i>=0 && idCoincide==0)
 		{
-			aArray[i].status= STATUS_EMPTY;
-			retorno=EXIT_SUCCESS;
+			printf("ESta seguro quiere darlo de baja: s o n?");
+			scanf("%c",respuesta);
+			if(respuesta=="s")
+			{
+				aArray[i].status= STATUS_EMPTY;
+				retorno=EXIT_SUCCESS;
+			}
+
 		}
 	return retorno;
 }
