@@ -12,6 +12,14 @@
 #include "Empleados.h"
 
 
+static int generarId(void)
+{
+	static int contadorId=0; //es como seria global pero solo aplica para el scoup.
+	contadorId++;
+	return contadorId;
+}
+
+
 
 int initLugarLibreEmpleado(struct sEmpleado *aArray, int cantidad)
 {
@@ -50,12 +58,11 @@ int buscarEmpleadoPorId(struct sEmpleado *aArray, int cantidad, int id)
 {
 	int retorno =EXIT_ERROR;
 	int i;
-	//int libre = buscarLugarLibreEmpleado(aArray, cantidad);
 	if(aArray != NULL && cantidad > 0)
 	{
 		for(i=0;i<cantidad;i++)
 	{
-		if(id==aArray[i].idEmpleado)
+		if(aArray[i].idEmpleado== STATUS_NOT_EMPTY && id==aArray[i].idEmpleado)
 		{
 			retorno = i;
 			break;
@@ -65,34 +72,160 @@ int buscarEmpleadoPorId(struct sEmpleado *aArray, int cantidad, int id)
 	return retorno;
 }
 
+int getString(char *resultado,
+				char *mensaje,
+				char *mensajeError,
+				int minimo,
+				int maximo,
+				int reintentos)
+{
+	int retorno=-1;
+	char buffer[4096];
+	if(resultado!=NULL &&
+		mensaje !=NULL &&
+		mensajeError !=NULL &&
+		maximo>minimo &&
+		reintentos>0)
+	{
+	do
+	{
+		printf("%s", mensaje);
+		__fpurge(stdin); //fflush(stdin) EN WINDOWS . limpia el teclado
+		fgets(buffer,sizeof(buffer),stdin); //toma lo del teclado de manera segura
+		buffer[strlen(buffer)-1]='\0'; //en buffer se toma hasta lo anterior en \0
+		if(strlen(buffer)<=maximo && strlen(buffer)>=minimo)
+		{
+			strncpy(resultado,buffer,maximo+1);
+			retorno =0;
+			break;
+		}
+		printf("%s",mensajeError);
+		reintentos--;
 
+	}while(reintentos>=0);
+	}
+	return retorno;
+}
+
+int ImprimirDatosEmpleadoPorId(struct sEmpleado *aArray, int cantidad, int id)
+{
+	int retorno =EXIT_ERROR;
+	int indice =buscarEmpleadoPorId( aArray,cantidad, id);
+	if(aArray != NULL && cantidad > 0)
+	{
+
+		if(indice>=0)
+		{
+			retorno = indice;
+			printf("Id: %d - Nombre: %s - Apellido: %s  \n",aArray[indice].idEmpleado,aArray[indice].nombre,aArray[indice].apellido);
+			break;
+		}
+	}
+	return retorno;
+}
+
+int imprimirArrayEmpleados(struct sEmpleado *aEmpleado, int cantidad){
+	int i;
+	int retorno = -1;
+	if(aEmpleado != NULL && cantidad>0)
+	{
+		retorno = 0;
+		for(i=0;i<cantidad;i++)
+		{
+			if(aEmpleado[i].status== STATUS_NOT_EMPTY)
+			{
+				printf("status %d - Id: %d - Nombre: %s - Apellido: %s  \n",aEmpleado[i].status,aEmpleado[i].idEmpleado,aEmpleado[i].nombre,aEmpleado[i].apellido);
+			}
+
+		}
+	}
+	return retorno;
+}
 int bajaEmpleadoPorId(struct sEmpleado *aArray, int cantidad,int id)
 {
 	int retorno =EXIT_ERROR;
 	char respuesta;
-	int i = buscarLugarLibreEmpleado(aArray,cantidad);
-	int idCoincide= buscarEmpleadoPorId(aArray, cantidad,id);
+	int posicionEmpleado= buscarEmpleadoPorId(aArray, cantidad,id);
 
-	if(aArray != NULL && cantidad > 0 && i>=0 && idCoincide==0)
-		{
-			printf("ESta seguro quiere darlo de baja: s o n?");
-			scanf("%c",respuesta);
-			if(respuesta=="s")
+	if(aArray != NULL && cantidad > 0 && posicionEmpleado >=0)
 			{
-				aArray[i].status= STATUS_EMPTY;
+				aArray[posicionEmpleado].status= STATUS_EMPTY;
 				retorno=EXIT_SUCCESS;
 			}
 
-		}
 	return retorno;
 }
 
-//int eliminarEmpleadoPorId(struct sEmpleado *aArray, int cantidad, int id)
+int modificacionEmpleadoPorId(struct sEmpleado *aArray, int cantidad, struct sEmpleado empleadoNuevo)
+{
+	int retorno =EXIT_ERROR;
+	int id =empleadoNuevo
+	int posicionEmpleado= buscarEmpleadoPorId(aArray, cantidad,id);
+
+	if(aArray != NULL && cantidad > 0 && posicionEmpleado >=0)
+			{
+					aArray[posicionEmpleado]=empleadoNuevo;
+					retorno = EXIT_SUCCESS;
+			}
+
+	return retorno;
+}
+
+int modificacionEmpleadoPorIdCamposPuntuales(struct sEmpleado *aArray, int cantidad, struct sEmpleado empleadoNuevo)
+{
+	int retorno =EXIT_ERROR;
+	int id;
+	int posicionEmpleado= buscarEmpleadoPorId(aArray, cantidad,id);
+
+	if(aArray != NULL && cantidad > 0 && posicionEmpleado >=0)
+			{
+					aArray[posicionEmpleado]=empleadoNuevo;
+					retorno = EXIT_SUCCESS;
+			}
+
+	return retorno;
+}
+
+
+pantalla panux
+switch(opcion)
+{
+case 3:
+{
+
+	pedirDAtosPAntalla(&panaux)
+	sPantalla p;
+	getInt(&p.idpantalla,"ingrese id");
+	getString(p.nombre,"ingrese nombre");
+	getString(p.apellido,"ingrese apellido");
+	modificarPAntalla(lista,len,p);
+	break;
+}
+}
+
+int pedirDAtoPAntalla(struct sPAntalla * pPAtalla)
+{
+	sPantalla p;
+		getInt(&p.idpantalla,"ingrese id");
+		getString(p.nombre,"ingrese nombre");
+		getString(p.apellido,"ingrese apellido");
+		modificarPAntalla(lista,len,p);
+
+		p.status =NOT_EMPTY;
+		*pPAntalla = p;
+}
+
+
+//char opcionElegida(char *resultado,
+//				char *mensaje,
+//				char *mensajeError,
+//				int minimo,
+//				int maximo,
+//				int reintentos)
 //{
-//	//tiene que buscar, si devuelve -1 no xiste, si devuelve un numero lo pongo en estado empty
+//
 //}
-//
-//
+
 
 int altaEmpleadoPorId(struct sEmpleado *aArray, int cantidad,struct sEmpleado empleado)
 {
@@ -103,6 +236,7 @@ int altaEmpleadoPorId(struct sEmpleado *aArray, int cantidad,struct sEmpleado em
 		{
 			aArray[i]=empleado;
 			aArray[i].status= STATUS_NOT_EMPTY;
+			aArray[i].idEmpleado = generarId();
 			retorno = EXIT_SUCCESS;
 		}
 	return retorno;
@@ -128,23 +262,7 @@ int altaForzadaEmpleados(struct sEmpleado *aArray,int cantidad)
 }
 
 
-int imprimirArrayEmpleados(struct sEmpleado *aEmpleado, int cantidad){
-	int i;
-	int retorno = -1;
-	if(aEmpleado != NULL && cantidad>0)
-	{
-		retorno = 0;
-		for(i=0;i<cantidad;i++)
-		{
-			if(aEmpleado[i].status== STATUS_NOT_EMPTY)
-			{
-				printf("status %d - Id: %d - Nombre: %s - Apellido: %s  \n",aEmpleado[i].status,aEmpleado[i].idEmpleado,aEmpleado[i].nombre,aEmpleado[i].apellido);
-			}
 
-		}
-	}
-	return retorno;
-}
 
 int ordenarArrayEmpleados(struct sEmpleado *aEmpleado, int cantidad){
 	int i;

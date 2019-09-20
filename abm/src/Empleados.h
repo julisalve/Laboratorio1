@@ -25,7 +25,12 @@ struct sEmpleado
 	char apellido[50];
 	//char dni[50];
 };
-
+int getString(char *resultado,
+				char *mensaje,
+				char *mensajeError,
+				int minimo,
+				int maximo,
+				int reintentos);
 int altaForzadaEmpleados(struct sEmpleado *aArray,int cantidad);
 int initLugarLibreEmpleado(struct sEmpleado *aArray, int cantidad);
 int buscarLugarLibreEmpleado(struct sEmpleado *aArray, int cantidad);
