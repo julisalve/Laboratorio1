@@ -72,42 +72,8 @@ int buscarEmpleadoPorId(struct sEmpleado *aArray, int cantidad, int id)
 	return retorno;
 }
 
-int getString(char *resultado,
-				char *mensaje,
-				char *mensajeError,
-				int minimo,
-				int maximo,
-				int reintentos)
-{
-	int retorno=-1;
-	char buffer[4096];
-	if(resultado!=NULL &&
-		mensaje !=NULL &&
-		mensajeError !=NULL &&
-		maximo>minimo &&
-		reintentos>0)
-	{
-	do
-	{
-		printf("%s", mensaje);
-		__fpurge(stdin); //fflush(stdin) EN WINDOWS . limpia el teclado
-		fgets(buffer,sizeof(buffer),stdin); //toma lo del teclado de manera segura
-		buffer[strlen(buffer)-1]='\0'; //en buffer se toma hasta lo anterior en \0
-		if(strlen(buffer)<=maximo && strlen(buffer)>=minimo)
-		{
-			strncpy(resultado,buffer,maximo+1);
-			retorno =0;
-			break;
-		}
-		printf("%s",mensajeError);
-		reintentos--;
 
-	}while(reintentos>=0);
-	}
-	return retorno;
-}
-
-int ImprimirDatosEmpleadoPorId(struct sEmpleado *aArray, int cantidad, int id)
+int imprimirDatosEmpleadoPorId(struct sEmpleado *aArray, int cantidad, int id)
 {
 	int retorno =EXIT_ERROR;
 	int indice =buscarEmpleadoPorId( aArray,cantidad, id);
@@ -118,7 +84,7 @@ int ImprimirDatosEmpleadoPorId(struct sEmpleado *aArray, int cantidad, int id)
 		{
 			retorno = indice;
 			printf("Id: %d - Nombre: %s - Apellido: %s  \n",aArray[indice].idEmpleado,aArray[indice].nombre,aArray[indice].apellido);
-			break;
+			//break;
 		}
 	}
 	return retorno;
@@ -156,20 +122,20 @@ int bajaEmpleadoPorId(struct sEmpleado *aArray, int cantidad,int id)
 	return retorno;
 }
 
-int modificacionEmpleadoPorId(struct sEmpleado *aArray, int cantidad, struct sEmpleado empleadoNuevo)
-{
-	int retorno =EXIT_ERROR;
-	int id =empleadoNuevo
-	int posicionEmpleado= buscarEmpleadoPorId(aArray, cantidad,id);
-
-	if(aArray != NULL && cantidad > 0 && posicionEmpleado >=0)
-			{
-					aArray[posicionEmpleado]=empleadoNuevo;
-					retorno = EXIT_SUCCESS;
-			}
-
-	return retorno;
-}
+//int modificacionEmpleadoPorId(struct sEmpleado *aArray, int cantidad, struct sEmpleado empleadoNuevo)
+//{
+//	int retorno =EXIT_ERROR;
+//	int id =empleadoNuevo
+//	int posicionEmpleado= buscarEmpleadoPorId(aArray, cantidad,id);
+//
+//	if(aArray != NULL && cantidad > 0 && posicionEmpleado >=0)
+//			{
+//					aArray[posicionEmpleado]=empleadoNuevo;
+//					retorno = EXIT_SUCCESS;
+//			}
+//
+//	return retorno;
+//}
 
 int modificacionEmpleadoPorIdCamposPuntuales(struct sEmpleado *aArray, int cantidad, struct sEmpleado empleadoNuevo)
 {
@@ -187,33 +153,33 @@ int modificacionEmpleadoPorIdCamposPuntuales(struct sEmpleado *aArray, int canti
 }
 
 
-pantalla panux
-switch(opcion)
-{
-case 3:
-{
+//pantalla panux
+//switch(opcion)
+//{
+//case 3:
+//{
+//
+//	pedirDAtosPAntalla(&panaux)
+//	sPantalla p;
+//	getInt(&p.idpantalla,"ingrese id");
+//	getString(p.nombre,"ingrese nombre");
+//	getString(p.apellido,"ingrese apellido");
+//	modificarPAntalla(lista,len,p);
+//	break;
+//}
+//}
 
-	pedirDAtosPAntalla(&panaux)
-	sPantalla p;
-	getInt(&p.idpantalla,"ingrese id");
-	getString(p.nombre,"ingrese nombre");
-	getString(p.apellido,"ingrese apellido");
-	modificarPAntalla(lista,len,p);
-	break;
-}
-}
-
-int pedirDAtoPAntalla(struct sPAntalla * pPAtalla)
-{
-	sPantalla p;
-		getInt(&p.idpantalla,"ingrese id");
-		getString(p.nombre,"ingrese nombre");
-		getString(p.apellido,"ingrese apellido");
-		modificarPAntalla(lista,len,p);
-
-		p.status =NOT_EMPTY;
-		*pPAntalla = p;
-}
+//int pedirDAtoPAntalla(struct sPAntalla * pPAtalla)
+//{
+//	sPantalla p;
+//		getInt(&p.idpantalla,"ingrese id");
+//		getString(p.nombre,"ingrese nombre");
+//		getString(p.apellido,"ingrese apellido");
+//		modificarPAntalla(lista,len,p);
+//
+//		p.status =NOT_EMPTY;
+//		*pPAntalla = p;
+//}
 
 
 //char opcionElegida(char *resultado,

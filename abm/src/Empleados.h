@@ -11,9 +11,10 @@
 #include <stdlib.h>
 #include <stdio_ext.h>
 #include <string.h>
+#include "biblioteca_validaciones.h"
+#include "biblioteca_get.h"
+#include "biblioteca_solicitud_datos.h"
 
-#define EXIT_ERROR -1
-#define EXIT_SUCCESS 1
 #define STATUS_EMPTY 0
 #define STATUS_NOT_EMPTY 1
 
@@ -23,22 +24,24 @@ struct sEmpleado
 	int status;
 	char nombre[50];
 	char apellido[50];
-	//char dni[50];
+	char dni[50];
 };
-int getString(char *resultado,
-				char *mensaje,
-				char *mensajeError,
-				int minimo,
-				int maximo,
-				int reintentos);
-int altaForzadaEmpleados(struct sEmpleado *aArray,int cantidad);
+
+
+static int generarId(void);
 int initLugarLibreEmpleado(struct sEmpleado *aArray, int cantidad);
 int buscarLugarLibreEmpleado(struct sEmpleado *aArray, int cantidad);
 int buscarEmpleadoPorId(struct sEmpleado *aArray, int cantidad,int id);
+int imprimirDatosEmpleadoPorId(struct sEmpleado *aArray, int cantidad, int id);
+int imprimirArrayEmpleados(struct sEmpleado *aEmpleado, int cantidad);
 int bajaEmpleadoPorId(struct sEmpleado *aArray, int cantidad,int id);
 int modificarEmpleadoPorId(struct sEmpleado *aArray, int cantidad,struct sEmpleado empleado);
+int modificacionEmpleadoPorIdCamposPuntuales(struct sEmpleado *aArray, int cantidad, struct sEmpleado empleadoNuevo);
 int altaEmpleadoPorId(struct sEmpleado *aArray, int cantidad,struct sEmpleado empleado);
-int imprimirArrayEmpleados(struct sEmpleado *aEmpleado, int cantidad);
+
+int altaForzadaEmpleados(struct sEmpleado *aArray,int cantidad);
 int ordenarArrayEmpleados(struct sEmpleado *aEmpleado, int cantidad);
+
+
 
 #endif /* EMPLEADOS_H_ */
