@@ -33,12 +33,28 @@ int main (void)
 	printf("2) Baja \n");
 	printf("3) Modificacion de datos \n");
 	printf("4) Informes \n");
-//	switch(opcion)
-//	{
-//	case 1:
-//
-//
-//	}
+	switch(opcion)
+	{
+	case 1:
+		{
+			getNombre(aEmpleados.nombre,
+							char *mensaje,
+							char *mensajeError,
+							int minimo,
+							int maximo,
+							int reintentos);
+
+			int getDni(char *resultado,
+							char *mensaje,
+							char *mensajeError,
+							int minimo,
+							int maximo,
+							int reintentos);
+			break;
+		}
+
+
+	}
 
 
 	esSiONo(respuesta,
@@ -46,7 +62,7 @@ int main (void)
 				  "NO es una respuesta valida \n",
 				  2,
 				  4,
-				  3);
+				  2);
 		retorno= EXIT_SUCCESS;
 	}while(strncmp(respuesta,"si",3)==0);//(respuesta=='s');
 	return retorno;
