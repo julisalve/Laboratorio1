@@ -90,17 +90,17 @@ int imprimirDatosEmpleadoPorId(struct sEmpleado *aArray, int cantidad, int id)
 	return retorno;
 }
 
-int imprimirArrayEmpleados(struct sEmpleado *aEmpleado, int cantidad){
+int imprimirArrayEmpleados(struct sEmpleado *aArray, int cantidad){
 	int i;
 	int retorno = -1;
-	if(aEmpleado != NULL && cantidad>0)
+	if(aArray != NULL && cantidad>0)
 	{
 		retorno = 0;
 		for(i=0;i<cantidad;i++)
 		{
-			if(aEmpleado[i].status== STATUS_NOT_EMPTY)
+			if(aArray[i].status== STATUS_NOT_EMPTY)
 			{
-				printf("status %d - Id: %d - Nombre: %s - Apellido: %s  \n",aEmpleado[i].status,aEmpleado[i].idEmpleado,aEmpleado[i].nombre,aEmpleado[i].apellido);
+				printf(" Id: %d - Nombre: %s - Apellido: %s - DNI: %s \n",aArray[i].idEmpleado,aArray[i].nombre,aArray[i].apellido,aArray[i].dni);
 			}
 
 		}
@@ -204,8 +204,11 @@ int altaEmpleadoPorId(struct sEmpleado *aArray, int cantidad,struct sEmpleado em
 			aArray[i].status= STATUS_NOT_EMPTY;
 			aArray[i].idEmpleado = generarId();
 			retorno = EXIT_SUCCESS;
+			printf("id %d",aArray[i].idEmpleado);
 		}
 	return retorno;
+	printf("retorno %d",retorno);
+	printf("id %d",aArray[i].idEmpleado);
 }
 
 int altaForzadaEmpleados(struct sEmpleado *aArray,int cantidad)

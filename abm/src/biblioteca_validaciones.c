@@ -35,23 +35,16 @@ int isNumber(char *resultado,
 	int i=0;
 	char buffer[4096];
 	strncpy(buffer,resultado,maximo+1);//strncpy(buffer,resultado,maximo+1);
-   	int cantidad;
-   	int contador=0;
-   	cantidad=strlen(buffer);
-   	while(buffer[0] != '\0' && (buffer[i] > '0' && buffer[i] < '9'))
+
+   	while(buffer[i] != '\0' && (buffer[i] > '0' && buffer[i] < '9'))
 		  {
-			contador++;
+   			strncpy(resultado,buffer,maximo+1);
 			i++;
+			retorno = EXIT_SUCCESS;
+			break;
 		   }
-  if(cantidad==contador)
-	{
-	strncpy(resultado,buffer,maximo+1);
-	retorno = EXIT_SUCCESS;
-	}
-else
-{
 	printf("%s",mensajeError);
-}
+
 	return retorno;
 }
 

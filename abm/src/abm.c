@@ -16,55 +16,128 @@
 
 #define QTY_EMPLEADOS 10
 
+
 int main (void)
 {
 	int retorno;
 	int opcion;
+	int i=0;
+	int flagOpcionUno=0;
 	char respuesta[3];
 	struct sEmpleado aEmpleados[QTY_EMPLEADOS];
+	struct sEmpleado bEmpleado;
 
-//	system("clear");
+	initLugarLibreEmpleado(aEmpleados, QTY_EMPLEADOS);
+
+
 	do
 	{
+		printf("1) Alta \n");
+		printf("2) Baja \n");
+		printf("3) Modificacion de datos \n");
+		printf("4) Informes \n");
+		printf("5) Salir \n");
+		getInt(&opcion,
+			  "Elija una opcion \n",
+			  "NO es una opcion valida\n",
+			  0,
+			  5,
+			  2);
 
 
-	printf("Elija una opción \n");
-	printf("1) Alta \n");
-	printf("2) Baja \n");
-	printf("3) Modificacion de datos \n");
-	printf("4) Informes \n");
 	switch(opcion)
 	{
 	case 1:
 		{
-			getNombre(aEmpleados.nombre,
-							char *mensaje,
-							char *mensajeError,
-							int minimo,
-							int maximo,
-							int reintentos);
+			getNombre(bEmpleado.nombre,
+							"Ingrese el nombre \n",
+							"NO es un nombre valido \n",
+							2,
+							16,
+							2);
 
-			int getDni(char *resultado,
-							char *mensaje,
-							char *mensajeError,
-							int minimo,
-							int maximo,
-							int reintentos);
+			getNombre(bEmpleado.apellido,
+						"Ingrese apellido \n",
+						"NO es un apellido valido \n",
+						2,
+						16,
+						2);
+			getDni(bEmpleado.dni,
+							"Ingrese dni \n",
+							"NO es un dni valido \n",
+							2,
+							16,
+							2);
+			aEmpleados[i]=bEmpleado;
+			aEmpleados[i].status=STATUS_NOT_EMPTY;
+			//altaEmpleadoPorId(aEmpleados,QTY_EMPLEADOS ,bEmpleado);
+			imprimirArrayEmpleados(aEmpleados,10);
+			i++;
+			flagOpcionUno=1;
+
+
+			break;
+		}
+
+	case 2:
+	{
+		if (flagOpcionUno==1)
+		{
+
+		}
+		else
+		{
+			getInt(&opcion,
+						  "NO hay empleados cargados. Solo se puede elegir opcion 1. Elija opcion \n",
+						  "NO es una opcion valida\n",
+						  0,
+						  5,
+						  2);
+		}
+		break;
+	}
+	case 3:
+		{
+			if (flagOpcionUno==1)
+			{
+
+			}
+			else
+			{
+				getInt(&opcion,
+							  "NO hay empleados cargados. Solo se puede elegir opcion 1. Elija opcion \n",
+							  "NO es una opcion valida\n",
+							  0,
+							  5,
+							  2);
+			}
 			break;
 		}
 
 
+//	default:
+//	{
+//		getInt(&opcion,
+//				 "NO es una opcion valida.Reingrese opcion \n",
+//				 "NO es una opcion valida.Reingrese opcion \n",
+//				 0,
+//				 5,
+//				 2);
+//	}
+
 	}
 
 
-	esSiONo(respuesta,
-			"¿Desea seguir cargando datos? s/n \n",
-				  "NO es una respuesta valida \n",
-				  2,
-				  4,
-				  2);
-		retorno= EXIT_SUCCESS;
-	}while(strncmp(respuesta,"si",3)==0);//(respuesta=='s');
+//	esSiONo(respuesta,
+//			"¿Desea seguir cargando datos? si o no \n",
+//			"NO es una respuesta valida \n",
+//				  2,
+//				  4,
+//				  2);
+//		retorno= EXIT_SUCCESS;
+//	}while(strncmp(respuesta,"si",3)==0);//(respuesta=='s');
+
+}while(opcion!=5);
 	return retorno;
 }
 
@@ -95,3 +168,5 @@ int main (void)
 //	return retorno;
 //
 //}
+
+

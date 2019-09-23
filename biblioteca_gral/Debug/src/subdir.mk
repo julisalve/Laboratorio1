@@ -4,7 +4,6 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
-../src/Empleados.c \
 ../src/biblioteca_get.c \
 ../src/biblioteca_imprimir.c \
 ../src/biblioteca_ordenamientos.c \
@@ -13,7 +12,6 @@ C_SRCS += \
 ../src/bibliotecas_prueba.c 
 
 OBJS += \
-./src/Empleados.o \
 ./src/biblioteca_get.o \
 ./src/biblioteca_imprimir.o \
 ./src/biblioteca_ordenamientos.o \
@@ -22,7 +20,6 @@ OBJS += \
 ./src/bibliotecas_prueba.o 
 
 C_DEPS += \
-./src/Empleados.d \
 ./src/biblioteca_get.d \
 ./src/biblioteca_imprimir.d \
 ./src/biblioteca_ordenamientos.d \

@@ -14,6 +14,7 @@
 #include "biblioteca_validaciones.h"
 #include "biblioteca_get.h"
 #include "biblioteca_solicitud_datos.h"
+//#include "biblioteca_imprimir.h"
 
 #define STATUS_EMPTY 0
 #define STATUS_NOT_EMPTY 1
@@ -33,7 +34,7 @@ int initLugarLibreEmpleado(struct sEmpleado *aArray, int cantidad);
 int buscarLugarLibreEmpleado(struct sEmpleado *aArray, int cantidad);
 int buscarEmpleadoPorId(struct sEmpleado *aArray, int cantidad,int id);
 int imprimirDatosEmpleadoPorId(struct sEmpleado *aArray, int cantidad, int id);
-int imprimirArrayEmpleados(struct sEmpleado *aEmpleado, int cantidad);
+int imprimirArrayEmpleados(struct sEmpleado *aArray, int cantidad);
 int bajaEmpleadoPorId(struct sEmpleado *aArray, int cantidad,int id);
 int modificarEmpleadoPorId(struct sEmpleado *aArray, int cantidad,struct sEmpleado empleado);
 int modificacionEmpleadoPorIdCamposPuntuales(struct sEmpleado *aArray, int cantidad, struct sEmpleado empleadoNuevo);
