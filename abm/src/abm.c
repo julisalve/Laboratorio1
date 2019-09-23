@@ -23,6 +23,8 @@ int main (void)
 	int opcion;
 	int i=0;
 	int flagOpcionUno=0;
+	int id;
+	int posicionIdBuscado;
 	char respuesta[3];
 	struct sEmpleado aEmpleados[QTY_EMPLEADOS];
 	struct sEmpleado bEmpleado;
@@ -69,9 +71,9 @@ int main (void)
 							16,
 							2);
 			aEmpleados[i]=bEmpleado;
-			aEmpleados[i].status=STATUS_NOT_EMPTY;
-			//altaEmpleadoPorId(aEmpleados,QTY_EMPLEADOS ,bEmpleado);
-			imprimirArrayEmpleados(aEmpleados,10);
+
+			altaEmpleadoPorId(aEmpleados,QTY_EMPLEADOS ,bEmpleado);
+
 			i++;
 			flagOpcionUno=1;
 
@@ -83,6 +85,16 @@ int main (void)
 	{
 		if (flagOpcionUno==1)
 		{
+			getInt(&id,
+					"SEleccione un ID para dar de baja\n",
+					"NO es un ID valido",
+						  0,
+						  100,
+						  2);
+
+				imprimirDatosEmpleadoPorId(aEmpleados,QTY_EMPLEADOS, id);
+
+			bajaEmpleadoPorId(aEmpleados,QTY_EMPLEADOS,id);
 
 		}
 		else
@@ -127,17 +139,18 @@ int main (void)
 
 	}
 
+	imprimirArrayEmpleados(aEmpleados,10);
 
-//	esSiONo(respuesta,
-//			"¿Desea seguir cargando datos? si o no \n",
-//			"NO es una respuesta valida \n",
-//				  2,
-//				  4,
-//				  2);
-//		retorno= EXIT_SUCCESS;
-//	}while(strncmp(respuesta,"si",3)==0);//(respuesta=='s');
+	esSiONo(respuesta,
+			"¿Desea realizar otra operacion? si o no \n",
+			"NO es una respuesta valida \n",
+				  2,
+				  4,
+				  2);
+		retorno= EXIT_SUCCESS;
+	}while(strncmp(respuesta,"si",3)==0);//(respuesta=='s');
 
-}while(opcion!=5);
+//}while(opcion!=5);
 	return retorno;
 }
 

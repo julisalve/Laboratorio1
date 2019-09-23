@@ -83,10 +83,11 @@ int imprimirDatosEmpleadoPorId(struct sEmpleado *aArray, int cantidad, int id)
 		if(indice>=0)
 		{
 			retorno = indice;
-			printf("Id: %d - Nombre: %s - Apellido: %s  \n",aArray[indice].idEmpleado,aArray[indice].nombre,aArray[indice].apellido);
+			printf("Status %d - Id: %d - Nombre: %s - Apellido: %s - dni: %s \n",aArray[indice].status,aArray[indice].idEmpleado,aArray[indice].nombre,aArray[indice].apellido,aArray[indice].dni);
 			//break;
 		}
-	}
+	} printf("posicion del id %d",indice);
+	printf(" id %d",id);
 	return retorno;
 }
 
@@ -100,7 +101,7 @@ int imprimirArrayEmpleados(struct sEmpleado *aArray, int cantidad){
 		{
 			if(aArray[i].status== STATUS_NOT_EMPTY)
 			{
-				printf(" Id: %d - Nombre: %s - Apellido: %s - DNI: %s \n",aArray[i].idEmpleado,aArray[i].nombre,aArray[i].apellido,aArray[i].dni);
+				printf(" status : %d - Id: %d - Nombre: %s - Apellido: %s - DNI: %s \n",aArray[i].status,aArray[i].idEmpleado,aArray[i].nombre,aArray[i].apellido,aArray[i].dni);
 			}
 
 		}
@@ -204,11 +205,9 @@ int altaEmpleadoPorId(struct sEmpleado *aArray, int cantidad,struct sEmpleado em
 			aArray[i].status= STATUS_NOT_EMPTY;
 			aArray[i].idEmpleado = generarId();
 			retorno = EXIT_SUCCESS;
-			printf("id %d",aArray[i].idEmpleado);
 		}
 	return retorno;
-	printf("retorno %d",retorno);
-	printf("id %d",aArray[i].idEmpleado);
+
 }
 
 int altaForzadaEmpleados(struct sEmpleado *aArray,int cantidad)
