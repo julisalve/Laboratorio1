@@ -62,7 +62,7 @@ int buscarEmpleadoPorId(struct sEmpleado *aArray, int cantidad, int id)
 	{
 		for(i=0;i<cantidad;i++)
 	{
-		if(aArray[i].idEmpleado== STATUS_NOT_EMPTY && id==aArray[i].idEmpleado)
+		if(aArray[i].status== STATUS_NOT_EMPTY && id==aArray[i].idEmpleado)
 		{
 			retorno = i;
 			break;
@@ -86,8 +86,7 @@ int imprimirDatosEmpleadoPorId(struct sEmpleado *aArray, int cantidad, int id)
 			printf("Status %d - Id: %d - Nombre: %s - Apellido: %s - dni: %s \n",aArray[indice].status,aArray[indice].idEmpleado,aArray[indice].nombre,aArray[indice].apellido,aArray[indice].dni);
 			//break;
 		}
-	} printf("posicion del id %d",indice);
-	printf(" id %d",id);
+	}
 	return retorno;
 }
 

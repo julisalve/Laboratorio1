@@ -38,13 +38,14 @@ int isNumber(char *resultado,
 	int cantidad=0;
 	int contador=0;
 	cantidad=strlen(buffer);
-   	while(buffer[i] != '\0' && (buffer[i] > '0' && buffer[i] < '9'))
+   	while(buffer[i] != '\0' && (buffer[i] >= '0' && buffer[i] <= '9'))
 		  {
    			contador++;
 			i++;
 		  }
    	if(contador==cantidad)
    	{
+
    		strncpy(resultado,buffer,maximo+1);
    		retorno = EXIT_SUCCESS;
    	}
@@ -52,7 +53,7 @@ int isNumber(char *resultado,
    	{
    		printf("%s",mensajeError);
 
-   	}
+   	}printf("contador %d - cantidad %d", contador, cantidad);
    	return retorno;
 }
 
@@ -195,39 +196,9 @@ int esSiONo(char *resultado,
 			int minimo,
 			int maximo,
 			int reintentos)
-//{
-//	int retorno=EXIT_ERROR;
-//	char buffer[4096];
-//	if(resultado!=NULL &&
-//		mensaje !=NULL &&
-//		mensajeError !=NULL &&
-//		maximo>minimo &&
-//		reintentos>0)
-//	{
-//	do
-//	{
-//		printf("%s", mensaje);
-//		__fpurge(stdin); //fflush(stdin) EN WINDOWS . limpia el teclado
-//		fgets(buffer,sizeof(buffer),stdin); //toma lo del teclado de manera segura
-//		buffer[strlen(buffer)-1]='\0'; //en buffer se toma hasta lo anterior en \0
-//		if(strlen(buffer)<=maximo && strlen(buffer)>=minimo && ((strncpy(buffer,"si",maximo)==0) || (strncpy(buffer,"no",maximo)==0)))
-//		{
-//			strncpy(resultado,buffer,maximo+1);
-//			retorno =EXIT_SUCCESS;
-//			break;
-//		}
-//		printf("%s",mensajeError);
-//		reintentos--;
-//
-//	}while(reintentos>=0);
-//	}
-//	return retorno;
-//}
-
 {
 	int retorno =EXIT_ERROR;
 	char buffer[4096];
-	//strncpy(buffer,resultado,maximo+1);//strncpy(buffer,resultado,maximo+1);
 	do
 	{	getString(buffer,
 				mensaje,
