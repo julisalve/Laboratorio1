@@ -23,8 +23,8 @@ struct sEmpleado
 {
 	int idEmpleado;
 	int status;
-	char nombre[50];
-	char apellido[50];
+	char nombre[51];
+	char apellido[51];
 	char dni[50];
 };
 

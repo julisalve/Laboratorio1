@@ -146,6 +146,7 @@ int modificacionEmpleadoPorIdCamposPuntuales(struct sEmpleado *aArray, int canti
 	if(aArray != NULL && cantidad > 0 && posicionEmpleado >=0)
 			{
 					aArray[posicionEmpleado]=empleadoNuevo;
+					aArray[posicionEmpleado].idEmpleado=id;
 					retorno = EXIT_SUCCESS;
 			}
 
@@ -198,12 +199,15 @@ int altaEmpleadoPorId(struct sEmpleado *aArray, int cantidad,struct sEmpleado em
 	int retorno = -1;
 	int i;
 	i = buscarLugarLibreEmpleado(aArray,cantidad);
-		if(aArray != NULL && cantidad > 0 && i>=0)
+		if(aArray != NULL && cantidad > 0 && i!=-1)
 		{
 			aArray[i]=empleado;
 			aArray[i].status= STATUS_NOT_EMPTY;
 			aArray[i].idEmpleado = generarId();
 			retorno = EXIT_SUCCESS;
+		}else
+		{
+			printf("NO hay lugares libres");
 		}
 	return retorno;
 

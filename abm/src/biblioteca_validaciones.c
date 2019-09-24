@@ -53,7 +53,7 @@ int isNumber(char *resultado,
    	{
    		printf("%s",mensajeError);
 
-   	}printf("contador %d - cantidad %d", contador, cantidad);
+   	}
    	return retorno;
 }
 

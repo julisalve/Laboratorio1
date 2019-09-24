@@ -14,7 +14,7 @@
 #include <string.h>
 #include "Empleados.h"
 
-#define QTY_EMPLEADOS 10
+#define QTY_EMPLEADOS 1000
 
 
 int main (void)
@@ -29,7 +29,7 @@ int main (void)
 	char respuesta[3];
 	struct sEmpleado aEmpleados[QTY_EMPLEADOS];
 	struct sEmpleado bEmpleado;
-	char datoAModificar[11];
+	char datoAModificar;
 	initLugarLibreEmpleado(aEmpleados, QTY_EMPLEADOS);
 	do
 	{
@@ -76,24 +76,33 @@ int main (void)
 	{
 		if (flagOpcionUno==1)
 		{
-			getInt(&id,
+			do
+				{
+				getInt(&id,
 					"SEleccione un ID para dar de baja\n",
 					"NO es un ID valido",
 						  0,
 						  100,
 						  2);
-			imprimirDatosEmpleadoPorId(aEmpleados,QTY_EMPLEADOS, id);
-			esSiONo(confirmacion,
-						"¿Desea dar la baja si o no? \n",
-						"NO es una respuesta valida \n",
-							  2,
-							  4,
-							  2);
-			if(strncmp(confirmacion,"si",4)==0)
-			{
-				bajaEmpleadoPorId(aEmpleados,QTY_EMPLEADOS,id);
+				if(buscarEmpleadoPorId(aEmpleados, QTY_EMPLEADOS, id)!=-1)
+				{
+					imprimirDatosEmpleadoPorId(aEmpleados,QTY_EMPLEADOS, id);
+					esSiONo(confirmacion,
+							"¿Desea dar la baja si o no? \n",
+							"NO es una respuesta valida \n",
+							2,
+							4,
+							2);
+						if(strncmp(confirmacion,"si",4)==0)
+							{
+								bajaEmpleadoPorId(aEmpleados,QTY_EMPLEADOS,id);
+							}
+				}else
+				{
+					printf("NO hay empleados cargados en ese id");
+				}
+				}while(buscarEmpleadoPorId(aEmpleados, QTY_EMPLEADOS, id)==-1);
 			}
-		}
 		else
 		{
 			getInt(&opcion,
@@ -102,7 +111,7 @@ int main (void)
 						  0,
 						  5,
 						  2);
-		}
+		}printf("%d",flagOpcionUno);
 		break;
 	}
 	case 3:
@@ -124,19 +133,25 @@ int main (void)
 						  2);
 					if(strncmp(confirmacion,"si",4)==0)
 						{
-						getString(datoAModificar,
-								"Seleccione dato a modificar: nombre, apellido, dni \n",
-								"NO es una opcion valid",
+						getChar(datoAModificar,
+								"Seleccione dato a modificar: a)nombre, b)apellido, c)dni \n",
+								"NO es una opcion valida \n",
 								0,
 								11,
 								 2);
-//						switch(datoAModificar)
-//						{
-//						case "nombre":
-//						{
-//							modificacionEmpleadoPorIdCamposPuntuales(aEmpleados, QTY_EMPLEADOS, //sEmpleado empleadoNuevo);
-//							break;
-//						}
+						switch(datoAModificar)
+						{
+						case 'a':
+						{
+							getNombre(bEmpleado.nombre,
+									"Ingrese el nombre \n",
+									"NO es un nombre valido \n",
+									2,
+									16,
+									2);
+							modificacionEmpleadoPorIdCamposPuntuales(aEmpleados, QTY_EMPLEADOS, bEmpleado);
+							break;
+						}
 //						case "apellido":
 //							{
 //								modificacionEmpleadoPorIdCamposPuntuales(aEmpleados, QTY_EMPLEADOS, //sEmpleado empleadoNuevo);
@@ -147,17 +162,17 @@ int main (void)
 //								modificacionEmpleadoPorIdCamposPuntuales(aEmpleados, QTY_EMPLEADOS, //sEmpleado empleadoNuevo);
 //								break;
 //							}
-//						}
-//						default:
-//							{
-//							getString(datoAModificar,
-//									"NO es un campo valido. Seleccione dato a modificar: nombre, apellido, dni \n",
-//									"NO es una opcion valida",
-//									0,
-//									11,
-//									2);
-//							}
-//						}
+
+						default:
+							{
+							getString(datoAModificar,
+									"NO es un campo valido. Seleccione dato a modificar: nombre, apellido, dni \n",
+									"NO es una opcion valida",
+									0,
+									11,
+									2);
+							}
+						}
 			}
 			else
 			{
@@ -167,7 +182,7 @@ int main (void)
 							  0,
 							  5,
 							  2);
-			}
+			}printf("%d",flagOpcionUno);
 			break;
 		}
 	case 4:
@@ -183,8 +198,10 @@ int main (void)
 				  0,
 				  5,
 				  2);
-				}
+				}printf("%d",flagOpcionUno);
+				break;
 			}
+		}
 	}
 	esSiONo(respuesta,
 			"¿Desea realizar otra operacion? si o no \n",
