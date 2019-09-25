@@ -136,23 +136,74 @@ int bajaEmpleadoPorId(struct sEmpleado *aArray, int cantidad,int id)
 //
 //	return retorno;
 //}
-
-int modificacionEmpleadoPorIdCamposPuntuales(struct sEmpleado *aArray, int cantidad, struct sEmpleado empleadoNuevo)
+//MODIFICA TODDO COMPELTO int modificacionEmpleadoPorIdCamposPuntuales(struct sEmpleado *aArray, int cantidad, struct sEmpleado empleadoNuevo)
+//
+//{
+//	if(aArray != NULL && cantidad > 0 && posicionEmpleado >=0)
+//		{
+//			aArray[posicionEmpleado]=empleadoNuevo;
+//			aArray[posicionEmpleado].idEmpleado=id;
+//			retorno = EXIT_SUCCESS;
+//		}
+//
+//		return retorno;
+//		}
+//}
+int modificacionEmpleadoPorIdCamposPuntuales(struct sEmpleado *aArray, int cantidad, int index)
 {
 	int retorno =EXIT_ERROR;
-	int id;
-	int posicionEmpleado= buscarEmpleadoPorId(aArray, cantidad,id);
+	char datoAModificar;
+	char respuesta[3];
+	struct sEmpleado bEmpleado;
+	//int posicionEmpleado= buscarEmpleadoPorId(aArray, cantidad,id);
 
-	if(aArray != NULL && cantidad > 0 && posicionEmpleado >=0)
-			{
-					aArray[posicionEmpleado]=empleadoNuevo;
-					aArray[posicionEmpleado].idEmpleado=id;
-					retorno = EXIT_SUCCESS;
-			}
+	do
+	{
+	getChar(&datoAModificar,
+			"Seleccione dato a modificar: a)nombre, b)apellido, c)dni \n",
+			"NO es una opcion valida \n",
+			'a',
+			'z',
+			2);
 
-	return retorno;
-}
+		switch(datoAModificar)
 
+		{
+			case 'a':
+
+		getNombre(bEmpleado.nombre,
+				"Ingrese el nombre \n",
+				"NO es un nombre valido \n",
+				2,
+				16,
+				2);
+		strncpy(aArray[index].nombre,bEmpleado.nombre,50);
+		retorno =EXIT_SUCCESS;
+	   break;
+
+		}
+	//						case "apellido":
+	//							{
+	//								modificacionEmpleadoPorIdCamposPuntuales(aEmpleados, QTY_EMPLEADOS, //sEmpleado empleadoNuevo);
+	//								break;
+	//							}
+	//						case "dni":
+	//							{
+	//								modificacionEmpleadoPorIdCamposPuntuales(aEmpleados, QTY_EMPLEADOS, //sEmpleado empleadoNuevo);
+	//								break;
+	//							}
+
+	esSiONo(respuesta,
+							"¿Desea seguir modificando este id? si o no? \n",
+							"NO es una respuesta valida \n",
+							  2,
+							  4,
+							  2);
+	}while(strncmp(respuesta,"si",4)==0);
+
+		return retorno;
+
+	}
 
 //pantalla panux
 //switch(opcion)

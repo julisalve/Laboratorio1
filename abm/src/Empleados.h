@@ -37,7 +37,8 @@ int imprimirDatosEmpleadoPorId(struct sEmpleado *aArray, int cantidad, int id);
 int imprimirArrayEmpleados(struct sEmpleado *aArray, int cantidad);
 int bajaEmpleadoPorId(struct sEmpleado *aArray, int cantidad,int id);
 int modificarEmpleadoPorId(struct sEmpleado *aArray, int cantidad,struct sEmpleado empleado);
-int modificacionEmpleadoPorIdCamposPuntuales(struct sEmpleado *aArray, int cantidad, struct sEmpleado empleadoNuevo);
+//int modificacionEmpleadoPorIdCamposPuntuales(struct sEmpleado *aArray, int cantidad, struct sEmpleado empleadoNuevo);
+int modificacionEmpleadoPorIdCamposPuntuales(struct sEmpleado *aArray, int cantidad, int index);
 int altaEmpleadoPorId(struct sEmpleado *aArray, int cantidad,struct sEmpleado empleado);
 
 int altaForzadaEmpleados(struct sEmpleado *aArray,int cantidad);
