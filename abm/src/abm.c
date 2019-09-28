@@ -77,7 +77,7 @@ int main (void)
 
 		case 2:
 
-			if (flagOpcionUno==1)
+			if (flagOpcionUno!=0)
 			{
 
 				imprimirArrayEmpleados(aEmpleados,10);
@@ -125,7 +125,7 @@ int main (void)
 
 		case 3:
 
-			if (flagOpcionUno==1)
+			if (flagOpcionUno!=0)
 			{
 				imprimirArrayEmpleados(aEmpleados,10);
 				getInt(&id,
@@ -176,7 +176,7 @@ int main (void)
 
 		case 4:
 
-			if (flagOpcionUno==1)
+			if (flagOpcionUno!=0)
 			{
 				imprimirArrayEmpleados(aEmpleados,10);
 			}
