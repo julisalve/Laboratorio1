@@ -29,6 +29,8 @@ struct sPantallas
 
 int initLugarLibre(struct sArray *aArray, int cantidad);
 int buscarLugarLibre(struct sArray *aArray, int cantidad);
+int buscarPorId(struct sArray *aArray, int cantidad, int id);
+int imprimirDatosPorId(struct sArray *aArray, int cantidad, int id);
 int altaPorId(struct sArray *aArray, int cantidad,struct sArray item);
 int imprimirArray(struct sArray *aArray, int cantidad);
 static int generarId(void);

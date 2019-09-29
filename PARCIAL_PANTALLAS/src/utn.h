@@ -21,8 +21,12 @@
 
 struct sArray
 {
-	int status;
 	int id;
+	int status;
+	char tipo[50];
+	char nombre[50];
+	long precio;
+	char direccion[50];
 };
 
 

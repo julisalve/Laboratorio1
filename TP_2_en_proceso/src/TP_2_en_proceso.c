@@ -14,7 +14,7 @@
 #include <string.h>
 #include "ArrayEmployees.h"
 
-#define QTY_EMPLEADOS 10
+#define QTY_EMPLEADOS 1000
 
 static int generarId();
 

@@ -33,9 +33,12 @@ int main (void)
 	struct sPantallas aPantalla[QTY_PANTALLAS];
 	struct sPantallas bPantalla;
 	struct sPantallas datosPantallaAModificar;
+	struct sPublicidad aPublicidad[QTY_PUBLICIDAD];
+	struct sPublicidad bPublicidad;
 	int posicionPantallaAModificar;
 	char datoAModificar;
 	initLugarLibre(aPantalla, QTY_PANTALLAS);
+	initLugarLibre(aPublicidad, QTY_PUBLICIDAD);
 	do
 	{
 		system("clear");
@@ -53,9 +56,9 @@ int main (void)
 		if(getInt(&opcion,
 				"Elija una opcion \n",
 				"NO es una opcion valida\n",
-				0,
-				11,
-				2)!=0)
+				1,
+				10,
+				3)!=0)
 		{
 			printf("ERROR");
 		}
@@ -95,7 +98,7 @@ int main (void)
 			{
 				printf("ERROR");
 			}
-			if(getFloat()(bPantalla.precioPantalla,
+			if(getFloat(bPantalla.precioPantalla,
 					"Ingrese un precio \n",
 					"NO es un precio valida \n",
 					0.1,
@@ -106,12 +109,15 @@ int main (void)
 			}
 			aPantalla[posicionPantallaLibre]=bPantalla;
 			altaPorId(aPantalla,QTY_PANTALLAS ,bPantalla);
-			//i++;
 			flagOpcionUno=1;
 			break;
 		case 2://MODIFICAR DATOS PANTALLA
 
-			if (flagOpcionUno==1)
+			if (flagOpcionUno!=1)
+			{
+				printf("Error, primero debe dar de alta una pantalla \n");
+			}
+			else
 			{
 				imprimirArray(aPantalla,QTY_PANTALLAS);
 				getInt(&id,
@@ -120,20 +126,28 @@ int main (void)
 						0,
 						100,
 						2);
-				//				imprimirDatosEmpleadoPorId(aEmpleados,QTY_EMPLEADOS, id);
-				//				posicionEmpleadoAModificar=buscarEmpleadoPorId(aEmpleados,QTY_EMPLEADOS,id);
-				//
-				//
+				posicionPantallaAModificar=buscarPorId(aPantalla,QTY_PANTALLAS,id);
+				while(posicionPantallaAModificar==-1)
+							{
+								getInt(&id,
+										"NO existe el ID. Seleccione un ID valido\n",
+										"NO es un ID valido",
+										0,
+										100,
+										2);
+							}
+
+							imprimirDatosPorId(aPantalla,QTY_PANTALLAS,id);
 				esSiONo(confirmacion,
 						"¿Desea modificar este id? si o no? \n",
 						"NO es una respuesta valida \n",
 						2,
 						4,
 						2);
-				//				if(strncmp(confirmacion,"si",4)==0)
-				//				{
-				//					modificacionEmpleadoPorIdCamposPuntuales(aEmpleados, QTY_EMPLEADOS, posicionEmpleadoAModificar);
-				//				}
+								if(strncmp(confirmacion,"si",4)==0)
+								{
+									modificacionEmpleadoPorIdCamposPuntuales(aEmpleados, QTY_EMPLEADOS, posicionEmpleadoAModificar);
+								}
 				//				else{
 				//					break;
 				//				}
