@@ -79,31 +79,7 @@ int addEmployee(Employee *list, int len,int id, char name [], char lastName [], 
 }
 
 
-/**\brief find the first empty position and returns the index position in array.
- *
- * \param list Employee* Poniter to array of employees
- * \param len int Array length
- * \return int Return (EXIT_ERROR -1) if Error [Invalid length or NULL pointer]- (i) index of the first empty position if OK.
- *
- */
 
-int findFirstEmptyPosition(Employee *list, int len)
-{
-	int retorno = EXIT_ERROR;
-	int i;
-	if(list != NULL && len > 0)
-	{
-		for(i=0;i<len;i++)
-		{
-			if(list[i].isEmpty ==TRUE)
-			{
-				retorno = i;
-				break;
-			}
-		}
-	}
-	return retorno;
-}
 
 /**\brief find an Employee by Id and returns the index position in array
  *
@@ -156,6 +132,234 @@ int removeEmployee(Employee *list, int len,int id)
 	return retorno;
 }
 
+
+/**\brief Sort the elements in the array of employees, the argument order indicate UP or DOWN order
+ *
+ * \param list Employee* Poniter to array of employees
+ * \param len int Array length
+ * \param order int [1]indicate UP - [0] indicate DOWN
+ * \return int Return (EXIT_ERROR -1) if Error [Invalid length or NULL pointer] or (EXIT_SUCCESS 0) if OK.
+ *
+ */
+
+//int sortEmployees(Employee *list, int len, int order)
+//{
+//	int i;
+//	int retorno = EXIT_ERROR;
+//	Employee bEmpleados;
+//	int fSwap;
+//	if(list != NULL && len>0)
+//	{
+//		retorno = 0;
+//		if(order==1)
+//		{
+//		do
+//		{
+//			fSwap = 0;
+//			for(i=0;i<len-1;i++)
+//			{
+//				if(strncmp(list[i].lastName,list[i+1].lastName,50)>0)
+//				{
+//					fSwap = 1;
+//					bEmpleados=list[i];
+//					list[i]=list[i+1];
+//					list[i+1]=bEmpleados;
+//				}
+//				else if(strncmp(list[i].lastName,list[i+1].lastName,50)==0)
+//
+//				{
+//					if(list[i].sector>list[i+1].sector)
+//						{
+//							fSwap = 1;
+//							bEmpleados=list[i];
+//							list[i]=list[i+1];
+//							list[i+1]=bEmpleados;
+//						}
+//					else if(list[i].sector==list[i+1].sector)
+//					{
+//						if(strncmp(list[i].name,list[i+1].name,50)>0)
+//										{
+//											fSwap = 1;
+//											bEmpleados=list[i];
+//											list[i]=list[i+1];
+//											list[i+1]=bEmpleados;
+//										}
+//					}
+//				}
+//			}
+//		}while(fSwap);
+//
+//		}
+//		else if(order==2)
+//		{
+//		do
+//		{
+//			fSwap = 0;
+//			for(i=0;i<len-1;i++)
+//			{
+//				if(strncmp(list[i].lastName,list[i+1].lastName,50)<0)
+//				{
+//					fSwap = 1;
+//					bEmpleados=list[i];
+//					list[i]=list[i+1];
+//					list[i+1]=bEmpleados;
+//				}
+//				else if(strncmp(list[i].lastName,list[i+1].lastName,50)==0)
+//
+//				{
+//					if(list[i].sector<list[i+1].sector)
+//						{
+//							fSwap = 1;
+//							bEmpleados=list[i];
+//							list[i]=list[i+1];
+//							list[i+1]=bEmpleados;
+//						}
+//					else if(list[i].sector==list[i+1].sector)
+//					{
+//						if(strncmp(list[i].name,list[i+1].name,50)<0)
+//										{
+//											fSwap = 1;
+//											bEmpleados=list[i];
+//											list[i]=list[i+1];
+//											list[i+1]=bEmpleados;
+//										}
+//					}
+//				}
+//			}
+//		}while(fSwap);
+//
+//		}
+//	}
+//	return retorno;
+//}
+
+int sortEmployees(Employee *list, int len, int order)
+{
+
+	int retorno = EXIT_ERROR;
+	if(list != NULL && len>0)
+	{
+		retorno = 0;
+		if(order==1)
+		{
+			sortEmployeesUp(list, len);
+		}
+		else if(order==2)
+		{
+			sortEmployeesDown(list, len);
+		}
+	}
+	return retorno;
+}
+
+
+
+
+
+int sortEmployeesUp(Employee *list, int len)
+{
+	int i;
+	int retorno = EXIT_ERROR;
+	Employee bEmpleados;
+	int fSwap;
+	if(list != NULL && len>0)
+	{
+		retorno = EXIT_SUCCESS;
+		do
+		{
+			fSwap = 0;
+			for(i=0;i<len-1;i++)
+			{
+				if(strncmp(list[i].lastName,list[i+1].lastName,50)>0)
+				{
+					fSwap = 1;
+					bEmpleados=list[i];
+					list[i]=list[i+1];
+					list[i+1]=bEmpleados;
+				}
+				else if(strncmp(list[i].lastName,list[i+1].lastName,50)==0)
+
+				{
+					if(list[i].sector>list[i+1].sector)
+					{
+						fSwap = 1;
+						bEmpleados=list[i];
+						list[i]=list[i+1];
+						list[i+1]=bEmpleados;
+					}
+					else if(list[i].sector==list[i+1].sector)
+					{
+						if(strncmp(list[i].name,list[i+1].name,50)>0)
+						{
+							fSwap = 1;
+							bEmpleados=list[i];
+							list[i]=list[i+1];
+							list[i+1]=bEmpleados;
+						}
+					}
+		}
+			}
+		}while(fSwap);
+		}
+		return retorno;
+	}
+
+
+	int sortEmployeesDown(Employee *list, int len)
+	{
+		int i;
+		int retorno = EXIT_ERROR;
+		Employee bEmpleados;
+		int fSwap;
+		if(list != NULL && len>0)
+		{
+			retorno = EXIT_SUCCESS;
+
+	do
+	{
+		fSwap = 0;
+		for(i=0;i<len-1;i++)
+		{
+			if(strncmp(list[i].lastName,list[i+1].lastName,50)<0)
+			{
+				fSwap = 1;
+				bEmpleados=list[i];
+				list[i]=list[i+1];
+				list[i+1]=bEmpleados;
+			}
+			else if(strncmp(list[i].lastName,list[i+1].lastName,50)==0)
+
+			{
+				if(list[i].sector<list[i+1].sector)
+					{
+						fSwap = 1;
+						bEmpleados=list[i];
+						list[i]=list[i+1];
+						list[i+1]=bEmpleados;
+					}
+				else if(list[i].sector==list[i+1].sector)
+				{
+					if(strncmp(list[i].name,list[i+1].name,50)<0)
+									{
+										fSwap = 1;
+										bEmpleados=list[i];
+										list[i]=list[i+1];
+										list[i+1]=bEmpleados;
+									}
+				}
+			}
+		}
+	}while(fSwap);
+		}
+	return retorno;
+}
+
+
+
+
+
+
+
 int imprimirArrayEmpleados(Employee*list, int len){
 	int i;
 	int retorno = EXIT_ERROR;
@@ -166,9 +370,35 @@ int imprimirArrayEmpleados(Employee*list, int len){
 		{
 			if(list[i].isEmpty== FALSE)
 			{
-				printf("Estado : %d - Id: %d - Nombre: %s - Apellido: %s - SalarioDNI: %.2f - Sector: %d \n",list[i].isEmpty,list[i].id,list[i].name,list[i].lastName,list[i].salary,list[i].sector);
+				printf("Estado : %d - Id: %d - Nombre: %s - Apellido: %s - Salario: %.2f - Sector: %d \n",list[i].isEmpty,list[i].id,list[i].name,list[i].lastName,list[i].salary,list[i].sector);
 			}
 
+		}
+	}
+	return retorno;
+}
+
+/**\brief find the first empty position and returns the index position in array.
+ *
+ * \param list Employee* Poniter to array of employees
+ * \param len int Array length
+ * \return int Return (EXIT_ERROR -1) if Error [Invalid length or NULL pointer]- (i) index of the first empty position if OK.
+ *
+ */
+
+int findFirstEmptyPosition(Employee *list, int len)
+{
+	int retorno = EXIT_ERROR;
+	int i;
+	if(list != NULL && len > 0)
+	{
+		for(i=0;i<len;i++)
+		{
+			if(list[i].isEmpty ==TRUE)
+			{
+				retorno = i;
+				break;
+			}
 		}
 	}
 	return retorno;
@@ -183,7 +413,7 @@ int imprimirDatosEmpleadoPorId(Employee *list, int len, int id)
 		if(indice>=0)
 		{
 			retorno = indice;
-			printf("Estado : %d - Id: %d - Nombre: %s - Apellido: %s - SalarioDNI: %.2f - Sector: %d \n",list[indice].isEmpty,list[indice].id,list[indice].name,list[indice].lastName,list[indice].salary,list[indice].sector);
+			printf("Id: %d - Nombre: %s - Apellido: %s - Salario: %.2f - Sector: %d \n",list[indice].id,list[indice].name,list[indice].lastName,list[indice].salary,list[indice].sector);
 		}
 	}
 	return retorno;
@@ -293,41 +523,49 @@ int modificacionEmpleadoPorIdCamposPuntuales(Employee *list, int len, int index)
 
 		}
 
-int ordenarArrayEmpleadosPorApellidoYSector(Employee *list, int len){
+
+
+
+
+float sumaSalariosYPromedio(Employee *list,int len,float *suma, int *contadorIsEmptyFalso)
+{
+	int retorno=EXIT_ERROR;
 	int i;
-	int retorno = -1;
-	Employee bEmpleados;
-	int fSwap;
+	*suma=0;
+	*contadorIsEmptyFalso=0;
 	if(list != NULL && len>0)
 	{
-		retorno = 0;
-		do
-		{
-			fSwap = 0;
-			for(i=0;i<len-1;i++)
-			{
-				if(strncmp(list[i].lastName,list[i+1].lastName,50)>0)
-				{
-					fSwap = 1;
-					bEmpleados=list[i];
-					list[i]=list[i+1];
-					list[i+1]=bEmpleados;
-				}
-				else if(strncmp(list[i].lastName,list[i+1].lastName,50)==0)
 
-				{
-					if(strncmp(list[i].sector,list[i+1].sector,50)>0)
-						{
-							fSwap = 1;
-							bEmpleados=list[i];
-							list[i]=list[i+1];
-							list[i+1]=bEmpleados;
-						}
-				}
+		for(i=0;i<len;i++)
+		{
+			if(list[i].isEmpty== FALSE)
+			{
+				*suma=*suma+list[i].salary;
+				*contadorIsEmptyFalso=*contadorIsEmptyFalso+1;
 			}
-		}while(fSwap);
+		}retorno=EXIT_SUCCESS;
+
 	}
 	return retorno;
+}
+
+int cantidadEmpleadosQueSuperanPromedioSalario(Employee *list,int len,float promedio)
+{
+	int retorno=EXIT_ERROR;
+	int i;
+	int cantidadEmpleadosQueSuperanPromedioSalario=0;
+	if(list != NULL && len>0)
+		{
+			for(i=0;i<len;i++)
+			{
+				if(list[i].salary>promedio)
+				{
+					cantidadEmpleadosQueSuperanPromedioSalario++;
+				}
+			}retorno=cantidadEmpleadosQueSuperanPromedioSalario;
+		}
+	return retorno;
+
 }
 
 int getNombre(char *resultado,

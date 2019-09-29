@@ -32,7 +32,11 @@ int main (void)
 	char confirmacion[3];
 	Employee aEmpleados[QTY_EMPLEADOS];
 	int posicionEmpleadoAModificar;
-
+	float sumaSalario;
+	int contadorParaPromedio;
+	float promedioSalario;
+	int empleadosQueSuperanPromedioSalario;
+	int ordenamiento;
 	initEmployees(aEmpleados, QTY_EMPLEADOS);
 	do
 	{
@@ -191,9 +195,25 @@ int main (void)
 						}
 						else
 						{
-							ordenarArrayEmpleados(aEmpleados, QTY_EMPLEADOS);
-							imprimirArrayEmpleados(aEmpleados, QTY_EMPLEADOS);
-						}
+							getInt(&ordenamiento,"Elija forma de ordenamiento: 1) ASCENDETNE, 2) DESCENDENTE\n","NO en valido \n",1,1,2);
+							if(ordenamiento==1 || ordenamiento ==2)
+								{
+								sortEmployees(aEmpleados, QTY_EMPLEADOS,ordenamiento);
+								printf("Empleados ordenados por Apellido y sector \n");
+								imprimirArrayEmpleados(aEmpleados, QTY_EMPLEADOS);
+								}
+								else
+								{
+								printf ("NO es una forma de ordenamiento valida \n");
+								}
+
+							//ordenarArrayEmpleadosPorApellidoYSector(aEmpleados, QTY_EMPLEADOS);
+
+							sumaSalariosYPromedio(aEmpleados,QTY_EMPLEADOS,&sumaSalario,&contadorParaPromedio);
+							promedioSalario=sumaSalario/contadorParaPromedio;
+							empleadosQueSuperanPromedioSalario=cantidadEmpleadosQueSuperanPromedioSalario(aEmpleados,QTY_EMPLEADOS,promedioSalario);
+							printf("Suma de los salarios: %.2f.\nPromedio de los salarios: %.2f.\nCantidad de empleados que superan el salario promedio es: %d. \n",sumaSalario,promedioSalario,empleadosQueSuperanPromedioSalario);
+							}
 					break;
 
 

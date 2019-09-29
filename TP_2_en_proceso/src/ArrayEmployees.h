@@ -38,7 +38,12 @@ int removeEmployee(Employee *list, int len,int id);
 int imprimirArrayEmpleados(Employee*list, int len);
 int imprimirDatosEmpleadoPorId(Employee *list, int len, int id);
 int modificacionEmpleadoPorIdCamposPuntuales(Employee *list, int len, int index);
-int ordenarArrayEmpleados(Employee *list, int len);
+//int ordenarArrayEmpleadosPorApellidoYSector(Employee *list, int len);
+float sumaSalariosYPromedio(Employee *list,int len,float *suma, int *contadorIsEmptyFalso);
+int cantidadEmpleadosQueSuperanPromedioSalario(Employee *list,int len,float promedio);
+int sortEmployees(Employee *list, int len, int order);
+int sortEmployeesUp(Employee *list, int len);
+int sortEmployeesDown(Employee *list, int len);
 
 int getNombre(char *resultado,
 				char *mensaje,
