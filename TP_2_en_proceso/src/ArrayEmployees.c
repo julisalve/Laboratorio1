@@ -142,96 +142,6 @@ int removeEmployee(Employee *list, int len,int id)
  *
  */
 
-//int sortEmployees(Employee *list, int len, int order)
-//{
-//	int i;
-//	int retorno = EXIT_ERROR;
-//	Employee bEmpleados;
-//	int fSwap;
-//	if(list != NULL && len>0)
-//	{
-//		retorno = 0;
-//		if(order==1)
-//		{
-//		do
-//		{
-//			fSwap = 0;
-//			for(i=0;i<len-1;i++)
-//			{
-//				if(strncmp(list[i].lastName,list[i+1].lastName,50)>0)
-//				{
-//					fSwap = 1;
-//					bEmpleados=list[i];
-//					list[i]=list[i+1];
-//					list[i+1]=bEmpleados;
-//				}
-//				else if(strncmp(list[i].lastName,list[i+1].lastName,50)==0)
-//
-//				{
-//					if(list[i].sector>list[i+1].sector)
-//						{
-//							fSwap = 1;
-//							bEmpleados=list[i];
-//							list[i]=list[i+1];
-//							list[i+1]=bEmpleados;
-//						}
-//					else if(list[i].sector==list[i+1].sector)
-//					{
-//						if(strncmp(list[i].name,list[i+1].name,50)>0)
-//										{
-//											fSwap = 1;
-//											bEmpleados=list[i];
-//											list[i]=list[i+1];
-//											list[i+1]=bEmpleados;
-//										}
-//					}
-//				}
-//			}
-//		}while(fSwap);
-//
-//		}
-//		else if(order==2)
-//		{
-//		do
-//		{
-//			fSwap = 0;
-//			for(i=0;i<len-1;i++)
-//			{
-//				if(strncmp(list[i].lastName,list[i+1].lastName,50)<0)
-//				{
-//					fSwap = 1;
-//					bEmpleados=list[i];
-//					list[i]=list[i+1];
-//					list[i+1]=bEmpleados;
-//				}
-//				else if(strncmp(list[i].lastName,list[i+1].lastName,50)==0)
-//
-//				{
-//					if(list[i].sector<list[i+1].sector)
-//						{
-//							fSwap = 1;
-//							bEmpleados=list[i];
-//							list[i]=list[i+1];
-//							list[i+1]=bEmpleados;
-//						}
-//					else if(list[i].sector==list[i+1].sector)
-//					{
-//						if(strncmp(list[i].name,list[i+1].name,50)<0)
-//										{
-//											fSwap = 1;
-//											bEmpleados=list[i];
-//											list[i]=list[i+1];
-//											list[i+1]=bEmpleados;
-//										}
-//					}
-//				}
-//			}
-//		}while(fSwap);
-//
-//		}
-//	}
-//	return retorno;
-//}
 
 int sortEmployees(Employee *list, int len, int order)
 {
@@ -360,7 +270,8 @@ int sortEmployeesUp(Employee *list, int len)
 
 
 
-int imprimirArrayEmpleados(Employee*list, int len){
+int printfEmployees(Employee*list, int len)
+{
 	int i;
 	int retorno = EXIT_ERROR;
 	if(list != NULL && len>0)
@@ -370,7 +281,7 @@ int imprimirArrayEmpleados(Employee*list, int len){
 		{
 			if(list[i].isEmpty== FALSE)
 			{
-				printf("Estado : %d - Id: %d - Nombre: %s - Apellido: %s - Salario: %.2f - Sector: %d \n",list[i].isEmpty,list[i].id,list[i].name,list[i].lastName,list[i].salary,list[i].sector);
+				printf("Id: %d - Nombre: %s - Apellido: %s - Salario: %.2f - Sector: %d \n",list[i].id,list[i].name,list[i].lastName,list[i].salary,list[i].sector);
 			}
 
 		}
@@ -575,23 +486,24 @@ int getNombre(char *resultado,
 				int maximo,
 				int reintentos)
 {
-	int retorno=-1;
+	int retorno=EXIT_ERROR;
 	char buffer[4096];
+	reintentos++;
 	do
 		{
 		getString(buffer,
-
 					mensaje,
 					mensajeError,
 					minimo,
 					maximo,
 					reintentos);
+		reintentos--;
 		}while(esLetra(buffer,
 				mensaje,
 				mensajeError,
 				minimo,
 				maximo,
-				reintentos)!=0);
+				reintentos)!=0 && reintentos>=0);
 
 		 if(esLetra(buffer,
 					mensaje,
@@ -615,6 +527,7 @@ int getApellido(char *resultado,
 {
 	int retorno=-1;
 	char buffer[4096];
+	reintentos++;
 	do
 		{
 		getString(buffer,
@@ -624,12 +537,13 @@ int getApellido(char *resultado,
 					minimo,
 					maximo,
 					reintentos);
+		reintentos--;
 		}while(esLetra(buffer,
 				mensaje,
 				mensajeError,
 				minimo,
 				maximo,
-				reintentos)!=0);
+				reintentos)!=0 && reintentos >=0);
 
 		 if(esLetra(buffer,
 					mensaje,
@@ -828,33 +742,33 @@ char getChar (char *resultadoChar,
 
 
 int esLetra(char *resultado,
-			char *mensaje,
-			char *mensajeError,
-			int minimo,
-			int maximo,
-			int reintentos)
+		char *mensaje,
+		char *mensajeError,
+		int minimo,
+		int maximo,
+		int reintentos)
 {
-	int retorno =-1;
+	int retorno =EXIT_ERROR;
 	int i=0;
 	char buffer[4096];
 	strncpy(buffer,resultado,maximo+1);
-   	int cantidad;
-   	int contador=0;
-   	cantidad=strlen(buffer);
-   	while((buffer[i] != '\0' && buffer[i]== ' ') || (buffer[i] >= 'a' && buffer[i] <= 'z')|| (buffer[i] >= 'A' && buffer[i] <= 'Z'))
-		  {
-			contador++;
-			i++;
-		   }
-if(cantidad==contador)
+	int cantidad;
+	int contador=0;
+	cantidad=strlen(buffer);
+	while((buffer[i] != '\0' && buffer[i]== ' ') || (buffer[i] >= 'a' && buffer[i] <= 'z')|| (buffer[i] >= 'A' && buffer[i] <= 'Z'))
 	{
-	strncpy(resultado,buffer,maximo+1);
-	retorno = 0;
+		contador++;
+		i++;
 	}
-else
-{
-	printf("%s",mensajeError);
-}
+	if(cantidad==contador && reintentos>=0)
+	{
+		strncpy(resultado,buffer,maximo+1);
+		retorno = EXIT_SUCCESS;
+	}
+	else
+	{
+		printf("%s",mensajeError);
+	}
 	return retorno;
 }
 
@@ -892,6 +806,7 @@ else
 		}while(reintentos>=0);
 	   	return retorno;
 	}
+
 
 
 

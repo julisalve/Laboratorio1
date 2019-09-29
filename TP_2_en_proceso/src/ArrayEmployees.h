@@ -35,7 +35,7 @@ int addEmployee(Employee *list, int len,int id, char name [], char lastName [], 
 int findFirstEmptyPosition(Employee *list, int len);
 int findEmployeeById(Employee *list, int len, int id);
 int removeEmployee(Employee *list, int len,int id);
-int imprimirArrayEmpleados(Employee*list, int len);
+int printfEmployees(Employee*list, int len);
 int imprimirDatosEmpleadoPorId(Employee *list, int len, int id);
 int modificacionEmpleadoPorIdCamposPuntuales(Employee *list, int len, int index);
 //int ordenarArrayEmpleadosPorApellidoYSector(Employee *list, int len);

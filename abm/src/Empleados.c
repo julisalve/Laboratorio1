@@ -90,7 +90,7 @@ int imprimirDatosEmpleadoPorId(struct sEmpleado *aArray, int cantidad, int id)
 	return retorno;
 }
 
-int imprimirArrayEmpleados(struct sEmpleado *aArray, int cantidad){
+int printfEmployees(struct sEmpleado *aArray, int cantidad){
 	int i;
 	int retorno = -1;
 	if(aArray != NULL && cantidad>0)

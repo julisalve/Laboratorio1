@@ -34,7 +34,7 @@ int initLugarLibreEmpleado(struct sEmpleado *aArray, int cantidad);
 int buscarLugarLibreEmpleado(struct sEmpleado *aArray, int cantidad);
 int buscarEmpleadoPorId(struct sEmpleado *aArray, int cantidad,int id);
 int imprimirDatosEmpleadoPorId(struct sEmpleado *aArray, int cantidad, int id);
-int imprimirArrayEmpleados(struct sEmpleado *aArray, int cantidad);
+int printfEmployees(struct sEmpleado *aArray, int cantidad);
 int bajaEmpleadoPorId(struct sEmpleado *aArray, int cantidad,int id);
 int modificarEmpleadoPorId(struct sEmpleado *aArray, int cantidad,struct sEmpleado empleado);
 //int modificacionEmpleadoPorIdCamposPuntuales(struct sEmpleado *aArray, int cantidad, struct sEmpleado empleadoNuevo);

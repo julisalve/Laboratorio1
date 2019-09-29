@@ -80,7 +80,7 @@ int main (void)
 			if (flagOpcionUno!=0)
 			{
 
-				imprimirArrayEmpleados(aEmpleados,10);
+				printfEmployees(aEmpleados,10);
 				getInt(&id,
 						"Seleccione un ID para dar de baja\n",
 						"NO es un ID valido",
@@ -127,7 +127,7 @@ int main (void)
 
 			if (flagOpcionUno!=0)
 			{
-				imprimirArrayEmpleados(aEmpleados,10);
+				printfEmployees(aEmpleados,10);
 				getInt(&id,
 						"SEleccione un ID para modificar\n",
 						"NO es un ID valido",
@@ -178,7 +178,7 @@ int main (void)
 
 			if (flagOpcionUno!=0)
 			{
-				imprimirArrayEmpleados(aEmpleados,10);
+				printfEmployees(aEmpleados,10);
 			}
 			else{
 				getInt(&opcion,

@@ -12,6 +12,6 @@ int initArrayInt(int array[],int limite,int valor );
 
 int imprimeArrayInt(int array[],int limite );
 
-int imprimirArrayEmpleados(struct sEmpleado *aEmpleado, int cantidad);
+int printfEmployees(struct sEmpleado *aEmpleado, int cantidad);
 
 #endif /* BIBLIOTECA_IMPRIMIR_H_ */

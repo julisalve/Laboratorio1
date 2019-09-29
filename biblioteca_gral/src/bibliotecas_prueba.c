@@ -65,6 +65,6 @@ int main()
 		aEmpleados[i] = bEmpleado;
 	}
 
-	imprimirArrayEmpleados(aEmpleados, 3);
+	printfEmployees(aEmpleados, 3);
 }
 

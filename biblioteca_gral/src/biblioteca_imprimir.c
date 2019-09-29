@@ -49,7 +49,7 @@ int imprimeArrayInt(int array[],int limite )
 	return retorno;
 }
 
-int imprimirArrayEmpleados(struct sEmpleado *aEmpleado, int cantidad){
+int printfEmployees(struct sEmpleado *aEmpleado, int cantidad){
 	int i;
 	int retorno = -1;
 	if(aEmpleado != NULL && cantidad>0)
