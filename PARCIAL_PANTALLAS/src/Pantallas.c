@@ -206,6 +206,9 @@ int altaPorId(struct sArray *aArray, int cantidad,struct sArray item)
 	return retorno;
 }
 
+
+
+
 int imprimirArray(struct sArray *aArray, int cantidad){
 	int i;
 	int retorno = -1;

@@ -27,7 +27,7 @@ struct sPantallas
 	char direccionPantalla[50];
 };
 
-int initLugarLibre(struct sArray *aArray, int cantidad);
+int initLugarLibre(struct sArray *aArray, int cantidad);  // con control f hace un refactor.
 int buscarLugarLibre(struct sArray *aArray, int cantidad);
 int buscarPorId(struct sArray *aArray, int cantidad, int id);
 int imprimirDatosPorId(struct sArray *aArray, int cantidad, int id);

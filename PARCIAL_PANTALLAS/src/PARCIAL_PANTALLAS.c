@@ -100,15 +100,15 @@ int main (void)
 			}
 			if(getFloat(bPantalla.precioPantalla,
 					"Ingrese un precio \n",
-					"NO es un precio valida \n",
+					"NO es un precio valido \n",
 					0.1,
-					100000.0),
+					100000.0,
 					2)!=0)
 			{
 				printf("ERROR");
 			}
 			aPantalla[posicionPantallaLibre]=bPantalla;
-			altaPorId(aPantalla,QTY_PANTALLAS ,bPantalla);
+			altaPorId(aPantalla,QTY_PANTALLAS,bPantalla);
 			flagOpcionUno=1;
 			break;
 		case 2://MODIFICAR DATOS PANTALLA
