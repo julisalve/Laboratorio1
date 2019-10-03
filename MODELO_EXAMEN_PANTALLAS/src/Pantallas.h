@@ -24,7 +24,7 @@ typedef struct
 
 		}Pantallas;
 
-static int generarId(void);
+static int generarId();
 int initLugarLibrePantallas(Pantallas *aArray, int cantidad);
 int buscarLugarPantalla(Pantallas *aArray, int cantidad);
 int altaPantallaPorId(Pantallas *aArray, int cantidad,Pantallas buffer);

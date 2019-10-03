@@ -84,7 +84,7 @@ int altaPantallaPorId(Pantallas *aArray, int cantidad,Pantallas buffer)
 	int retorno = EXIT_ERROR;
 	int i;
 	i = buscarLugarPantalla(aArray,cantidad);
-		if(aArray != NULL && cantidad > 0 && i!=-1)
+		if(aArray != NULL && cantidad > 0 && i!=EXIT_ERROR)
 		{
 			aArray[i]=buffer;
 			aArray[i].status= STATUS_NOT_EMPTY;
@@ -113,7 +113,7 @@ int imprimirArrayPantallas(Pantallas *aArray, int cantidad)
 		retorno = EXIT_SUCCESS;
 		for(i=0;i<cantidad;i++)
 		{
-			if(aArray[i].status!=STATUS_NOT_EMPTY)
+			if(aArray[i].status==STATUS_NOT_EMPTY)
 			{
 				printf("Id: %d - Status %d - NOmbre: %s - Direccion: %s - Precio: %.2f - Tipo %d\n",aArray[i].id,aArray[i].status,aArray[i].nombre,aArray[i].direccion,aArray[i].precio,aArray[i].tipo);
 			}

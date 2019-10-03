@@ -22,9 +22,9 @@
 
 
 int main(void) {
-	int verificar;
+
 	Publicidades aPublicidad[QTY_PUBLICIDADES];
-	Publicidades bPublicidad;
+	//Publicidades bPublicidad;
 	Pantallas aPantalla[QTY_PANTALLAS];
 	Pantallas bPantalla;
 	int opcion;
@@ -35,7 +35,7 @@ int main(void) {
 	do
 	{
 		system("clear");
-		printf("1)ALTA PANTALLA.\n2) MODIFICACION PANTALLA\.n3) BAJA PANTALLA. \n4) CONTRATAR PUBLICIDAD. \n5) MODIFICAR PUBLICIDAD.\n 6) CANCELAR PUBLICIDAD. \n7) CONSULTA FACTURACION. \n8) LISTA CONTRATACIONES.\n9) LISTAR PANTALLAS.\n10) INFORMAR:\n  a)LIsta de cada cliente con cantidad de contrataciones e importe a pagar.\n  b)Cliente con importe mas alto a facturar.\n");
+		printf("1)ALTA PANTALLA.\n2) MODIFICACION PANTALLA\n3) BAJA PANTALLA. \n4) CONTRATAR PUBLICIDAD. \n5) MODIFICAR PUBLICIDAD.\n 6) CANCELAR PUBLICIDAD. \n7) CONSULTA FACTURACION. \n8) LISTA CONTRATACIONES.\n9) LISTAR PANTALLAS.\n10) INFORMAR:\n  a)LIsta de cada cliente con cantidad de contrataciones e importe a pagar.\n  b)Cliente con importe mas alto a facturar.\n");
 		if(getInt(&opcion, "Ingrese una opcion del menu \n", "NO es una opcion valida \n",1,10,3)!=0)
 		{
 			printf("ERROR.\n ");
@@ -64,19 +64,18 @@ int main(void) {
 				printf("ERROR.\n");
 				break;
 			}
-			if(getTipo(bPantalla.tipo,"INgrese un tipo de pantalla a)LED, b)LCD \n","NO es un tipo valido \n",'a','z',2)!=0)
-			{
-				printf("ERROR.\n");
-				break;
-			}
-			aPantalla[i]=bPantalla;
+//			if(getTipo(&bPantalla.tipo,"INgrese un tipo de pantalla a)LED, b)LCD \n","NO es un tipo valido \n",'a','z',2)!=0)
+//			{
+//				printf("ERROR.\n");
+//				break;
+//			}
+
 			altaPantallaPorId(aPantalla,QTY_PANTALLAS,bPantalla);
 
-//			aPantalla[1]={2,1,'a',"juli","Alas",22};
 			imprimirArrayPantallas(aPantalla,QTY_PANTALLAS);
 			break;
 		}
-	}while(respuesta=="si");
+	}while(strncmp(respuesta,"si",4)==0);
 }
 
 
