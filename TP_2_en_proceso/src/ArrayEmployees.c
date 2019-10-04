@@ -315,6 +315,15 @@ int findFirstEmptyPosition(Employee *list, int len)
 	return retorno;
 }
 
+
+/**\brief Imprime datos de un id en particular
+ *
+ * \param list Employee*
+ * \param len int tamaño del aray
+ * \param id es el id solicitado
+ * \return int DEvuelve(EXIT_ERROR -1) en caso de que el array sea nulo o sea invalido el tamaño o devuelve la posicion del id en caso de exito
+ *
+ */
 int imprimirDatosEmpleadoPorId(Employee *list, int len, int id)
 {
 	int retorno =EXIT_ERROR;
@@ -330,6 +339,15 @@ int imprimirDatosEmpleadoPorId(Employee *list, int len, int id)
 	return retorno;
 }
 
+
+/**\brief Modifica el dato que se desee de los campos de la estructura del srray
+ *
+ * \param list Employee*
+ * \param len int tamaño del aray
+ * \param index posicion del array
+ * \return int DEvuelve(EXIT_ERROR -1) en caso de error o EXIT SUCCESS (0) en caso de exito
+ *
+ */
 int modificacionEmpleadoPorIdCamposPuntuales(Employee *list, int len, int index)
 {
 	int retorno =EXIT_ERROR;
