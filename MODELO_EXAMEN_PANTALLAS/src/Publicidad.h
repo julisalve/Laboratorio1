@@ -13,6 +13,8 @@
 #define STATUS_EMPTY 0
 #define STATUS_NOT_EMPTY 1
 
+#include "Pantallas.h"
+
 typedef struct
 		{
 		int id;
@@ -25,5 +27,9 @@ typedef struct
 		}Publicidades;
 
 int initLugarLibrePublicidad(Publicidades *aArray, int cantidad);
-
+int buscarLugarPublicidad(Publicidades *aArray, int cantidad);
+int buscarPantallaPorIdEnPublicidad(Publicidades *aArray, int cantidad, int idPant);
+int altaPublicidad(Publicidades *aArrayPub, int cantidad, Publicidades buffer,Pantallas *aArray, int cantidadPant,int index);
+int imprimirDatosPantallasPorCuitPublicidades(Pantallas *aArray, int cantidad, Publicidades *aArrayAux, int cantArrayAux);
+int buscarPublicidadIdPantallaPorCuit(Publicidades *aArray, int cantidad, char cuit, Publicidades *aArayAux);
 #endif /* PUBLICIDAD_H_ */

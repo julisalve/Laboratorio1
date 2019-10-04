@@ -337,9 +337,87 @@ int getDatoAlfaNumerico(char *resultado,
 	}
 
 
+/**
+ * \brief Valida si el dato es numerico y devuelve el exito o el facaso.
+ * \param *resultado es el numero obtenido
+ * \param *mensaje es el mensaje a ser mostrado
+ * \param *mensajeError es el mensaje  de error
+ * \param minimo es la cantidad de numeros minimos que puede ingresar el usuario
+ * \param maximo es la cantidad de numeros maximos que puede ingresar el usuario
+ * \param reintentos es la cantidad de veces que el usuario puede reintentar .
+ * \return devuelve el -1 en caso de no ser un numero, o el 0 en caso de exito.
+ *
+ */
+
+int isNumber(char *resultado,
+			char *mensaje,
+			char *mensajeError,
+			int minimo,
+			int maximo,
+			int reintentos)
+{
+	int retorno =EXIT_ERROR;
+	int i=0;
+	char buffer[4096];
+	strncpy(buffer,resultado,maximo+1);//strncpy(buffer,resultado,maximo+1);
+   	int cantidad;
+   	int contador=0;
+   	cantidad=strlen(buffer);
+   	while(buffer[0] != '\0' && (buffer[i] >= '0' && buffer[i] <= '9'))
+		  {
+			contador++;
+			i++;
+		   }
+  if(cantidad==contador)
+	{
+	strncpy(resultado,buffer,maximo+1);
+	retorno = EXIT_SUCCESS;
+	}
+else
+{
+	printf("%s",mensajeError);
+}
+	return retorno;
+}
+
+int getSoloNumeros(char *resultado,
+				char *mensaje,
+				char *mensajeError,
+				int minimo,
+				int maximo,
+				int reintentos)
+{
+	int retorno=EXIT_ERROR;
+	char buffer[4096];
+
+	do{
+		getString(buffer,
+					mensaje,
+					mensajeError,
+					minimo,
+					maximo,
+					reintentos);
+		}while (isNumber(buffer,
+			mensaje,
+			mensajeError,
+			minimo,
+			maximo,
+			reintentos)!=0);
 
 
+			if(isNumber(buffer,
+					mensaje,
+					mensajeError,
+					minimo,
+					maximo,
+					reintentos)==0)
+			{
+		       	  strncpy(resultado,buffer,maximo+1);
+		       	  retorno = EXIT_SUCCESS;
 
+			}
+	return retorno;
+	}
 
 
 /**
@@ -389,57 +467,62 @@ float getFloat(float *resultado,
 	return retorno;
 }
 
+///**
+// * \brief Solicita un tipo al usuario y devuelve el exito o el facaso.
+// * \param *resultado es el dato obtenido
+// * \param *mensaje es el mensaje a ser mostrado
+// * \param *mensajeError es el mensaje  de error
+// * \param minimo es el valor minimo que puede ingresar el usuario
+// * \param maximo es el valor maximo que puede ingresar el usuario
+// * \param reintentos es la cantidad de veces que el usuario puede reintentar cargar el dato.
+// * \return devuelve el -1 (EXIT_ERROR) en caso de fracaso o el 0 (EXIT_SUCCESS) en caso de exito.
+// *
+// */
+//int getTipo(char *resultado,
+//			char *mensaje,
+//			char *mensajeError,
+//			int minimo,
+//			int maximo,
+//			int reintentos)
+//{
+//	int retorno =EXIT_ERROR;
+//	char buffer;
+//	do
+//	{	getChar(buffer,
+//				mensaje,
+//				mensajeError,
+//				minimo,
+//				maximo,
+//				reintentos);
+//
+//		if(buffer=='a' || buffer=='b')
+//		{
+//   		*resultado=buffer;
+//   		retorno = EXIT_SUCCESS;
+//   		break;
+//   		}
+//		else
+//		{
+//			printf("%s",mensajeError);
+//			reintentos--;
+//		}
+//	}while(reintentos>=0);
+//   	return retorno;
+//}
+
+
+
 /**
- * \brief Solicita un tipo al usuario y devuelve el exito o el facaso.
+ * \brief Solicita una confirmacion al usuario la cual puede ser si o no
  * \param *resultado es el dato obtenido
  * \param *mensaje es el mensaje a ser mostrado
  * \param *mensajeError es el mensaje  de error
- * \param minimo es el valor minimo que puede ingresar el usuario
- * \param maximo es el valor maximo que puede ingresar el usuario
+ * \param minimo es la cantidad minima de caracteres que puede contener el string
+ * \param maximo es la cantidad maxima de caracteres que puede contener el string
  * \param reintentos es la cantidad de veces que el usuario puede reintentar cargar el dato.
  * \return devuelve el -1 (EXIT_ERROR) en caso de fracaso o el 0 (EXIT_SUCCESS) en caso de exito.
  *
  */
-int getTipo(char *resultado,
-			char *mensaje,
-			char *mensajeError,
-			int minimo,
-			int maximo,
-			int reintentos)
-{
-	int retorno =EXIT_ERROR;
-	char buffer;
-	do
-	{	getChar(&buffer,
-				mensaje,
-				mensajeError,
-				minimo,
-				maximo,
-				reintentos);
-
-		if(buffer=='a' || buffer=='b')
-		{
-   		*resultado=buffer;
-   		retorno = EXIT_SUCCESS;
-   		break;
-   		}
-		else
-		{
-			printf("%s",mensajeError);
-			reintentos--;
-		}
-	}while(reintentos>=0);
-   	return retorno;
-}
-
-
-
-
-
-
-
-
-
 	int esSiONo(char *resultado,
 				char *mensaje,
 				char *mensajeError,

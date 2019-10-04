@@ -49,6 +49,18 @@ int getDatoAlfaNumerico(char *resultado,
 				int minimo,
 				int maximo,
 				int reintentos);
+int isNumber(char *resultado,
+			char *mensaje,
+			char *mensajeError,
+			int minimo,
+			int maximo,
+			int reintentos);
+int getSoloNumeros(char *resultado,
+				char *mensaje,
+				char *mensajeError,
+				int minimo,
+				int maximo,
+				int reintentos);
 
 float getFloat(float *resultado,
 				char *mensaje,
@@ -68,5 +80,11 @@ int getTipo(char *resultado,
 			int minimo,
 			int maximo,
 			int reintentos);
+int esSiONo(char *resultado,
+				char *mensaje,
+				char *mensajeError,
+				int minimo,
+				int maximo,
+				int reintentos);
 
 #endif /* GENERAL_H_ */
