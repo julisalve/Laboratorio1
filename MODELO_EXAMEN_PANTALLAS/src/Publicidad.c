@@ -179,7 +179,7 @@ int imprimirArrayPublicidad(Publicidades *aArray, int cantidad)
 		{
 			if(aArray[i].status==STATUS_NOT_EMPTY)
 			{
-				printf("Id: %d - Status %d - IDPantalla: %d - NOmbre archivo: %s - dias: %d - cuit %s\n",aArray[i].id,aArray[i].status,aArray[i].idPantalla,aArray[i].nombreArchivo,aArray[i].dias,aArray[i].cuit);
+				printf("Id: %d - Status %d - IDPantalla: %d - NOmbre archivo: %s - dias: %d - cuit %s - PRECIO %.2f - POSICION I : %d\n",aArray[i].id,aArray[i].status,aArray[i].idPantalla,aArray[i].nombreArchivo,aArray[i].dias,aArray[i].cuit,aArray[i].precioFinal,i);
 			}
 
 		}
@@ -361,26 +361,29 @@ int buscarPublicidadPorIdYCuit(Publicidades *aArray,int cantidad,int id,char *it
 int buscarPublicidadPorCuit(Publicidades *aArray, int cantidad, char *item, Publicidades *auxPubl, int cantAux)
 {
 	int retorno= EXIT_ERROR;
-	Publicidades bPubl[]={1,1,2,"juli",3,"33333333333"};
 	int i;
 	int j=0;
+	cantAux=4;
+	initLugarLibrePublicidad(auxPubl,cantAux);
 	if(aArray != NULL && cantidad>0)
-		{
+	{
 		for(i=0;i<cantidad;i++)
 		{
-			if(strncmp(aArray[i].cuit,item,50)==0)
+			if(strncmp(aArray[i].cuit,item,50)==0 && aArray[i].status==STATUS_NOT_EMPTY) //
 			{
-				 //aArray[i];
 				retorno=EXIT_SUCCESS;
-				auxPubl[j]=bPubl; //aArray[i].dias;
-				//aArray[i].dias=6;
-
+				auxPubl[j]=aArray[i];
 				j++;
-				printf("nombre archivo %s - dias %d \n ",auxPubl[j].nombreArchivo,auxPubl[j].dias);
 			}
 		}
+		for(j=0;j<cantAux;j++)
+		{
+			if(auxPubl[j].status==STATUS_NOT_EMPTY)
+			{
+				printf("nombre archivo %s - dias %d\n",auxPubl[j].nombreArchivo,auxPubl[j].dias);
+			}
 		}
-
+	}
 	return retorno;
 }
 
@@ -396,11 +399,11 @@ int imprimirPrecioPublicidad(Publicidades *auxArray, int cantAux, Pantallas *aAr
 		{
 			for(j=0;j<cantAux;j++)
 			{
-				if(aArrayPant[i].id,auxArray[j].idPantalla && auxArray[j].status==STATUS_NOT_EMPTY)
+				if(aArrayPant[i].id==auxArray[j].idPantalla && auxArray[j].status==STATUS_NOT_EMPTY)
 							{
 								retorno=EXIT_SUCCESS;
-								resultado=aArrayPant[i].precio*auxArray[j].dias;
-								printf("NOmbre del archivo : %s - CAntidad de dias %d - Precio %.2f \n \n",auxArray[j].nombreArchivo,auxArray[j].dias,resultado);
+								auxArray[j].precioFinal=aArrayPant[i].precio*auxArray[j].dias;
+								printf("status : %d, NOmbre del archivo : %s - Cantidad de dias %d - Precio %.2f \n",auxArray[j].status,auxArray[j].nombreArchivo,auxArray[j].dias,auxArray[j].precioFinal);
 
 							}
 			}
@@ -409,4 +412,211 @@ int imprimirPrecioPublicidad(Publicidades *auxArray, int cantAux, Pantallas *aAr
 		}
 
 	return retorno;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**\brief Remove an employee by Id (put isEmpty Flag in 1)
+ *
+ * \param list Employee* Poniter to array of employees
+ * \param len int Array length
+ * \param id int
+ * \return int Return (EXIT_ERROR -1) if Error [Invalid length or NULL pointer or employee not found] or (EXIT_SUCCESS 0) if OK.
+ *
+ */
+
+int bajaPantallaPorId(Pantallas *aArray, int cantidad,Publicidades *aArrayPub, int cantPub, int id)
+{
+	int retorno =EXIT_ERROR;
+	int posicionPantalla= buscarPantallaPorId(aArray, cantidad,id);
+	int posicionPantallaEnPub =buscarPantallaPorIdEnPublicidad(aArrayPub,cantPub,id);
+	if(aArray != NULL && cantidad > 0 && posicionPantalla >=0)
+			{
+				aArray[posicionPantalla].status= STATUS_EMPTY;
+				aArrayPub[posicionPantallaEnPub].status=STATUS_EMPTY;
+				retorno=EXIT_SUCCESS;
+			}
+	return retorno;
+}
+
+
+int buscarImporteMasAltoDeFacturacion(Publicidades *aArray, int cantidad)
+{
+	int retorno=EXIT_ERROR;
+	float maximoImporte;
+	char maximoCuit[50];
+	int primerPosicionOcupada= buscarLugarPublicidadLleno(aArray,cantidad);
+	int i;
+	if(aArray != NULL && cantidad > 0)
+	{
+		maximoImporte=aArray[primerPosicionOcupada].precioFinal;
+		strncpy(maximoCuit,aArray[primerPosicionOcupada].cuit,50);
+		retorno=EXIT_SUCCESS;
+		for(i=0;i<cantidad;i++)
+		{
+			if(aArray[i].precioFinal>maximoImporte && aArray[i].status==STATUS_NOT_EMPTY)
+			{
+				maximoImporte=aArray[i].precioFinal;
+				strncpy(maximoCuit,aArray[i].cuit,50);
+
+			}
+
+		}
+printf("El importe maximo a facturar es de %.2f , y el cuit del cliente es %s \n",maximoImporte,maximoCuit);
+	}
+
+	return retorno;
+}
+
+
+
+/**
+ * \brief BUsca el primer lugar lleno y devuelve el fracaso o la posicion
+ * \param *aArray array que se le pasa a la funcion
+ * \param cantidad tamaño del array
+ * \return devuelve el -1 (EXIT_ERROR) en caso de que el array sea nulo o que su tamaño sea invalido o la primer posicion del array ocupada, para ser utilizado
+ *
+ */
+
+int buscarLugarPublicidadLleno(Publicidades *aArray, int cantidad)
+{
+	int retorno = EXIT_ERROR;
+	int i;
+	if(aArray != NULL && cantidad > 0)
+	{
+		for(i=0;i<cantidad;i++)
+		{
+			if(aArray[i].status == STATUS_NOT_EMPTY)
+			{
+				retorno = i;
+				break;
+			}
+		}
+
+	}
+	return retorno;
+}
+
+
+
+
+
+
+
+
+int calcularPrecioPublicidadCompleto(Publicidades *aArray, int cantPub, Pantallas *aArrayPant,int cantPant)
+{
+	int retorno= EXIT_ERROR;
+	int i;
+	int j=0;
+
+	if(aArray != NULL && cantPub>0 && aArrayPant != NULL && cantPant>0)
+		{
+		for(i=0;i<cantPant;i++)
+		{
+			for(j=0;j<cantPub;j++)
+			{
+				if(aArrayPant[i].id==aArray[j].idPantalla && aArray[j].status==STATUS_NOT_EMPTY)
+							{
+								retorno=EXIT_SUCCESS;
+								aArray[j].precioFinal=aArrayPant[i].precio*aArray[j].dias;
+							}
+			}
+		}
+		}
+
+	return retorno;
+}
+
+
+
+
+int cantidadPublicacionesPorCuit(Publicidades *aArray, int cantidad, auxContador *aArrayCont, int cantCont)
+{
+	int retorno=EXIT_ERROR;
+	int i;
+	int j;
+	initLugarLibreContador(aArrayCont,cantCont);
+	if(aArray != NULL && cantidad>0 && aArrayCont != NULL && cantCont>0)
+	{
+		for(i=0;i<cantCont;i++)
+		{
+		strncpy(aArrayCont[i].cuit,aArray[i].cuit,50);
+		aArrayCont[i].contador =0;
+		}
+		for(i=0;i<cantidad;i++)
+		{
+			for(j=0;j<cantidad;j++)
+			{
+				if(aArray[j].status == STATUS_NOT_EMPTY && strncmp(aArrayCont[i].cuit,aArray[j].cuit,50)==0)
+									{
+					aArrayCont[i].contador++;
+					aArrayCont[i].status=STATUS_NOT_EMPTY;
+									}
+			}
+		}
+		for(i=0;i<cantCont;i++)
+		{
+			if(aArrayCont[i].status==STATUS_NOT_EMPTY && strncmp(aArrayCont[i].cuit,aArrayCont[i+1].cuit,50)!=0)
+			{
+				printf("El cuit %s tiene %d publicidades contratadas \n",aArrayCont[i].cuit,aArrayCont[i].contador);
+			}
+		}
+	}
+	return retorno;
+}
+
+
+
+int ordenarCuit (Publicidades *aArray, int cantidad)
+{
+	int retorno =EXIT_ERROR;
+	int i;
+	Publicidades bPub;
+	int j;
+	 if(aArray != NULL && cantidad > 0)
+	 {
+		 retorno=EXIT_SUCCESS;
+
+	for(i=0;i<cantidad;i++)
+	{
+		j=i;
+		while (strncmp(aArray[j].cuit,aArray[j-1].cuit,50)<0 && j>0) //ordena de menor a mayor
+		{
+							bPub=aArray[j-1];
+							aArray[j-1]=aArray[j];
+							aArray[j]=bPub;
+							j--;
+		}
+	}
+
+	 }
+
+	return retorno;
+}
+
+
+int initLugarLibreContador(auxContador *aArray, int cantidad)
+{
+	int i;
+	int retorno = EXIT_ERROR;
+	if(aArray != NULL && cantidad > 0)
+	{
+		retorno = EXIT_SUCCESS;
+		for(i=0;i<cantidad;i++)
+	{
+		aArray[i].status=STATUS_EMPTY;
+	}
+		}
+		return retorno;
 }

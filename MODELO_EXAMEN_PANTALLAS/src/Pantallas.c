@@ -97,28 +97,7 @@ int altaPantallaPorId(Pantallas *aArray, int cantidad,Pantallas buffer)
 }
 
 
-/**\brief Remove an employee by Id (put isEmpty Flag in 1)
- *
- * \param list Employee* Poniter to array of employees
- * \param len int Array length
- * \param id int
- * \return int Return (EXIT_ERROR -1) if Error [Invalid length or NULL pointer or employee not found] or (EXIT_SUCCESS 0) if OK.
- *
- */
 
-//int bajaPantallaPorId(Pantallas *aArray, int cantidad,Publicidades *aArrayPub, int cantPub, int id)
-//{
-//	int retorno =EXIT_ERROR;
-//	int posicionPantalla= buscarPantallaPorId(aArray, cantidad,id);
-//	int posicionPantallaEnPub =buscarPantallaPorIdEnPublicidad(aArrayPub,cantPub,id);
-//	if(aArray != NULL && cantidad > 0 && posicionPantalla >=0)
-//			{
-//				aArray[posicionPantalla].status= STATUS_EMPTY;
-//				aArrayPub[posicionPantallaEnPub].status=STATUS_EMPTY;
-//				retorno=EXIT_SUCCESS;
-//			}
-//	return retorno;
-//}
 
 
 /**

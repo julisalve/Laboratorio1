@@ -18,6 +18,8 @@
 
 typedef struct
 		{
+
+	float precioFinal;
 		int id;
 		int status;
 		int idPantalla;
@@ -25,7 +27,17 @@ typedef struct
 		int dias;
 		char cuit [50];
 
+
 		}Publicidades;
+
+
+		struct
+		{
+					int status;
+					int contador;
+					char cuit [50];
+		}typedef auxContador;
+
 
 static int generarId();
 int initLugarLibrePublicidad(Publicidades *aArray, int cantidad);
@@ -42,4 +54,11 @@ int buscarDatoStringValido(Publicidades *aArray, int cantidad, char *item, Array
 int buscarPublicidadIdPantallaPorCuit(Publicidades *aArray, int cantidad, char *cuit, Publicidades *aArayAux);
 int buscarPublicidadPorCuit(Publicidades *aArray, int cantidad, char *item, Publicidades *auxPubl, int cantAux);
 int imprimirPrecioPublicidad(Publicidades *auxArray, int cantAux, Pantallas *aArrayPant,int cantPant);
+int buscarImporteMasAltoDeFacturacion(Publicidades *aArray, int cantidad);
+int buscarLugarPublicidadLleno(Publicidades *aArray, int cantidad);
+int calcularPrecioPublicidadCompleto(Publicidades *aArray, int cantPub, Pantallas *aArrayPant,int cantPant);
+int ordenarCuit (Publicidades *aArray, int cantidad);
+int cantidadPublicacionesPorCuit(Publicidades *aArray, int cantidad, auxContador *aArrayCont, int cantCont);
+
+int bajaPantallaPorId(Pantallas *aArray, int cantidad,Publicidades *aArrayPub, int cantPub, int id);
 #endif /* PUBLICIDAD_H_ */

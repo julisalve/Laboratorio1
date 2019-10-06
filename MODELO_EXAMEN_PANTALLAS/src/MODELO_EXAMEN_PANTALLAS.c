@@ -12,57 +12,57 @@
 //int altaForzadaPublicidad(Publicidades *aArray,int cantidad);
 //int altaForzadaPantalla(Pantallas *aArray,int cantidad);
 
-int altaForzadaPantalla(Pantallas *aArray,int cantidad)
-{
-	int retorno;
-	int id[]={1,2,3,4,5};
-	int status[]={1,1,1,1,1};
-	int tipo[]={1,2,1,2,2};
-	char nombre[][50]={"juan","pedro","maria","eva","abrahm"};
-	char direccion[][50]={" Lavalle 209","Ayolas 3429","383 2696","pellegrini y calchaqui","12 de oct 2431"};
-	float precio[]={12.3,9.7,3.2,23.6,98.43};
-
-	int i;
-	for(i=0;i<5;i++)
-	{
-		aArray[i].id=id[i];
-		aArray[i].status=status[i];
-		aArray[i].tipo=tipo[i];
-		strncpy(aArray[i].nombre,nombre[i],50);
-		strncpy(aArray[i].direccion,direccion[i],50);
-		aArray[i].precio= precio[i];
-		retorno=0;
-	}
-	return retorno;
-}
-
-
-
-int altaForzadaPublicidad(Publicidades *aArray,int cantidad)
-{
-	int retorno;
-	int id[]={10,3,4,2,9};
-	int status[]={1,1,1,1,1};
-	int idPantalla[]={1,2,3,4,5};
-	char nombreArchivo[][50]={"juan.archivo","pedro.archivo","maria.archivo","eva.archivo","abrahm.archivo"};
-	int dias[]={12,12,19,2,3};
-	char cuit [][50]={"20362917161","11111111111","33333333333","33333333333","444444444444"};
-
-
-	int i;
-	for(i=0;i<5;i++)
-	{
-		aArray[i].id=id[i];
-		aArray[i].status=status[i];
-		aArray[i].idPantalla=idPantalla[i];
-		strncpy(aArray[i].nombreArchivo,nombreArchivo[i],50);
-		aArray[i].dias= dias[i];
-		strncpy(aArray[i].cuit,cuit[i],50);
-		retorno=0;
-	}
-	return retorno;
-}
-
+//int altaForzadaPantalla(Pantallas *aArray,int cantidad)
+//{
+//	int retorno;
+//	int id[]={1,2,3,4,5};
+//	int status[]={1,1,1,1,1};
+//	int tipo[]={1,2,1,2,2};
+//	char nombre[][50]={"juan","pedro","maria","eva","abrahm"};
+//	char direccion[][50]={" Lavalle 209","Ayolas 3429","383 2696","pellegrini y calchaqui","12 de oct 2431"};
+//	float precio[]={12.3,9.7,3.2,23.6,98.43};
+//
+//	int i;
+//	for(i=0;i<5;i++)
+//	{
+//		aArray[i].id=id[i];
+//		aArray[i].status=status[i];
+//		aArray[i].tipo=tipo[i];
+//		strncpy(aArray[i].nombre,nombre[i],50);
+//		strncpy(aArray[i].direccion,direccion[i],50);
+//		aArray[i].precio= precio[i];
+//		retorno=0;
+//	}
+//	return retorno;
+//}
+//
+//
+//
+//int altaForzadaPublicidad(Publicidades *aArray,int cantidad)
+//{
+//	int retorno;
+//	int id[]={10,3,4,2,9};
+//	int status[]={1,1,1,1,1};
+//	int idPantalla[]={1,2,3,4,5};
+//	char nombreArchivo[][50]={"juan.archivo","pedro.archivo","maria.archivo","eva.archivo","abrahm.archivo"};
+//	int dias[]={12,12,19,2,3};
+//	char cuit [][50]={"33333333333","11111111111","33333333333","33333333333","444444444444"};
+//
+//
+//	int i;
+//	for(i=0;i<5;i++)
+//	{
+//		aArray[i].id=id[i];
+//		aArray[i].status=status[i];
+//		aArray[i].idPantalla=idPantalla[i];
+//		strncpy(aArray[i].nombreArchivo,nombreArchivo[i],50);
+//		aArray[i].dias= dias[i];
+//		strncpy(aArray[i].cuit,cuit[i],50);
+//		retorno=0;
+//	}
+//	return retorno;
+//}
+//
 
 
 
@@ -76,6 +76,7 @@ int main(void) {
 	Publicidades auxPublicidad[QTY_PUBLICIDADES];
 	Pantallas aPantalla[QTY_PANTALLAS];
 	Pantallas bPantalla;
+	auxContador aContador[QTY_PUBLICIDADES];
 	int opcion;
 	//int i=0;
 	ArrayEnteros aArrayEnterosId[QTY_PANTALLAS];
@@ -88,9 +89,9 @@ int main(void) {
 	initLugarLibrePantallas(aPantalla,QTY_PANTALLAS);
 	do
 	{
-		altaForzadaPantalla(aPantalla,QTY_PANTALLAS);
+		//altaForzadaPantalla(aPantalla,QTY_PANTALLAS);
 		imprimirArrayPantallas(aPantalla,QTY_PANTALLAS);
-		altaForzadaPublicidad(aPublicidad,QTY_PUBLICIDADES);
+		//altaForzadaPublicidad(aPublicidad,QTY_PUBLICIDADES);
 		imprimirArrayPublicidad(aPublicidad,QTY_PUBLICIDADES);
 
 
@@ -192,7 +193,7 @@ int main(void) {
 						if(strncmp(confirmacion,"si",3)==0)
 						{
 
-							//bajaPantallaPorId(aPantalla,QTY_PANTALLAS,aPublicidad,QTY_PUBLICIDADES,id);
+							bajaPantallaPorId(aPantalla,QTY_PANTALLAS,aPublicidad,QTY_PUBLICIDADES,id);
 								printf("BAJA EXITOSA. \n");
 			}
 						break;
@@ -352,7 +353,7 @@ break;
 									}
 									buscarPublicidadPorCuit(aPublicidad,QTY_PUBLICIDADES,cuit,auxPublicidad,QTY_PUBLICIDADES);
 
-									//imprimirPrecioPublicidad(auxPublicidad,QTY_PUBLICIDADES,aPantalla,QTY_PANTALLAS);
+									imprimirPrecioPublicidad(auxPublicidad,QTY_PUBLICIDADES,aPantalla,QTY_PANTALLAS);
 									break;
 
 		case 8:
@@ -361,10 +362,20 @@ break;
 		case 9:
 			printf("Las pantallas existentes son:");
 			imprimirArrayPantallas(aPantalla,QTY_PANTALLAS);
-
 			break;
 
+		case 10:
+			printf("  1)");
+			ordenarCuit (aPublicidad,QTY_PUBLICIDADES);
+//			imprimirArrayPublicidad(aPublicidad,QTY_PUBLICIDADES);
+			cantidadPublicacionesPorCuit(aPublicidad,QTY_PUBLICIDADES, aContador,QTY_PUBLICIDADES);
 
+			printf("  2)");
+			calcularPrecioPublicidadCompleto(aPublicidad,QTY_PUBLICIDADES,aPantalla,QTY_PANTALLAS);
+			imprimirArrayPublicidad(aPublicidad,QTY_PUBLICIDADES);
+			buscarImporteMasAltoDeFacturacion(aPublicidad,QTY_PUBLICIDADES);
+
+break;
 
 
 

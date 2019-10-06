@@ -27,6 +27,9 @@ typedef struct
 
 		}Pantallas;
 
+
+
+
 static int generarId();
 int initLugarLibrePantallas(Pantallas *aArray, int cantidad);
 int buscarLugarPantalla(Pantallas *aArray, int cantidad);
@@ -36,5 +39,5 @@ int buscarPantallaPorId(Pantallas *aArray, int cantidad, int id);
 int imprimirDatosPantallaPorId(Pantallas *aArray, int cantidad, int id);
 int modificacionPantallaPorIdCamposPuntuales(Pantallas *aArray, int cantidad, int index);
 int imprimirDatosEstructuraPorCoincidenciaIdConOtraEtructura(Pantallas *aArray, int cantidad,ArrayEnteros *auxArray, int cantAuxArray);
-//int bajaPantallaPorId(Pantallas *aArray, int cantidad,Publicidades *aArrayPub, int cantPub, int id);
+
 #endif /* PANTALLAS_H_ */
