@@ -51,8 +51,6 @@ int buscarLugarPantalla(Pantallas *aArray, int cantidad)
 			if(aArray[i].status == STATUS_EMPTY)
 			{
 				retorno = i;
-				printf( " la i de bbusqueda%d\n",i);
-				printf("el estado status de la posicion %d es %d \n",i,aArray[i].status);
 				break;
 			}
 		}
@@ -66,7 +64,7 @@ int buscarLugarPantalla(Pantallas *aArray, int cantidad)
  * \return devuelve el numero de ID
  *
  */
-static int generarId(void)
+static int generarId()
 {
 	static int contadorId=0; //es como seria global pero solo aplica para el scoup.
 	contadorId++;
@@ -108,19 +106,19 @@ int altaPantallaPorId(Pantallas *aArray, int cantidad,Pantallas buffer)
  *
  */
 
-int bajaPantallaPorId(Pantallas *aArray, int cantidad,Publicidades *aArrayPub, int cantPub, int id)
-{
-	int retorno =EXIT_ERROR;
-	int posicionPantalla= buscarPantallaPorId(aArray, cantidad,id);
-	int posicionPantallaEnPub =buscarPantallaPorIdEnPublicidad(aArrayPub,cantPub,id);
-	if(aArray != NULL && cantidad > 0 && posicionPantalla >=0)
-			{
-				aArray[posicionPantalla].status= STATUS_EMPTY;
-				aArrayPub[posicionPantallaEnPub].status=STATUS_EMPTY;
-				retorno=EXIT_SUCCESS;
-			}
-	return retorno;
-}
+//int bajaPantallaPorId(Pantallas *aArray, int cantidad,Publicidades *aArrayPub, int cantPub, int id)
+//{
+//	int retorno =EXIT_ERROR;
+//	int posicionPantalla= buscarPantallaPorId(aArray, cantidad,id);
+//	int posicionPantallaEnPub =buscarPantallaPorIdEnPublicidad(aArrayPub,cantPub,id);
+//	if(aArray != NULL && cantidad > 0 && posicionPantalla >=0)
+//			{
+//				aArray[posicionPantalla].status= STATUS_EMPTY;
+//				aArrayPub[posicionPantallaEnPub].status=STATUS_EMPTY;
+//				retorno=EXIT_SUCCESS;
+//			}
+//	return retorno;
+//}
 
 
 /**
@@ -284,3 +282,30 @@ int modificacionPantallaPorIdCamposPuntuales(Pantallas *aArray, int cantidad, in
 			}
 			return retorno;
 		}
+
+
+
+int imprimirDatosEstructuraPorCoincidenciaIdConOtraEtructura(Pantallas *aArray, int cantidad,ArrayEnteros *auxArray, int cantAuxArray)
+{
+	int retorno =EXIT_ERROR;
+	int i;
+	int j=0;
+	int id;
+	if(auxArray != NULL && cantAuxArray > 0 && aArray != NULL && cantidad > 0)
+	{
+		for(i=0;i<cantidad;i++)
+		{
+			for(j=0;j<cantAuxArray;j++)
+			{
+				if(aArray[i].id==auxArray[j].entero)
+				{
+					id=aArray[i].id;
+					imprimirDatosPantallaPorId(aArray,cantidad,id);
+					retorno = EXIT_SUCCESS;
+				}
+			}
+		}
+	}
+	return retorno;
+}
+

@@ -268,7 +268,7 @@ int esAlfaNumerico(char *resultado,
    	int cantidad;
    	int contador=0;
    	cantidad=strlen(buffer);
-   	while((buffer[0] != '\0' && buffer[i]== ' ') || (buffer[i] >= 'a' && buffer[i] <= 'z')|| (buffer[i] >= 'A' && buffer[i] <= 'Z')||(buffer[i] > '0' && buffer[i] < '9'))
+   	while((buffer[0] != '\0' && buffer[i]== ' ') || (buffer[i] >= 'a' && buffer[i] <= 'z')|| (buffer[i] >= 'A' && buffer[i] <= 'Z')||(buffer[i] >= '0' && buffer[i] <= '9'))
 		  {
 			contador++;
 			i++;
@@ -556,7 +556,24 @@ float getFloat(float *resultado,
 	}
 
 
+	int imprimeArrayInt(ArrayEnteros *array,int limite )
+	{
+		int i;
+		int retorno = EXIT_ERROR;
+		if(array != NULL && limite > 0 )
+		{
+			retorno = EXIT_SUCCESS;
+			for(i=0;i<limite;i++)
+			{
+				if(array[i].status==STATUS_NOT_EMPTY)
+				{
+					printf("%d\n",array[i].entero);
+				}
 
+			}
+		}
+		return retorno;
+	}
 
 
 

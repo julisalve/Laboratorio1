@@ -8,6 +8,15 @@
 #ifndef GENERAL_H_
 #define GENERAL_H_
 
+#define STATUS_EMPTY 0
+#define STATUS_NOT_EMPTY 1
+
+struct
+{
+	int status;
+	int entero;
+}typedef ArrayEnteros;
+
 int getInt(int *resultado,
 		  char *mensaje,
 		  char *mensajeError,
@@ -87,4 +96,5 @@ int esSiONo(char *resultado,
 				int maximo,
 				int reintentos);
 
+int imprimeArrayInt(ArrayEnteros *array,int limite );
 #endif /* GENERAL_H_ */
