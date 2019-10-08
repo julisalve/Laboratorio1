@@ -28,31 +28,45 @@ typedef struct
 		{
 					int status;
 					int contador;
-					char cuit [50];
+					int idCliente;
 		}typedef auxContador;
 
 
 static int generarId();
-int initLugarLibrePublicidad(Avisos *aArray, int cantidad);
-int buscarLugarPublicidad(Avisos *aArray, int cantidad);
-int buscarPantallaPorIdEnPublicidad(Avisos *aArray, int cantidad, int idPant);
-int altaPublicidad(Avisos *aArrayPub, int cantidad, Avisos buffer);
-int imprimirArrayPublicidad(Avisos *aArray, int cantidad);
-int buscarPublicidadPorIdPantalla(Avisos*aArray, int cantidad, int id);
-int imprimirDatosPublicidadPorId(Avisos *aArray, int cantidad, int id,int caso);
-int modificacionPublicidadPorIdCamposPuntuales(Avisos *aArray, int cantidad, int index, int caso);
-int imprimirArrayPublicidadCoincidenteConUnDatoIngresadoPorUsuario(Avisos *aArray, int cantidad, char *item);
-int buscarPublicidadPorIdYCuit(Avisos *aArray,int cantidad,int id,char *item);
-int buscarDatoStringValido(Avisos *aArray, int cantidad, char *item, ArrayEnteros *auxArray, int cantAuxArray);
-int buscarPublicidadIdPantallaPorCuit(Avisos *aArray, int cantidad, char *cuit, Avisos *aArayAux);
-int buscarPublicidadPorCuit(Avisos *aArray, int cantidad, char *item, Avisos *auxPubl, int cantAux);
-int imprimirPrecioPublicidad(Avisos *auxArray, int cantAux, Pantallas *aArrayPant,int cantPant);
-int buscarImporteMasAltoDeFacturacion(Avisos *aArray, int cantidad);
-int buscarLugarPublicidadLleno(Avisos *aArray, int cantidad);
-int calcularPrecioPublicidadCompleto(Avisos *aArray, int cantPub, Pantallas *aArrayPant,int cantPant);
-int ordenarCuit (Avisos *aArray, int cantidad);
-int cantidadPublicacionesPorCuit(Avisos *aArray, int cantidad, auxContador *aArrayCont, int cantCont);
-int initLugarLibreContador(auxContador *aArray, int cantidad);
+int initLugarLibreAvisos(Avisos *aArray, int cantidad);
+int imprimirArrayAvisos(Avisos *aArray, int cantidad);
+int bajaClientePorId(Clientes *aArray, int cantidad,Avisos *aArrayAv, int cantAv, int id);
+int buscarClientePorIdEnAviso(Avisos *aArray, int cantidad, int idPant);
+int buscarLugarAviso(Avisos *aArray, int cantidad);
+int altaAviso(Avisos *aArrayAv, int cantidad, Avisos buffer);
+int buscarDatoIntValido(Avisos *aArray, int cantidad, int idAv, ArrayEnteros *auxArray, int cantAuxArray);
+int imprimirDatosAvisoPorId(Avisos *aArray, int cantidad, int id);
+//int imprimirArrayAvisosCoincidenteConUnDatoIngresadoPorUsuario(Avisos *aArray, int cantidad, int idAv);
+//int buscarPantallaPorIdPublicidad(Avisos*aArray, int cantidad, int id);
+int buscarAvisoPorId(Avisos *aArray,int cantidad,int id);
+int modificacionAvisoPorIdCamposPuntuales(Avisos *aArray, int cantidad, int index, int caso);
+int imprimirArrayAvisosPausados(Avisos *aArray, int cantidad);
 
-int bajaPantallaPorId(Pantallas *aArray, int cantidad,Avisos *aArrayPub, int cantPub, int id);
+
+
+
+
+
+
+
+//int buscarPublicidadPorIdYCuit(Avisos *aArray,int cantidad,int id,char *item);
+//int buscarPublicidadIdPantallaPorCuit(Avisos *aArray, int cantidad, char *cuit, Avisos *aArayAux);
+//int buscarPublicidadPorCuit(Avisos *aArray, int cantidad, char *item, Avisos *auxPubl, int cantAux);
+//int imprimirPrecioPublicidad(Avisos *auxArray, int cantAux, Clientes *aArrayPant,int cantPant);
+//int buscarImporteMasAltoDeFacturacion(Avisos *aArray, int cantidad);
+//int buscarLugarPublicidadLleno(Avisos *aArray, int cantidad);
+//int calcularPrecioPublicidadCompleto(Avisos *aArray, int cantPub, Clientes *aArrayPant,int cantPant);
+int ordenarPorIdCliente (Avisos *aArray, int cantidad);
+int cantidadAvisosPorCliente(Avisos *aArray, int cantidad, auxContador *aArrayCont, int cantCont,int caso);
+int initLugarLibreContador(auxContador *aArray, int cantidad);
+int imprimirArrayAvisosCompletos(Avisos *aArray, int cantidad);
+
+
+
+
 #endif /* AVISOS_H_ */

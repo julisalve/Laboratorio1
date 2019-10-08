@@ -6,31 +6,28 @@
 #define STATUS_EMPTY 0
 #define STATUS_NOT_EMPTY 1
 
-//#include "Publicidad.h"
 #include "general.h"
 
 typedef struct
 		{
 		int id;
 		int status;
-		int tipo;
 		char nombre[50];
-		char direccion[50];
-		float precio;
-
-		}Pantallas;
+		char apellido[50];
+		char cuit[50];
+		}Clientes;
 
 
 
 
 static int generarId();
-int initLugarLibrePantallas(Pantallas *aArray, int cantidad);
-int buscarLugarPantalla(Pantallas *aArray, int cantidad);
-int altaPantallaPorId(Pantallas *aArray, int cantidad,Pantallas buffer);
-int imprimirArrayPantallas(Pantallas *aArray, int cantidad);
-int buscarPantallaPorId(Pantallas *aArray, int cantidad, int id);
-int imprimirDatosPantallaPorId(Pantallas *aArray, int cantidad, int id);
-int modificacionPantallaPorIdCamposPuntuales(Pantallas *aArray, int cantidad, int index);
-int imprimirDatosEstructuraPorCoincidenciaIdConOtraEtructura(Pantallas *aArray, int cantidad,ArrayEnteros *auxArray, int cantAuxArray);
+int initLugarLibreClientes(Clientes *aArray, int cantidad);
+int imprimirArrayClientes(Clientes *aArray, int cantidad);
+int buscarLugarCliente(Clientes *aArray, int cantidad);
+int altaClientePorId(Clientes *aArray, int cantidad,Clientes buffer);
+int buscarClientePorId(Clientes *aArray, int cantidad, int id);
+int imprimirDatosClientePorId(Clientes *aArray, int cantidad, int id);
+int modificacionClientePorIdCamposPuntuales(Clientes *aArray, int cantidad, int index);
+//int imprimirDatosEstructuraPorCoincidenciaIdConOtraEtructura(Clientes *aArray, int cantidad,ArrayEnteros *auxArray, int cantAuxArray);
 
 #endif /* CLIENTES_H_ */
