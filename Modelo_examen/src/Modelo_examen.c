@@ -78,7 +78,8 @@ int main(void) {
 	Pantallas bPantalla;
 	auxContador aContador[QTY_PUBLICIDADES];
 	int opcion;
-	//int i=0;
+	int flagOpcionUno=0;
+	int flagDos=0;
 	ArrayEnteros aArrayEnterosId[QTY_PANTALLAS];
 	int id;
 	int index;
@@ -134,227 +135,271 @@ int main(void) {
 			}
 			bPantalla.status=STATUS_NOT_EMPTY;
 			altaPantallaPorId(aPantalla,QTY_PANTALLAS,bPantalla);
+			flagOpcionUno=1;
 			break;
 
 		case 2:
-			imprimirArrayPantallas(aPantalla,QTY_PANTALLAS);
-			if(getInt(&id,"Indique el id que desea modificar\n", "NO es un id valido\n", 1,100,2)!=0)
+			if(flagOpcionUno!=1)
 			{
-				printf("ERROR. \n");
-				break;
-			}
-
-			while(buscarPantallaPorId(aPantalla, QTY_PANTALLAS,id)==-1)
-			{
-				getInt(&id,"NO es un id valido, reingrese\n", "NO es un id valido\n", 1,100,2);
+				printf("Error, primero debe cargar pantalla\n");
 
 			}
-			imprimirDatosPantallaPorId(aPantalla,QTY_PANTALLAS,id);
-			index=buscarPantallaPorId(aPantalla, QTY_PANTALLAS,id);
-			if(esSiONo(confirmacion,"¿Desea modificar este id? si o no\n","No es una respuesta valida. \n",2,3,2)!=0)
+			else
+			{
+				imprimirArrayPantallas(aPantalla,QTY_PANTALLAS);
+				if(getInt(&id,"Indique el id que desea modificar\n", "NO es un id valido\n", 1,100,2)!=0)
 				{
-				printf("ERROR. \n");
-				break;
+					printf("ERROR. \n");
+					break;
 				}
-			if(strncmp(confirmacion,"si",3)==0)
-			{
-				do
-				{
-					modificacionPantallaPorIdCamposPuntuales(aPantalla,QTY_PANTALLAS,index);
-					if(esSiONo(respuesta,"¿Desea seguir modificando este id? si o no\n","No es una respuesta valida. \n",2,3,2)!=0)
-									{
-									printf("ERROR. \n");
-									break;
-									}
 
-				}while(strncmp(respuesta,"si",3)==0);
-				printf("MODIFICACION EXITOSA. \n");
-			}
+				while(buscarPantallaPorId(aPantalla, QTY_PANTALLAS,id)==-1)
+				{
+					getInt(&id,"NO es un id valido, reingrese\n", "NO es un id valido\n", 1,100,2);
+
+				}
+				imprimirDatosPantallaPorId(aPantalla,QTY_PANTALLAS,id);
+				index=buscarPantallaPorId(aPantalla, QTY_PANTALLAS,id);
+				if(esSiONo(confirmacion,"¿Desea modificar este id? si o no\n","No es una respuesta valida. \n",2,3,2)!=0)
+				{
+					printf("ERROR. \n");
+					break;
+				}
+				if(strncmp(confirmacion,"si",3)==0)
+				{
+					do
+					{
+						modificacionPantallaPorIdCamposPuntuales(aPantalla,QTY_PANTALLAS,index);
+						if(esSiONo(respuesta,"¿Desea seguir modificando este id? si o no\n","No es una respuesta valida. \n",2,3,2)!=0)
+						{
+							printf("ERROR. \n");
+							break;
+						}
+
+					}while(strncmp(respuesta,"si",3)==0);
+					printf("MODIFICACION EXITOSA. \n");
+				}}
 			break;
 		case 3:
-			imprimirArrayPantallas(aPantalla,QTY_PANTALLAS);
-						if(getInt(&id,"Indique el id que desea dar de baja\n", "NO es un id valido\n", 1,100,2)!=0)
-						{
-							printf("ERROR. \n");
-							break;
-						}
-
-						while(buscarPantallaPorId(aPantalla, QTY_PANTALLAS,id)==-1)
-						{
-							getInt(&id,"NO es un id valido, reingrese\n", "NO es un id valido\n", 1,100,2);
-
-						}
-						imprimirDatosPantallaPorId(aPantalla,QTY_PANTALLAS,id);
-						if(esSiONo(confirmacion,"¿Desea dar de baja este id? si o no\n","No es una respuesta valida. \n",2,3,2)!=0)
-							{
-							printf("ERROR. \n");
-							break;
-							}
-						if(strncmp(confirmacion,"si",3)==0)
-						{
-
-							bajaPantallaPorId(aPantalla,QTY_PANTALLAS,aPublicidad,QTY_PUBLICIDADES,id);
-								printf("BAJA EXITOSA. \n");
-			}
-						break;
-
-		case 4:
-			if(buscarLugarPublicidad(aPublicidad,QTY_PUBLICIDADES)==-1)
+			if(flagOpcionUno!=1)
 			{
-				printf("NO hay lugar libre.\n");
-				break;
-			}
-			imprimirArrayPantallas(aPantalla,QTY_PANTALLAS);
-			getInt(&id,"Indique el ID de la pantalla en la cual quiere publicitar.\n","NO es un id valido\n", 1,100,2);
-			while(buscarPantallaPorId(aPantalla, QTY_PANTALLAS,id)==-1)
-			{
-				getInt(&id,"NO es un id valido, reingrese\n", "NO es un id valido\n", 1,100,2);
+				printf("Error, primero debe cargar pantalla\n");
 
 			}
-			imprimirDatosPantallaPorId(aPantalla,QTY_PANTALLAS,id);
-			if(esSiONo(confirmacion,"Ha seleccionado esta pantalla para poner una publicidad¿COntinuar? si o no\n","No es una respuesta valida. \n",2,3,2)!=0)
+			else
 			{
-				printf("ERROR. \n");
-				break;
-			}
-			if(strncmp(confirmacion,"si",3)==0)
-			{
-				bPublicidad.idPantalla=id;
-				if(getSoloNumeros(bPublicidad.cuit,"INgrese numero de cuit \n","NO es un cuit valido \n",10,17,2)!=0)
+				imprimirArrayPantallas(aPantalla,QTY_PANTALLAS);
+				if(getInt(&id,"Indique el id que desea dar de baja\n", "NO es un id valido\n", 1,100,2)!=0)
 				{
-						printf("ERROR.\n");
-							break;
+					printf("ERROR. \n");
+					break;
 				}
 
-				if(getInt(&bPublicidad.dias,"Indique cantidad de dias\n","NO es un numero valido \n",1,100000,2)!=0)
-											{
-												printf("ERROR.\n");
-												break;
-											}
-				if(getDatoAlfaNumerico(bPublicidad.nombreArchivo,"Indique nombre del archivo\n","NO es un nombre valido \n",1,100,2)!=0)
-							{
-								printf("ERROR.\n");
-								break;
-							}
+				while(buscarPantallaPorId(aPantalla, QTY_PANTALLAS,id)==-1)
+				{
+					getInt(&id,"NO es un id valido, reingrese\n", "NO es un id valido\n", 1,100,2);
 
-//				index=buscarPantallaPorId(aPantalla,QTY_PANTALLAS,id);
-				altaPublicidad(aPublicidad, QTY_PUBLICIDADES, bPublicidad);
-				imprimirArrayPublicidad(aPublicidad, QTY_PUBLICIDADES);
+				}
+				imprimirDatosPantallaPorId(aPantalla,QTY_PANTALLAS,id);
+				if(esSiONo(confirmacion,"¿Desea dar de baja este id? si o no\n","No es una respuesta valida. \n",2,3,2)!=0)
+				{
+					printf("ERROR. \n");
+					break;
+				}
+				if(strncmp(confirmacion,"si",3)==0)
+				{
+
+					bajaPantallaPorId(aPantalla,QTY_PANTALLAS,aPublicidad,QTY_PUBLICIDADES,id);
+					printf("BAJA EXITOSA. \n");
+				}}
+			break;
+
+		case 4:
+			if(flagOpcionUno!=1)
+			{
+				printf("Error, primero debe cargar pantalla\n");
+
 			}
+			else
+			{
+				if(buscarLugarPublicidad(aPublicidad,QTY_PUBLICIDADES)==-1)
+				{
+					printf("NO hay lugar libre.\n");
+					break;
+				}
+				imprimirArrayPantallas(aPantalla,QTY_PANTALLAS);
+				getInt(&id,"Indique el ID de la pantalla en la cual quiere publicitar.\n","NO es un id valido\n", 1,100,2);
+				while(buscarPantallaPorId(aPantalla, QTY_PANTALLAS,id)==-1)
+				{
+					getInt(&id,"NO es un id valido, reingrese\n", "NO es un id valido\n", 1,100,2);
+
+				}
+				imprimirDatosPantallaPorId(aPantalla,QTY_PANTALLAS,id);
+				if(esSiONo(confirmacion,"Ha seleccionado esta pantalla para poner una publicidad¿COntinuar? si o no\n","No es una respuesta valida. \n",2,3,2)!=0)
+				{
+					printf("ERROR. \n");
+					break;
+				}
+				if(strncmp(confirmacion,"si",3)==0)
+				{
+					bPublicidad.idPantalla=id;
+					if(getSoloNumeros(bPublicidad.cuit,"INgrese numero de cuit \n","NO es un cuit valido \n",10,17,2)!=0)
+					{
+						printf("ERROR.\n");
+						break;
+					}
+
+					if(getInt(&bPublicidad.dias,"Indique cantidad de dias\n","NO es un numero valido \n",1,100000,2)!=0)
+					{
+						printf("ERROR.\n");
+						break;
+					}
+					if(getDatoAlfaNumerico(bPublicidad.nombreArchivo,"Indique nombre del archivo\n","NO es un nombre valido \n",1,100,2)!=0)
+					{
+						printf("ERROR.\n");
+						break;
+					}
+
+					//				index=buscarPantallaPorId(aPantalla,QTY_PANTALLAS,id);
+					altaPublicidad(aPublicidad, QTY_PUBLICIDADES, bPublicidad);
+					imprimirArrayPublicidad(aPublicidad, QTY_PUBLICIDADES);
+					flagDos=1;
+				}}
 			break;
 		case 5:
-
-			if(getSoloNumeros(cuit,"Ingrese numero de cuit para realizar la busqueda \n","NO es un cuit valido \n",10,17,2)!=0)
-							{
-									printf("ERROR.\n");
-										break;
-							}
-			while(buscarDatoStringValido(aPublicidad,QTY_PUBLICIDADES,cuit,aArrayEnterosId, QTY_PANTALLAS)==-1)
+			if(flagOpcionUno!=1)
 			{
-				if(getSoloNumeros(cuit,"NO es un cuit valido. Reingrese \n","NO es un cuit valido \n",10,17,2)!=0)
-											{
-													printf("ERROR.\n");
-														break;
-											}
+				printf("Error, primero debe cargar pantalla\n");
+
 			}
+			else if(flagDos!=1)
+			{
+				printf("Error, primero debe contratar una publicidad\n");
+			}
+			else
+			{
+				if(getSoloNumeros(cuit,"Ingrese numero de cuit para realizar la busqueda \n","NO es un cuit valido \n",10,17,2)!=0)
+				{
+					printf("ERROR.\n");
+					break;
+				}
+				while(buscarDatoStringValido(aPublicidad,QTY_PUBLICIDADES,cuit,aArrayEnterosId, QTY_PANTALLAS)==-1)
+				{
+					if(getSoloNumeros(cuit,"NO es un cuit valido. Reingrese \n","NO es un cuit valido \n",10,17,2)!=0)
+					{
+						printf("ERROR.\n");
+						break;
+					}
+				}
 
-			printf("Pantalllas contratadas \n");
-			imprimirDatosEstructuraPorCoincidenciaIdConOtraEtructura(aPantalla,QTY_PANTALLAS,aArrayEnterosId,QTY_PANTALLAS);
-			printf("Publicidades contratadas \n");
-			imprimirArrayPublicidadCoincidenteConUnDatoIngresadoPorUsuario(aPublicidad,QTY_PUBLICIDADES, cuit);
-			getInt(&id,"Indique el ID de la pantalla que quiere modificar.\n","NO es un id valido\n", 1,100,2);
-						while(buscarPublicidadPorIdYCuit(aPublicidad, QTY_PUBLICIDADES,id,cuit)==-1)
-						{
-							getInt(&id,"NO es un id valido para este cuit, reingrese\n", "NO es un id valido\n", 1,100,2);
+				printf("Pantalllas contratadas \n");
+				imprimirDatosEstructuraPorCoincidenciaIdConOtraEtructura(aPantalla,QTY_PANTALLAS,aArrayEnterosId,QTY_PANTALLAS);
+				printf("Publicidades contratadas \n");
+				imprimirArrayPublicidadCoincidenteConUnDatoIngresadoPorUsuario(aPublicidad,QTY_PUBLICIDADES, cuit);
+				getInt(&id,"Indique el ID de la pantalla que quiere modificar.\n","NO es un id valido\n", 1,100,2);
+				while(buscarPublicidadPorIdYCuit(aPublicidad, QTY_PUBLICIDADES,id,cuit)==-1)
+				{
+					getInt(&id,"NO es un id valido para este cuit, reingrese\n", "NO es un id valido\n", 1,100,2);
 
-						}
+				}
 
-						index=buscarPublicidadPorIdPantalla(aPublicidad,QTY_PUBLICIDADES,id);
-						opcion=1;
-						imprimirDatosPublicidadPorId(aPublicidad, QTY_PUBLICIDADES, index,opcion);
-						if(esSiONo(confirmacion,"Ha seleccionado modificar este dato ¿Continuar? si o no\n","No es una respuesta valida. \n",2,3,2)!=0)
-						{
-							printf("ERROR. \n");
-							break;
-						}
-						if(strncmp(confirmacion,"si",3)==0)
-						{
-							opcion=1;
-							modificacionPublicidadPorIdCamposPuntuales(aPublicidad,QTY_PUBLICIDADES,index,opcion);
-						}
-						printf("MODIFICACION REALIZADA CON EXITO \n");
+				index=buscarPublicidadPorIdPantalla(aPublicidad,QTY_PUBLICIDADES,id);
+				opcion=1;
+				imprimirDatosPublicidadPorId(aPublicidad, QTY_PUBLICIDADES, index,opcion);
+				if(esSiONo(confirmacion,"Ha seleccionado modificar este dato ¿Continuar? si o no\n","No es una respuesta valida. \n",2,3,2)!=0)
+				{
+					printf("ERROR. \n");
+					break;
+				}
+				if(strncmp(confirmacion,"si",3)==0)
+				{
+					opcion=1;
+					modificacionPublicidadPorIdCamposPuntuales(aPublicidad,QTY_PUBLICIDADES,index,opcion);
+				}
+				printf("MODIFICACION REALIZADA CON EXITO \n");
 
-						printf("Sus nuevas publicidades son: \n");
-						imprimirArrayPublicidadCoincidenteConUnDatoIngresadoPorUsuario(aPublicidad,QTY_PUBLICIDADES, cuit);
-//						imprimirArrayPublicidad(aPublicidad, QTY_PUBLICIDADES);
-			//buscarPublicidadIdPantallaPorCuit(aPublicidad,QTY_PUBLICIDADES,cuit, auxPublicidad);
-//			imprimirDatosPantallasPorCuitPublicidades(aPantalla,QTY_PANTALLAS,auxPublicidad,QTY_PUBLICIDADES);
-
-							break;
+				printf("Sus nuevas publicidades son: \n");
+				imprimirArrayPublicidadCoincidenteConUnDatoIngresadoPorUsuario(aPublicidad,QTY_PUBLICIDADES, cuit);
+				//						imprimirArrayPublicidad(aPublicidad, QTY_PUBLICIDADES);
+				//buscarPublicidadIdPantallaPorCuit(aPublicidad,QTY_PUBLICIDADES,cuit, auxPublicidad);
+				//			imprimirDatosPantallasPorCuitPublicidades(aPantalla,QTY_PANTALLAS,auxPublicidad,QTY_PUBLICIDADES);
+			}
+			break;
 
 		case 6:
-			if(getSoloNumeros(cuit,"Ingrese numero de cuit para realizar la busqueda \n","NO es un cuit valido \n",10,17,2)!=0)
-										{
-												printf("ERROR.\n");
-													break;
-										}
-						while(buscarDatoStringValido(aPublicidad,QTY_PUBLICIDADES,cuit,aArrayEnterosId, QTY_PANTALLAS)==-1)
-						{
-							if(getSoloNumeros(cuit,"NO es un cuit valido. Reingrese \n","NO es un cuit valido \n",10,17,2)!=0)
-														{
-																printf("ERROR.\n");
-																	break;
-														}
-						}
+			if(flagOpcionUno!=1)
+			{
+				printf("Error, primero debe cargar pantalla\n");
 
-						printf("Pantallas contratadas\n");
-						imprimirDatosEstructuraPorCoincidenciaIdConOtraEtructura(aPantalla,QTY_PANTALLAS,aArrayEnterosId,QTY_PANTALLAS);
-						printf("Publicidades contratadas \n");
-						imprimirArrayPublicidadCoincidenteConUnDatoIngresadoPorUsuario(aPublicidad,QTY_PUBLICIDADES, cuit);
-						getInt(&id,"Indique la publicacion que quiere dar de baja eligiendo el ID de la pantalla .\n","NO es un id valido\n", 1,100,2);
-									while(buscarPublicidadPorIdYCuit(aPublicidad, QTY_PUBLICIDADES,id,cuit)==-1)
-									{
-										getInt(&id,"NO es un id valido para este cuit, reingrese\n", "NO es un id valido\n", 1,100,2);
+			}
+			else if(flagDos!=1)
+			{
+				printf("Error, primero debe contratar una publicidad\n");
+			}
+			else
+			{
+				if(getSoloNumeros(cuit,"Ingrese numero de cuit para realizar la busqueda \n","NO es un cuit valido \n",10,17,2)!=0)
+				{
+					printf("ERROR.\n");
+					break;
+				}
+				while(buscarDatoStringValido(aPublicidad,QTY_PUBLICIDADES,cuit,aArrayEnterosId, QTY_PANTALLAS)==-1)
+				{
+					if(getSoloNumeros(cuit,"NO es un cuit valido. Reingrese \n","NO es un cuit valido \n",10,17,2)!=0)
+					{
+						printf("ERROR.\n");
+						break;
+					}
+				}
 
-									}
+				printf("Pantallas contratadas\n");
+				imprimirDatosEstructuraPorCoincidenciaIdConOtraEtructura(aPantalla,QTY_PANTALLAS,aArrayEnterosId,QTY_PANTALLAS);
+				printf("Publicidades contratadas \n");
+				imprimirArrayPublicidadCoincidenteConUnDatoIngresadoPorUsuario(aPublicidad,QTY_PUBLICIDADES, cuit);
+				getInt(&id,"Indique la publicacion que quiere dar de baja eligiendo el ID de la pantalla .\n","NO es un id valido\n", 1,100,2);
+				while(buscarPublicidadPorIdYCuit(aPublicidad, QTY_PUBLICIDADES,id,cuit)==-1)
+				{
+					getInt(&id,"NO es un id valido para este cuit, reingrese\n", "NO es un id valido\n", 1,100,2);
 
-									index=buscarPublicidadPorIdPantalla(aPublicidad,QTY_PUBLICIDADES,id);
-									opcion=2;
-									imprimirDatosPublicidadPorId(aPublicidad, QTY_PUBLICIDADES, index,opcion);
-									if(esSiONo(confirmacion,"Ha seleccionado dar de baja esta publicacion ¿Continuar? si o no\n","No es una respuesta valida. \n",2,3,2)!=0)
-									{
-										printf("ERROR. \n");
-										break;
-									}
-									if(strncmp(confirmacion,"si",3)==0)
-									{
-										opcion=2;
-										modificacionPublicidadPorIdCamposPuntuales(aPublicidad,QTY_PUBLICIDADES,index,opcion);
-									}
-									printf("BAJA REALIZADA CON EXITO \n");
+				}
 
-									printf("Sus nuevas publicidades son: \n");
-									imprimirArrayPublicidadCoincidenteConUnDatoIngresadoPorUsuario(aPublicidad,QTY_PUBLICIDADES, cuit);
-break;
+				index=buscarPublicidadPorIdPantalla(aPublicidad,QTY_PUBLICIDADES,id);
+				opcion=2;
+				imprimirDatosPublicidadPorId(aPublicidad, QTY_PUBLICIDADES, index,opcion);
+				if(esSiONo(confirmacion,"Ha seleccionado dar de baja esta publicacion ¿Continuar? si o no\n","No es una respuesta valida. \n",2,3,2)!=0)
+				{
+					printf("ERROR. \n");
+					break;
+				}
+				if(strncmp(confirmacion,"si",3)==0)
+				{
+					opcion=2;
+					modificacionPublicidadPorIdCamposPuntuales(aPublicidad,QTY_PUBLICIDADES,index,opcion);
+				}
+				printf("BAJA REALIZADA CON EXITO \n");
+
+				printf("Sus nuevas publicidades son: \n");
+				imprimirArrayPublicidadCoincidenteConUnDatoIngresadoPorUsuario(aPublicidad,QTY_PUBLICIDADES, cuit);
+			}break;
 
 		case 7:
 			if(getSoloNumeros(cuit,"Ingrese numero de cuit para realizar la busqueda \n","NO es un cuit valido \n",10,17,2)!=0)
-													{
-															printf("ERROR.\n");
-																break;
-													}
-									while(buscarDatoStringValido(aPublicidad,QTY_PUBLICIDADES,cuit,aArrayEnterosId, QTY_PANTALLAS)==-1)
-									{
-										if(getSoloNumeros(cuit,"NO es un cuit valido. Reingrese \n","NO es un cuit valido \n",10,17,2)!=0)
-																	{
-																			printf("ERROR.\n");
-																				break;
-																	}
-									}
-									buscarPublicidadPorCuit(aPublicidad,QTY_PUBLICIDADES,cuit,auxPublicidad,QTY_PUBLICIDADES);
+			{
+				printf("ERROR.\n");
+				break;
+			}
+			while(buscarDatoStringValido(aPublicidad,QTY_PUBLICIDADES,cuit,aArrayEnterosId, QTY_PANTALLAS)==-1)
+			{
+				if(getSoloNumeros(cuit,"NO es un cuit valido. Reingrese \n","NO es un cuit valido \n",10,17,2)!=0)
+				{
+					printf("ERROR.\n");
+					break;
+				}
+			}
+			buscarPublicidadPorCuit(aPublicidad,QTY_PUBLICIDADES,cuit,auxPublicidad,QTY_PUBLICIDADES);
 
-									imprimirPrecioPublicidad(auxPublicidad,QTY_PUBLICIDADES,aPantalla,QTY_PANTALLAS);
-									break;
+			imprimirPrecioPublicidad(auxPublicidad,QTY_PUBLICIDADES,aPantalla,QTY_PANTALLAS);
+			break;
 
 		case 8:
 			imprimirArrayPublicidad(aPublicidad, QTY_PUBLICIDADES);
@@ -367,7 +412,7 @@ break;
 		case 10:
 			printf("  1)");
 			ordenarCuit (aPublicidad,QTY_PUBLICIDADES);
-//			imprimirArrayPublicidad(aPublicidad,QTY_PUBLICIDADES);
+			//			imprimirArrayPublicidad(aPublicidad,QTY_PUBLICIDADES);
 			cantidadPublicacionesPorCuit(aPublicidad,QTY_PUBLICIDADES, aContador,QTY_PUBLICIDADES);
 
 			printf("  2)");
@@ -375,7 +420,7 @@ break;
 			imprimirArrayPublicidad(aPublicidad,QTY_PUBLICIDADES);
 			buscarImporteMasAltoDeFacturacion(aPublicidad,QTY_PUBLICIDADES);
 
-break;
+			break;
 
 
 
@@ -383,11 +428,11 @@ break;
 
 		}
 
-		if(esSiONo(respuesta,"¿Desea seguir haciendo otra operacion?\n","No es una respuesta valida. \n",2,3,2)!=0)
-														{
-														printf("ERROR. \n");
-														break;
-														}
+		if(esSiONo(respuesta,"¿Desea seguir haciendo otra operacion? si o no\n","No es una respuesta valida. \n",2,3,2)!=0)
+		{
+			printf("ERROR. \n");
+			break;
+		}
 
 
 	}while(strncmp(respuesta,"si",4)==0);

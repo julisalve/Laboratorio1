@@ -13,12 +13,13 @@ typedef struct
 		{
 
 	float precioFinal;
+	int dias;
+			char cuit [50];
 		int id;
 		int status;
 		int idPantalla;
 		char nombreArchivo[50];
-		int dias;
-		char cuit [50];
+
 
 
 		}Publicidades;
