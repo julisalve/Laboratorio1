@@ -9,60 +9,60 @@
 #define QTY_PUBLICIDADES 1000
 #define QTY_PANTALLAS 100
 
-//int altaForzadaPublicidad(Publicidades *aArray,int cantidad);
-//int altaForzadaPantalla(Pantallas *aArray,int cantidad);
+int altaForzadaPublicidad(Publicidades *aArray,int cantidad);
+int altaForzadaPantalla(Pantallas *aArray,int cantidad);
 
-//int altaForzadaPantalla(Pantallas *aArray,int cantidad)
-//{
-//	int retorno;
-//	int id[]={1,2,3,4,5};
-//	int status[]={1,1,1,1,1};
-//	int tipo[]={1,2,1,2,2};
-//	char nombre[][50]={"juan","pedro","maria","eva","abrahm"};
-//	char direccion[][50]={" Lavalle 209","Ayolas 3429","383 2696","pellegrini y calchaqui","12 de oct 2431"};
-//	float precio[]={12.3,9.7,3.2,23.6,98.43};
-//
-//	int i;
-//	for(i=0;i<5;i++)
-//	{
-//		aArray[i].id=id[i];
-//		aArray[i].status=status[i];
-//		aArray[i].tipo=tipo[i];
-//		strncpy(aArray[i].nombre,nombre[i],50);
-//		strncpy(aArray[i].direccion,direccion[i],50);
-//		aArray[i].precio= precio[i];
-//		retorno=0;
-//	}
-//	return retorno;
-//}
-//
-//
-//
-//int altaForzadaPublicidad(Publicidades *aArray,int cantidad)
-//{
-//	int retorno;
-//	int id[]={10,3,4,2,9};
-//	int status[]={1,1,1,1,1};
-//	int idPantalla[]={1,2,3,4,5};
-//	char nombreArchivo[][50]={"juan.archivo","pedro.archivo","maria.archivo","eva.archivo","abrahm.archivo"};
-//	int dias[]={12,12,19,2,3};
-//	char cuit [][50]={"33333333333","11111111111","33333333333","33333333333","444444444444"};
-//
-//
-//	int i;
-//	for(i=0;i<5;i++)
-//	{
-//		aArray[i].id=id[i];
-//		aArray[i].status=status[i];
-//		aArray[i].idPantalla=idPantalla[i];
-//		strncpy(aArray[i].nombreArchivo,nombreArchivo[i],50);
-//		aArray[i].dias= dias[i];
-//		strncpy(aArray[i].cuit,cuit[i],50);
-//		retorno=0;
-//	}
-//	return retorno;
-//}
-//
+int altaForzadaPantalla(Pantallas *aArray,int cantidad)
+{
+	int retorno;
+	int id[]={1,2,3,4,5};
+	int status[]={1,1,1,1,1};
+	int tipo[]={1,2,1,2,2};
+	char nombre[][50]={"juan","pedro","maria","eva","abrahm"};
+	char direccion[][50]={" Lavalle 209","Ayolas 3429","383 2696","pellegrini y calchaqui","12 de oct 2431"};
+	float precio[]={12.3,9.7,3.2,23.6,98.43};
+
+	int i;
+	for(i=0;i<5;i++)
+	{
+		aArray[i].id=id[i];
+		aArray[i].status=status[i];
+		aArray[i].tipo=tipo[i];
+		strncpy(aArray[i].nombre,nombre[i],50);
+		strncpy(aArray[i].direccion,direccion[i],50);
+		aArray[i].precio= precio[i];
+		retorno=0;
+	}
+	return retorno;
+}
+
+
+
+int altaForzadaPublicidad(Publicidades *aArray,int cantidad)
+{
+	int retorno;
+	int id[]={10,3,4,2,9};
+	int status[]={1,1,1,1,1};
+	int idPantalla[]={1,2,3,4,5};
+	char nombreArchivo[][50]={"juan.archivo","pedro.archivo","maria.archivo","eva.archivo","abrahm.archivo"};
+	int dias[]={12,12,19,2,3};
+	char cuit [][50]={"33333333333","11111111111","33333333333","33333333333","444444444444"};
+
+
+	int i;
+	for(i=0;i<5;i++)
+	{
+		aArray[i].id=id[i];
+		aArray[i].status=status[i];
+		aArray[i].idPantalla=idPantalla[i];
+		strncpy(aArray[i].nombreArchivo,nombreArchivo[i],50);
+		aArray[i].dias= dias[i];
+		strncpy(aArray[i].cuit,cuit[i],50);
+		retorno=0;
+	}
+	return retorno;
+}
+
 
 
 
@@ -90,9 +90,9 @@ int main(void) {
 	initLugarLibrePantallas(aPantalla,QTY_PANTALLAS);
 	do
 	{
-		//altaForzadaPantalla(aPantalla,QTY_PANTALLAS);
+		altaForzadaPantalla(aPantalla,QTY_PANTALLAS);
 		imprimirArrayPantallas(aPantalla,QTY_PANTALLAS);
-		//altaForzadaPublicidad(aPublicidad,QTY_PUBLICIDADES);
+		altaForzadaPublicidad(aPublicidad,QTY_PUBLICIDADES);
 		imprimirArrayPublicidad(aPublicidad,QTY_PUBLICIDADES);
 
 

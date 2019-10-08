@@ -547,7 +547,7 @@ int cantidadPublicacionesPorCuit(Publicidades *aArray, int cantidad, auxContador
 		strncpy(aArrayCont[i].cuit,aArray[i].cuit,50);
 		aArrayCont[i].contador =0;
 		}
-		for(i=0;i<cantidad;i++)
+		for(i=0;i<cantCont;i++)
 		{
 			for(j=0;j<cantidad;j++)
 			{

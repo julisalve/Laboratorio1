@@ -53,6 +53,6 @@ int buscarLugarPublicidadLleno(Publicidades *aArray, int cantidad);
 int calcularPrecioPublicidadCompleto(Publicidades *aArray, int cantPub, Pantallas *aArrayPant,int cantPant);
 int ordenarCuit (Publicidades *aArray, int cantidad);
 int cantidadPublicacionesPorCuit(Publicidades *aArray, int cantidad, auxContador *aArrayCont, int cantCont);
-
+int initLugarLibreContador(auxContador *aArray, int cantidad);
 int bajaPantallaPorId(Pantallas *aArray, int cantidad,Publicidades *aArrayPub, int cantPub, int id);
 #endif /* PUBLICIDAD_H_ */
