@@ -30,6 +30,7 @@ typedef struct
 					int status;
 					int contador;
 					char cuit [50];
+					float acmulador;
 		}typedef auxContador;
 
 
@@ -55,4 +56,6 @@ int ordenarCuit (Publicidades *aArray, int cantidad);
 int cantidadPublicacionesPorCuit(Publicidades *aArray, int cantidad, auxContador *aArrayCont, int cantCont);
 int initLugarLibreContador(auxContador *aArray, int cantidad);
 int bajaPantallaPorId(Pantallas *aArray, int cantidad,Publicidades *aArrayPub, int cantPub, int id);
+
+//int ePantalla_cantidadFacturada (Pantallas *aArray, int cantPan, Publicidades *aArrayPub, int cantPub, char *cuit);
 #endif /* PUBLICIDAD_H_ */

@@ -419,6 +419,7 @@ int main(void) {
 			calcularPrecioPublicidadCompleto(aPublicidad,QTY_PUBLICIDADES,aPantalla,QTY_PANTALLAS);
 			imprimirArrayPublicidad(aPublicidad,QTY_PUBLICIDADES);
 			buscarImporteMasAltoDeFacturacion(aPublicidad,QTY_PUBLICIDADES);
+			//ePantalla_cantidadFacturada (aPantalla,QTY_PANTALLAS, aPublicidad,QTY_PUBLICIDADES, char *cuit)
 
 			break;
 

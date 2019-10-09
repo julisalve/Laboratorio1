@@ -443,6 +443,70 @@ int bajaPantallaPorId(Pantallas *aArray, int cantidad,Publicidades *aArrayPub, i
 }
 
 
+//int ePantalla_mayorPrecioFacturado (Pantallas *aArray, int cantPan, Publicidades *aArrayPub, int cantPub)
+//{
+//int retorno = EXIT_ERROR;
+//int i;
+//int posicionPAntalla;
+//int cantFacturada;
+//
+//if(aArray!=NULL && cantPan>0 && aArrayPub!=NULL && cantPub>0)
+//{
+//	retorno =1;
+//	for(i=0;i<cantPub;i++)
+//	{
+//		posicionPAntalla = buscarPANtallaporId (listaPAnt, cantpan, listaPub[i].idPAnt, cantPub)
+//
+////		for(j=0;j<tam;j++)
+////		{
+////			if(aArrayPub[i].idPantalla == aArray[j].id)
+////			{
+////				posicionPantalla=j; // o
+//		cantidadFAc= aArray[i].precio*aArrayPub[j].dias;
+//		if(strncmp(aArrayPub[i].cuit,aArrayPub[i+1].cuit))//			} aca hace ala busqueda por id
+////		}
+//				int precio total =listaPub[i].cantDias * listaPAnt[posicionPAntalla].precio;
+//	}
+//}
+//return retorno;
+//}
+//
+//int ePantalla_cantidadFacturada (Pantallas *aArray, int cantPan, Publicidades *aArrayPub, int cantPub, char *cuit)
+//{
+//	int retorno = EXIT_ERROR;
+//	int i;
+//	int posicionPAntalla;
+//	int cantFacturada;
+//	int j;
+//	float acumulador=0.0;
+//
+//	if(aArray!=NULL && cantPan>0 && aArrayPub!=NULL && cantPub>0)
+//	{
+//		retorno =1;
+//		for(i=0;i<cantPub;i++)
+//		{
+//			if(strncmp(aArrayPub[i].cuit,cuit)==0)//
+//			{
+//				for(j=0;j<cantPan;j++)
+//				{
+//					if(aArrayPub[i].idPantalla == aArray[j].id)
+//					{
+//						cantFacturada=aArrayPub[i].dias*aArray[j].precio;
+//						acumulador=acumulador+cantFacturada;
+//					}
+//					printf("acumulador %.2f",acumulador);
+//				}
+//			}
+//		}
+//	}
+//	return retorno;
+//}
+
+
+
+
+
+
 int buscarImporteMasAltoDeFacturacion(Publicidades *aArray, int cantidad)
 {
 	int retorno=EXIT_ERROR;
@@ -531,7 +595,20 @@ int calcularPrecioPublicidadCompleto(Publicidades *aArray, int cantPub, Pantalla
 	return retorno;
 }
 
-
+int initAcumulador(auxContador *aArray, int cantidad)
+{
+	int i;
+	int retorno = EXIT_ERROR;
+	if(aArray != NULL && cantidad > 0)
+	{
+		retorno = EXIT_SUCCESS;
+		for(i=0;i<cantidad;i++)
+	{
+		aArray[i].acmulador=0.0;
+	}
+		}
+		return retorno;
+}
 
 
 int cantidadPublicacionesPorCuit(Publicidades *aArray, int cantidad, auxContador *aArrayCont, int cantCont)
@@ -539,6 +616,7 @@ int cantidadPublicacionesPorCuit(Publicidades *aArray, int cantidad, auxContador
 	int retorno=EXIT_ERROR;
 	int i;
 	int j;
+	initAcumulador(aArrayCont,cantCont);
 	initLugarLibreContador(aArrayCont,cantCont);
 	if(aArray != NULL && cantidad>0 && aArrayCont != NULL && cantCont>0)
 	{
@@ -555,6 +633,7 @@ int cantidadPublicacionesPorCuit(Publicidades *aArray, int cantidad, auxContador
 									{
 					aArrayCont[i].contador++;
 					aArrayCont[i].status=STATUS_NOT_EMPTY;
+					aArrayCont[i].acmulador=aArrayCont[i].acmulador+aArray[j].precioFinal;
 									}
 			}
 		}
@@ -612,4 +691,28 @@ int initLugarLibreContador(auxContador *aArray, int cantidad)
 	}
 		}
 		return retorno;
+}
+
+
+int calcularPrecioPublicidadTotalPorCuit(Publicidades *aArray, int cantPub, Pantallas *aArrayPant,int cantPant)
+{
+	int retorno= EXIT_ERROR;
+	//float suma=0;
+	int i;
+	int j=0;
+	if(calcularPrecioPublicidadCompleto(aArray,cantPub,aArrayPant,cantPant)!=0)
+	{
+		printf("Error \n");
+
+	}
+	for(i=0;i<cantPub-1;i++)
+	{
+		if(strncmp(aArray[i].cuit,aArray[i+1].cuit,50)==0)
+		{
+
+		}
+	}
+
+
+	return retorno;
 }
