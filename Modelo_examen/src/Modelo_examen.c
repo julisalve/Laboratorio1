@@ -90,9 +90,9 @@ int main(void) {
 	initLugarLibrePantallas(aPantalla,QTY_PANTALLAS);
 	do
 	{
-		altaForzadaPantalla(aPantalla,QTY_PANTALLAS);
+		//altaForzadaPantalla(aPantalla,QTY_PANTALLAS);
 		imprimirArrayPantallas(aPantalla,QTY_PANTALLAS);
-		altaForzadaPublicidad(aPublicidad,QTY_PUBLICIDADES);
+		//altaForzadaPublicidad(aPublicidad,QTY_PUBLICIDADES);
 		imprimirArrayPublicidad(aPublicidad,QTY_PUBLICIDADES);
 
 
@@ -296,14 +296,14 @@ int main(void) {
 				imprimirDatosEstructuraPorCoincidenciaIdConOtraEtructura(aPantalla,QTY_PANTALLAS,aArrayEnterosId,QTY_PANTALLAS);
 				printf("Publicidades contratadas \n");
 				imprimirArrayPublicidadCoincidenteConUnDatoIngresadoPorUsuario(aPublicidad,QTY_PUBLICIDADES, cuit);
-				getInt(&id,"Indique el ID de la pantalla que quiere modificar.\n","NO es un id valido\n", 1,100,2);
+//				getInt(&id,"Indique el ID de la pantalla que quiere modificar.\n","NO es un id valido\n", 1,100,2);
 				while(buscarPublicidadPorIdYCuit(aPublicidad, QTY_PUBLICIDADES,id,cuit)==-1)
 				{
 					getInt(&id,"NO es un id valido para este cuit, reingrese\n", "NO es un id valido\n", 1,100,2);
 
 				}
 
-				index=buscarPublicidadPorIdPantalla(aPublicidad,QTY_PUBLICIDADES,id);
+				index=buscarPublicidadPorIdPantalla(aPublicidad,QTY_PUBLICIDADES,id,cuit);
 				opcion=1;
 				imprimirDatosPublicidadPorId(aPublicidad, QTY_PUBLICIDADES, index,opcion);
 				if(esSiONo(confirmacion,"Ha seleccionado modificar este dato ¿Continuar? si o no\n","No es una respuesta valida. \n",2,3,2)!=0)
@@ -363,7 +363,8 @@ int main(void) {
 
 				}
 
-				index=buscarPublicidadPorIdPantalla(aPublicidad,QTY_PUBLICIDADES,id);
+				index=buscarPublicidadPorIdPantalla(aPublicidad,QTY_PUBLICIDADES,id,cuit);
+
 				opcion=2;
 				imprimirDatosPublicidadPorId(aPublicidad, QTY_PUBLICIDADES, index,opcion);
 				if(esSiONo(confirmacion,"Ha seleccionado dar de baja esta publicacion ¿Continuar? si o no\n","No es una respuesta valida. \n",2,3,2)!=0)
@@ -375,11 +376,11 @@ int main(void) {
 				{
 					opcion=2;
 					modificacionPublicidadPorIdCamposPuntuales(aPublicidad,QTY_PUBLICIDADES,index,opcion);
+					printf("BAJA REALIZADA CON EXITO \n");
+					printf("Sus nuevas publicidades son: \n");
+									imprimirArrayPublicidadCoincidenteConUnDatoIngresadoPorUsuario(aPublicidad,QTY_PUBLICIDADES, cuit);
 				}
-				printf("BAJA REALIZADA CON EXITO \n");
 
-				printf("Sus nuevas publicidades son: \n");
-				imprimirArrayPublicidadCoincidenteConUnDatoIngresadoPorUsuario(aPublicidad,QTY_PUBLICIDADES, cuit);
 			}break;
 
 		case 7:

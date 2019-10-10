@@ -40,7 +40,7 @@ int buscarLugarPublicidad(Publicidades *aArray, int cantidad);
 int buscarPantallaPorIdEnPublicidad(Publicidades *aArray, int cantidad, int idPant);
 int altaPublicidad(Publicidades *aArrayPub, int cantidad, Publicidades buffer);
 int imprimirArrayPublicidad(Publicidades *aArray, int cantidad);
-int buscarPublicidadPorIdPantalla(Publicidades*aArray, int cantidad, int id);
+int buscarPublicidadPorIdPantalla(Publicidades*aArray, int cantidad, int id,char *item);
 int imprimirDatosPublicidadPorId(Publicidades *aArray, int cantidad, int id,int caso);
 int modificacionPublicidadPorIdCamposPuntuales(Publicidades *aArray, int cantidad, int index, int caso);
 int imprimirArrayPublicidadCoincidenteConUnDatoIngresadoPorUsuario(Publicidades *aArray, int cantidad, char *item);

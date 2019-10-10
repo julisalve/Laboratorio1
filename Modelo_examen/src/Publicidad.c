@@ -220,7 +220,7 @@ int buscarDatoStringValido(Publicidades *aArray, int cantidad, char *item, Array
  * \return devuelve el -1 (EXIT_ERROR) en caso de que el array sea nulo o que su tamaño sea invalido o devuelve la posicion en donde se encuentra el id buscado
  *
  */
-int buscarPublicidadPorIdPantalla(Publicidades*aArray, int cantidad, int id)
+int buscarPublicidadPorIdPantalla(Publicidades*aArray, int cantidad, int id, char *item)
 {
 	int retorno =EXIT_ERROR;
 	int i;
@@ -228,7 +228,7 @@ int buscarPublicidadPorIdPantalla(Publicidades*aArray, int cantidad, int id)
 	{
 		for(i=0;i<cantidad;i++)
 	{
-		if(aArray[i].status== STATUS_NOT_EMPTY && id==aArray[i].idPantalla)
+		if(aArray[i].status== STATUS_NOT_EMPTY && id==aArray[i].idPantalla && strncmp(item,aArray[i].cuit,50)==0)
 		{
 			retorno = i;
 			break;
