@@ -8,12 +8,12 @@
 
 
 
-int menuInformes(Pedidos *aArrayPed, int cantPed, Clientes *aArrayClientes, int cantClientes)
+int menuInformes(Pedidos *aArrayPed, int cantPed, Clientes *aArrayClientes, int cantClientes, auxContador *aArrayCont, int cantCont)
 {
 	int retorno= EXIT_ERROR;
 	char opcion;
 	float acumulador;
-	while(getChar(&opcion, "Ingrese una opcion de informes\n  a)Cantidad maxima de desechos\n", "NO es una opcion valida.",'a','z',3)!=0)
+	while(getChar(&opcion, "Ingrese una opcion de informes\n  a)Cantidad maxima de desechos\n    b)Suma total.\n    c)Suma total por cuit\n", "NO es una opcion valida.",'a','z',3)!=0)
 			{
 				printf("ERROR.\n ");
 			}
@@ -24,12 +24,31 @@ int menuInformes(Pedidos *aArrayPed, int cantPed, Clientes *aArrayClientes, int 
 		buscarCuitConMasDesechos (aArrayClientes, cantClientes, aArrayPed,cantPed);
 		break;
 	case 'b':
-		acumulador= sumaTotalesDeDesechos(aArrayPed,cantPed);
+		sumaTotalesDeDesechos(aArrayPed,cantPed,&acumulador);
 		printf("La suma total de desechos es: %.2f \n",acumulador);
+		acumulador=sumaTotalesDeResiduosPorTipo(aArrayPed, cantPed,1,&acumulador);
+		printf("La suma total de HDPE es: %.2f \n",acumulador);
+		acumulador=sumaTotalesDeResiduosPorTipo(aArrayPed, cantPed,2,&acumulador);
+		printf("La suma total de LDPE es: %.2f \n",acumulador);
+		acumulador=sumaTotalesDeResiduosPorTipo(aArrayPed, cantPed,3,&acumulador);
+		printf("La suma total de PP es: %.2f \n",acumulador);
+		acumulador=sumaTotalesDeResiduosPorTipo(aArrayPed, cantPed,4,&acumulador);
+		printf("La suma total de desechos es: %.2f \n",acumulador);
+		acumulador=sumaTotalesDeResiduosPorTipo(aArrayPed, cantPed,5,&acumulador);
+		printf("La suma total de residuos es: %.2f \n",acumulador);
 		break;
 	case 'c':
 		ordenarPorIdCliente(aArrayPed,cantPed);
-
+		cantidadKilosPorTipoPorCuit(aArrayPed, cantPed, aArrayCont, cantCont,aArrayClientes,cantClientes,1);
+		printf("\n");
+		cantidadKilosPorTipoPorCuit(aArrayPed, cantPed, aArrayCont, cantCont,aArrayClientes,cantClientes,2);
+		printf("\n");
+		cantidadKilosPorTipoPorCuit(aArrayPed, cantPed, aArrayCont, cantCont,aArrayClientes,cantClientes,3);
+		printf("\n");
+		cantidadKilosPorTipoPorCuit(aArrayPed, cantPed, aArrayCont, cantCont,aArrayClientes,cantClientes,4);
+		printf("\n");
+		cantidadKilosPorTipoPorCuit(aArrayPed, cantPed, aArrayCont, cantCont,aArrayClientes,cantClientes,5);
+		printf("\n");
 		break;
 	break;
 	}
@@ -110,21 +129,153 @@ int buscarCuitConMasDesechos (Clientes *aArrayClientes, int cantClientes, Pedido
 }
 
 
-int sumaTotalesDeDesechos(Pedidos *aArrayPed, int cantPed)
+float sumaTotalesDeDesechos(Pedidos *aArrayPed, int cantPed, float *acumulador)
 {
-	int retorno =EXIT_ERROR;
+	float retorno =EXIT_ERROR;
 	int i;
-	float acumulador=0.00;
+	*acumulador=0.00;
 	if(aArrayPed != NULL && cantPed > 0)
 	{
 		for(i=0;i<cantPed;i++)
 		{
 			if(aArrayPed[i].status==STATUS_COMPLETO)
 			{
-				acumulador=acumulador+aArrayPed[i].kilosDesecho_4;
+				*acumulador=*acumulador+aArrayPed[i].kilosDesecho_4;
 			}
 		}
-		retorno=acumulador;
+		retorno=*acumulador;
+	}
+	return retorno;
+}
+
+
+float sumaTotalesDeResiduosPorTipo(Pedidos *aArrayPed, int cantPed, int opcion,float *acumulador)
+{
+	float retorno =EXIT_ERROR;
+	int i;
+	*acumulador=0.00;
+	if(aArrayPed != NULL && cantPed > 0)
+	{
+		for(i=0;i<cantPed;i++)
+		{
+			if(aArrayPed[i].status==STATUS_COMPLETO)
+			{
+				switch(opcion)
+				{
+				case 1:
+					*acumulador=*acumulador+aArrayPed[i].kilosHdpe_1;
+					break;
+				case 2:
+					*acumulador=*acumulador+aArrayPed[i].kilosLdpe_2;
+					break;
+				case 3:
+					*acumulador=*acumulador+aArrayPed[i].kilosPp_3;
+					break;
+				case 4:
+					*acumulador=*acumulador+aArrayPed[i].kilosDesecho_4;
+					break;
+				case 5:
+					*acumulador=*acumulador+aArrayPed[i].kilosTotales;
+					break;
+				}
+			}
+		}
+		retorno=*acumulador;
+	}
+	return retorno;
+}
+
+
+
+float cantidadKilosPorTipoPorCuit(Pedidos *aArray, int cantidad, auxContador *aArrayCont, int cantCont,Clientes *aArrayClientes, int cantClientes, int opcion)
+{
+	float retorno=EXIT_ERROR;
+	int i;
+	int j;
+	initLugarLibreContador(aArrayCont,cantCont);
+	if(aArray != NULL && cantidad>0 && aArrayClientes!=NULL && cantClientes>0)
+	{
+		retorno=EXIT_SUCCESS;
+		for(i=0;i<cantCont;i++)
+		{
+			aArrayCont[i].idCliente=aArray[i].idCliente;
+			//aArrayCont[i].contador =0;
+			aArrayCont[i].acumulador=0;
+		}
+		for(i=0;i<cantCont;i++)
+		{
+			for(j=0;j<cantidad;j++)
+			{
+				if(aArray[j].status == STATUS_COMPLETO && aArrayCont[i].idCliente==aArray[j].idCliente)
+				{
+					switch(opcion)
+					{
+					case 1:
+						//aArrayCont[i].contador++;
+						aArrayCont[i].status=STATUS_COMPLETO;
+						aArrayCont[i].acumulador=aArrayCont[i].acumulador+aArray[j].kilosHdpe_1;
+						break;
+					case 2:
+						aArrayCont[i].status=STATUS_COMPLETO;
+						aArrayCont[i].acumulador=aArrayCont[i].acumulador+aArray[j].kilosLdpe_2;
+						break;
+					case 3:
+						aArrayCont[i].status=STATUS_COMPLETO;
+						aArrayCont[i].acumulador=aArrayCont[i].acumulador+aArray[j].kilosPp_3;
+						break;
+					case 4:
+						aArrayCont[i].status=STATUS_COMPLETO;
+						aArrayCont[i].acumulador=aArrayCont[i].acumulador+aArray[j].kilosDesecho_4;
+						break;
+					case 5:
+						aArrayCont[i].status=STATUS_COMPLETO;
+						aArrayCont[i].acumulador=aArrayCont[i].acumulador+aArray[j].kilosTotales;
+						break;
+					}
+				}
+			}
+		}
+
+		imprimirCantidadKilosPorTipoPorPorCuit(aArrayCont,cantCont,aArrayClientes,cantClientes,opcion);
+	}
+	return retorno;
+}
+
+
+
+int imprimirCantidadKilosPorTipoPorPorCuit(auxContador *aArrayCont, int cantCont,Clientes *aArrayClientes, int cantClientes, int opcion)
+{
+	int retorno =EXIT_ERROR;
+	int i;
+	int j;
+	if(aArrayCont != NULL && cantCont>0 && aArrayClientes!=NULL && cantClientes>0)
+	{
+		retorno=EXIT_SUCCESS;
+		for(i=0;i<cantCont;i++)
+		{
+			for(j=0;j<cantClientes;j++)
+				if(aArrayCont[i].status==STATUS_COMPLETO && aArrayCont[i].idCliente!=aArrayCont[i+1].idCliente && aArrayCont[i].idCliente==aArrayClientes[j].id)
+				{
+					switch(opcion)
+					{
+					case 1:
+						printf("El cliente con Cuit %s - ID Cliente %d - NOmbre %s - Direccion %s - Localidad %s tiene %.2f Kilos de HDPE\n",aArrayClientes[j].cuit,aArrayClientes[j].id,aArrayClientes[j].nombre,aArrayClientes[j].direccion,aArrayClientes[j].localidad,aArrayCont[i].acumulador);
+						break;
+					case 2:
+						printf("El cliente con Cuit %s - ID Cliente %d - NOmbre %s - Direccion %s - Localidad %s tiene %.2f Kilos de LDPE\n",aArrayClientes[j].cuit,aArrayClientes[j].id,aArrayClientes[j].nombre,aArrayClientes[j].direccion,aArrayClientes[j].localidad,aArrayCont[i].acumulador);
+						break;
+					case 3:
+						printf("El cliente con Cuit %s - ID Cliente %d - NOmbre %s - Direccion %s - Localidad %s tiene %.2f Kilos de PP\n",aArrayClientes[j].cuit,aArrayClientes[j].id,aArrayClientes[j].nombre,aArrayClientes[j].direccion,aArrayClientes[j].localidad,aArrayCont[i].acumulador);
+						break;
+					case 4:
+						printf("El cliente con Cuit %s - ID Cliente %d - NOmbre %s - Direccion %s - Localidad %s tiene %.2f Kilos de desecho\n",aArrayClientes[j].cuit,aArrayClientes[j].id,aArrayClientes[j].nombre,aArrayClientes[j].direccion,aArrayClientes[j].localidad,aArrayCont[i].acumulador);
+						break;
+					case 5:
+						printf("El cliente con Cuit %s - ID Cliente %d - NOmbre %s - Direccion %s - Localidad %s tiene %.2f Kilos Totales\n",aArrayClientes[j].cuit,aArrayClientes[j].id,aArrayClientes[j].nombre,aArrayClientes[j].direccion,aArrayClientes[j].localidad,aArrayCont[i].acumulador);
+						break;
+				}
+			}
+		}
 	}
 	return retorno;
 }

@@ -278,15 +278,15 @@ int main(void)
 			break;
 
 		case 6:
-			if(flagOpcionUno!=1)
-			{
-				printf("Error, primero debe cargar un cliente\n");
-			}
-			else if(flagDos!=1)
-			{
-				printf("Error, primero debe cargar un pedido\n");
-			}
-			else
+//			if(flagOpcionUno!=1)
+//			{
+//				printf("Error, primero debe cargar un cliente\n");
+//			}
+//			else if(flagDos!=1)
+//			{
+//				printf("Error, primero debe cargar un pedido\n");
+//			}
+//			else
 			{
 				ordenarPorIdCliente (aPedidos,QTY_PEDIDOS);
 				//		imprimirArrayPedidos(aPedidos,QTY_PEDIDOS);
@@ -296,37 +296,37 @@ int main(void)
 			break;
 
 		case 7:
-			if(flagOpcionUno!=1)
-			{
-				printf("Error, primero debe cargar un cliente\n");
-			}
-			else if(flagDos!=1)
-			{
-				printf("Error, primero debe cargar un pedido\n");
-			}
-			else
+//			if(flagOpcionUno!=1)
+//			{
+//				printf("Error, primero debe cargar un cliente\n");
+//			}
+//			else if(flagDos!=1)
+//			{
+//				printf("Error, primero debe cargar un pedido\n");
+//			}
+//			else
 			{
 				imprimirArrayPedidosPendientesConClientes(aPedidos,QTY_PEDIDOS,aClientes,QTY_CLIENTES);
 			}
 			break;
 
 		case 8:
-			if(flagOpcionUno!=1)
-			{
-				printf("Error, primero debe cargar un cliente\n");
-			}
-			else if(flagDos!=1)
-			{
-				printf("Error, primero debe cargar un pedido\n");
-			}
-			else
+//			if(flagOpcionUno!=1)
+//			{
+//				printf("Error, primero debe cargar un cliente\n");
+//			}
+//			else if(flagDos!=1)
+//			{
+//				printf("Error, primero debe cargar un pedido\n");
+//			}
+//			else
 			{
 				imprimirArrayPedidosCompletosConClientes(aPedidos,QTY_PEDIDOS,aClientes,QTY_CLIENTES);
 			}
 			break;
 
 		case 9:
-			menuInformes(aPedidos, QTY_PEDIDOS, aClientes,QTY_CLIENTES);
+			//menuInformes(aPedidos,QTY_PEDIDOS, aClientes,QTY_CLIENTES,aContador,QTY_PEDIDOS);
 			break;
 		}
 		if(esSiONo(respuesta,"¿Desea seguir haciendo otra operacion? si o no\n","No es una respuesta valida. \n",2,3,2)!=0)

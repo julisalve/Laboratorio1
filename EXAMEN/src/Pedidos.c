@@ -257,6 +257,7 @@ int initLugarLibreContador(auxContador *aArray, int cantidad)
 		for(i=0;i<cantidad;i++)
 		{
 			aArray[i].status=STATUS_EMPTY;
+
 		}
 	}
 	return retorno;
