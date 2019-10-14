@@ -12,6 +12,7 @@ int menuInformes(Pedidos *aArrayPed, int cantPed, Clientes *aArrayClientes, int 
 {
 	int retorno= EXIT_ERROR;
 	char opcion;
+	float acumulador;
 	while(getChar(&opcion, "Ingrese una opcion de informes\n  a)Cantidad maxima de desechos\n", "NO es una opcion valida.",'a','z',3)!=0)
 			{
 				printf("ERROR.\n ");
@@ -22,6 +23,15 @@ int menuInformes(Pedidos *aArrayPed, int cantPed, Clientes *aArrayClientes, int 
 		//buscarPedidoConMasDesechos(aArrayPed,cantPed);
 		buscarCuitConMasDesechos (aArrayClientes, cantClientes, aArrayPed,cantPed);
 		break;
+	case 'b':
+		acumulador= sumaTotalesDeDesechos(aArrayPed,cantPed);
+		printf("La suma total de desechos es: %.2f \n",acumulador);
+		break;
+	case 'c':
+		ordenarPorIdCliente(aArrayPed,cantPed);
+
+		break;
+	break;
 	}
 	return retorno;
 }
@@ -95,6 +105,26 @@ int buscarCuitConMasDesechos (Clientes *aArrayClientes, int cantClientes, Pedido
 		id=buscarPedidoConMasDesechos(aArrayPedidos, cantPed);
 		index=buscarClientePorId(aArrayClientes,cantClientes,id);
 		printf(" y el cuit es %s \n",aArrayClientes[index].cuit);
+	}
+	return retorno;
+}
+
+
+int sumaTotalesDeDesechos(Pedidos *aArrayPed, int cantPed)
+{
+	int retorno =EXIT_ERROR;
+	int i;
+	float acumulador=0.00;
+	if(aArrayPed != NULL && cantPed > 0)
+	{
+		for(i=0;i<cantPed;i++)
+		{
+			if(aArrayPed[i].status==STATUS_COMPLETO)
+			{
+				acumulador=acumulador+aArrayPed[i].kilosDesecho_4;
+			}
+		}
+		retorno=acumulador;
 	}
 	return retorno;
 }

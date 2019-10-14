@@ -11,7 +11,7 @@ int menuInformes(Pedidos *aArrayPed, int cantPed, Clientes *aArrayClientes, int 
 int buscarPrimerLugarPedidoCompletoProcesado(Pedidos *aArray, int cantidad);
 int buscarPedidoConMasDesechos(Pedidos *aArray, int cantidad);
 int buscarCuitConMasDesechos (Clientes *aArrayClientes, int cantClientes, Pedidos *aArrayPedidos, int cantPed);
-
+int sumaTotalesDeDesechos(Pedidos *aArrayPed, int cantPed);
 
 
 #endif /* INFORMES_H_ */
