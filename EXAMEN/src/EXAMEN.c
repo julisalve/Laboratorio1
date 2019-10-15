@@ -143,6 +143,7 @@ int main(void)
 				if(strncmp(confirmacion,"si",3)==0)
 				{
 					bajaClientePorId(aClientes,QTY_CLIENTES,aPedidos,QTY_PEDIDOS,id); // DOY DE BAJA LOS PEDIDOS DE ESTE CLIENTE. NO LO DICE EL ENUNCIADO PERO ME PARECE ADECUADO HACERLO
+					flagOpcionUno=
 					printf("BAJA EXITOSA. \n");
 
 				}
