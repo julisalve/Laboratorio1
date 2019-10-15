@@ -12,6 +12,7 @@ int menuInformes(Pedidos *aArrayPed, int cantPed, Clientes *aArrayClientes, int 
 {
 	int retorno= EXIT_ERROR;
 	char opcion;
+	int id;
 	float acumulador;
 	while(getChar(&opcion, "Ingrese una opcion de informes\n  a)Cantidad maxima de desechos\n    b)Suma total.\n    c)Suma total por cuit\n", "NO es una opcion valida.",'a','z',3)!=0)
 			{
@@ -26,15 +27,15 @@ int menuInformes(Pedidos *aArrayPed, int cantPed, Clientes *aArrayClientes, int 
 	case 'b':
 		sumaTotalesDeDesechos(aArrayPed,cantPed,&acumulador);
 		printf("La suma total de desechos es: %.2f \n",acumulador);
-		acumulador=sumaTotalesDeResiduosPorTipo(aArrayPed, cantPed,1,&acumulador);
+		sumaTotalesDeResiduosPorTipo(aArrayPed, cantPed,1,&acumulador);
 		printf("La suma total de HDPE es: %.2f \n",acumulador);
-		acumulador=sumaTotalesDeResiduosPorTipo(aArrayPed, cantPed,2,&acumulador);
+		sumaTotalesDeResiduosPorTipo(aArrayPed, cantPed,2,&acumulador);
 		printf("La suma total de LDPE es: %.2f \n",acumulador);
-		acumulador=sumaTotalesDeResiduosPorTipo(aArrayPed, cantPed,3,&acumulador);
+		sumaTotalesDeResiduosPorTipo(aArrayPed, cantPed,3,&acumulador);
 		printf("La suma total de PP es: %.2f \n",acumulador);
-		acumulador=sumaTotalesDeResiduosPorTipo(aArrayPed, cantPed,4,&acumulador);
+		sumaTotalesDeResiduosPorTipo(aArrayPed, cantPed,4,&acumulador);
 		printf("La suma total de desechos es: %.2f \n",acumulador);
-		acumulador=sumaTotalesDeResiduosPorTipo(aArrayPed, cantPed,5,&acumulador);
+		sumaTotalesDeResiduosPorTipo(aArrayPed, cantPed,5,&acumulador);
 		printf("La suma total de residuos es: %.2f \n",acumulador);
 		break;
 	case 'c':
@@ -50,7 +51,31 @@ int menuInformes(Pedidos *aArrayPed, int cantPed, Clientes *aArrayClientes, int 
 		cantidadKilosPorTipoPorCuit(aArrayPed, cantPed, aArrayCont, cantCont,aArrayClientes,cantClientes,5);
 		printf("\n");
 		break;
-	break;
+	case 'd':
+		imprimirArrayClientes(aArrayClientes,QTY_CLIENTES);
+		if(getInt(&id,"Indique el id que desea consultar\n", "NO es un id valido\n", 1,100,2)!=0)
+		{
+			printf("ERROR. \n");
+			break;
+		}
+		while(buscarClientePorId(aArrayClientes, QTY_CLIENTES,id)==-1)
+		{
+			getInt(&id,"NO es un id valido, reingrese\n", "NO es un id valido\n", 1,100,2);
+
+		}
+		printf("Ha seleccionado el siguiente ID para modificar. \n");
+		imprimirDatosClientePorId(aArrayClientes,QTY_CLIENTES,id);
+		sumaTotalesDeResiduosPorIdClienteIngresado(aArrayPed, cantPed,1,&acumulador, id);
+		printf("La suma total de HDPE para el id %d es: %.2f \n",id,acumulador);
+		sumaTotalesDeResiduosPorIdClienteIngresado(aArrayPed, cantPed,2,&acumulador, id);
+		printf("La suma total de LDPE para el id %d es: %.2f \n",id,acumulador);
+		sumaTotalesDeResiduosPorIdClienteIngresado(aArrayPed, cantPed,3,&acumulador, id);
+		printf("La suma total de PP para el id %d es: %.2f \n",id,acumulador);
+		sumaTotalesDeResiduosPorIdClienteIngresado(aArrayPed, cantPed,4,&acumulador, id);
+		printf("La suma total de desechos para el id %d es: %.2f \n",id,acumulador);
+		sumaTotalesDeResiduosPorIdClienteIngresado(aArrayPed, cantPed,5,&acumulador, id);
+		printf("La suma total de residuos para el id %d es: %.2f \n",id,acumulador);
+		break;
 	}
 	return retorno;
 }
@@ -276,6 +301,43 @@ int imprimirCantidadKilosPorTipoPorPorCuit(auxContador *aArrayCont, int cantCont
 				}
 			}
 		}
+	}
+	return retorno;
+}
+
+
+float sumaTotalesDeResiduosPorIdClienteIngresado(Pedidos *aArrayPed, int cantPed, int opcion,float *acumulador, int id)
+{
+	float retorno =EXIT_ERROR;
+	int i;
+	*acumulador=0.00;
+	if(aArrayPed != NULL && cantPed > 0)
+	{
+		for(i=0;i<cantPed;i++)
+		{
+			if(aArrayPed[i].status==STATUS_COMPLETO &&aArrayPed[i].idCliente==id)
+			{
+				switch(opcion)
+				{
+				case 1:
+					*acumulador=*acumulador+aArrayPed[i].kilosHdpe_1;
+					break;
+				case 2:
+					*acumulador=*acumulador+aArrayPed[i].kilosLdpe_2;
+					break;
+				case 3:
+					*acumulador=*acumulador+aArrayPed[i].kilosPp_3;
+					break;
+				case 4:
+					*acumulador=*acumulador+aArrayPed[i].kilosDesecho_4;
+					break;
+				case 5:
+					*acumulador=*acumulador+aArrayPed[i].kilosTotales;
+					break;
+				}
+			}
+		}
+		retorno=*acumulador;
 	}
 	return retorno;
 }

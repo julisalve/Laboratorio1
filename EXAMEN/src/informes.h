@@ -15,6 +15,7 @@ float sumaTotalesDeDesechos(Pedidos *aArrayPed, int cantPed, float *acumulador);
 float sumaTotalesDeResiduosPorTipo(Pedidos *aArrayPed, int cantPed, int opcion, float *acumulador);
 float cantidadKilosPorTipoPorCuit(Pedidos *aArray, int cantidad, auxContador *aArrayCont, int cantCont,Clientes *aArrayClientes, int cantClientes, int opcion);
 int imprimirCantidadKilosPorTipoPorPorCuit(auxContador *aArrayCont, int cantCont,Clientes *aArrayClientes, int cantClientes, int opcion);
+float sumaTotalesDeResiduosPorIdClienteIngresado(Pedidos *aArrayPed, int cantPed, int opcion,float *acumulador, int id);
 
 
 #endif /* INFORMES_H_ */

@@ -20,7 +20,6 @@ int main(void)
 	int opcion;
 	int flagOpcionUno=0;
 	int flagDos=0;
-	int contadorClientes=0;
 	int id;
 	int index;
 	char respuesta[4];
@@ -71,7 +70,6 @@ int main(void)
 			}
 			altaClientePorId(aClientes,QTY_CLIENTES,bCliente,&id);
 			printf("ALTA REALIZADA CON EXITO.\nID generado para el cliente: %d\n",id);
-			contadorClientes++;
 			flagOpcionUno=1;
 			break;
 
@@ -146,10 +144,10 @@ int main(void)
 				{
 					bajaClientePorId(aClientes,QTY_CLIENTES,aPedidos,QTY_PEDIDOS,id); // DOY DE BAJA LOS PEDIDOS DE ESTE CLIENTE. NO LO DICE EL ENUNCIADO PERO ME PARECE ADECUADO HACERLO
 					printf("BAJA EXITOSA. \n");
-					contadorClientes--;
+
 				}
 			}
-			if(contadorClientes==0)
+			if(buscarLugarCliente(aClientes,QTY_CLIENTES)<0)
 			{
 				printf("NO hay clientes en la lista. \n");
 			}
@@ -326,7 +324,7 @@ int main(void)
 			break;
 
 		case 9:
-			//menuInformes(aPedidos,QTY_PEDIDOS, aClientes,QTY_CLIENTES,aContador,QTY_PEDIDOS);
+			menuInformes(aPedidos,QTY_PEDIDOS, aClientes,QTY_CLIENTES,aContador,QTY_PEDIDOS);
 			break;
 		}
 		if(esSiONo(respuesta,"¿Desea seguir haciendo otra operacion? si o no\n","No es una respuesta valida. \n",2,3,2)!=0)

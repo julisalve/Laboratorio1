@@ -255,11 +255,11 @@ int ordenarCuit (Clientes *aArray, int cantidad)
 				j--;
 			}
 		}
-
 	}
-
 	return retorno;
 }
+
+
 
 /**
  * \brief Carga Forzada de clientes
@@ -287,3 +287,5 @@ void altaForzadaClientes(Clientes *aArray,int cantidad)
 		strncpy(aArray[i].localidad,localidad[i],50);
 	}
 }
+
+
