@@ -7,22 +7,19 @@ C_SRCS += \
 ../src/Clientes.c \
 ../src/EXAMEN.c \
 ../src/Pedidos.c \
-../src/general.c \
-../src/informes.c 
+../src/general.c 
 
 OBJS += \
 ./src/Clientes.o \
 ./src/EXAMEN.o \
 ./src/Pedidos.o \
-./src/general.o \
-./src/informes.o 
+./src/general.o 
 
 C_DEPS += \
 ./src/Clientes.d \
 ./src/EXAMEN.d \
 ./src/Pedidos.d \
-./src/general.d \
-./src/informes.d 
+./src/general.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
