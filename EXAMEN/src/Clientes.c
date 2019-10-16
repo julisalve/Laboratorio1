@@ -6,7 +6,6 @@
 #include <string.h>
 #include "general.h"
 
-static int generarId();
 
 /**
  * \brief Genera ID irrepetible
@@ -44,48 +43,6 @@ int initLugarLibreClientes(Clientes *aArray, int cantidad)
 }
 
 
-/**
- * \brief Toma datos de un cliente en particular verificando primero si existe lugar libre en el array
- * \param *aArray array que se le pasa a la funcion
- * \param cantidad tamaño del array
- * \param bCliente buffer de Cliente
- * \return devuelve el -1 (EXIT_ERROR) en caso de que el array sea nulo o que su tamaño sea invalido o el 0 (EXIT_SUCCESS) en caso de exito.
- *
- */
-
-int tomaDeDatosClientesYAlta(Clientes *aArray, int cantidad, Clientes bCliente)
-{
-	int retorno=EXIT_ERROR;
-	int id;
-	if(aArray!=NULL && cantidad>0)
-	{
-		if(buscarLugarCliente(aArray,cantidad)==-1)
-		{
-			printf("NO hay lugar libre.\n");
-		}
-		if(getDatoSoloLetras(bCliente.nombre,"Ingrese el nombre de la empresa\n","NO es un nombre valido\n",1,100,2)!=0)
-		{
-			printf("ERROR.\n");
-		}
-		if(getSoloNumeros(bCliente.cuit,"Ingrese numero de cuit \n","NO es un cuit valido \n",10,17,2)!=0)
-		{
-			printf("ERROR.\n");
-		}
-		if(getDatoAlfaNumerico(bCliente.direccion,"Indique la direccion\n","NO es una direccion valida \n",1,100,2)!=0)
-		{
-			printf("ERROR.\n");
-		}
-		if(getDatoSoloLetras(bCliente.localidad,"Ingrese la localidad\n","NO es una localidad valido\n",1,100,2)!=0)
-		{
-			printf("ERROR.\n");
-		}
-		id=altaClientePorId(aArray,cantidad,bCliente);
-		retorno=id;
-	}
-
-	return retorno;
-}
-
 
 /**
  * \brief Imprime el array de clientes con estado lleno, devolviendo el fracaso o el exito
@@ -111,59 +68,6 @@ int imprimirArrayClientes(Clientes *aArray, int cantidad)
 	}
 	return retorno;
 }
-
-/**
- * \brief Toma id que ingresa el usuario y verifica su existencia en el array
- * \param *aArray array que se le pasa a la funcion
- * \param cantidad tamaño del array
- * \param id elegido por el usuario
- * \return devuelve el -1 (EXIT_ERROR) en caso de que el array sea nulo o que su tamaño sea invalido o el id
- *
- */
-int tomaIdClienteParaModificar(Clientes *aArray, int cantidad)
-{
-	int retorno =EXIT_ERROR;
-	int id;
-	if(aArray != NULL && cantidad>0)
-	{
-
-		if(getInt(&id,"Indique el id que desea modificar\n", "NO es un id valido\n", 1,100,2)!=0)
-		{
-			printf("ERROR. \n");
-		}
-		while(buscarClientePorId(aArray,cantidad,id)==-1)
-		{
-			getInt(&id,"NO es un id valido, reingrese\n", "NO es un id valido\n", 1,100,2);
-		}
-		retorno=id;
-	}
-	return retorno;
-}
-
-
-
-int tomaIdClienteParaDarBaja(Clientes *aArray, int cantidad)
-{
-	int retorno =EXIT_ERROR;
-	int id;
-	if(aArray != NULL && cantidad>0)
-	{
-		if(getInt(&id,"Indique el id que desea dar de baja\n", "NO es un id valido\n", 1,100,2)!=0)
-						{
-							printf("ERROR. \n");
-
-						}
-						while(buscarClientePorId(aArray, cantidad,id)==-1)
-						{
-							getInt(&id,"NO es un id valido, reingrese\n", "NO es un id valido\n", 1,100,2);
-
-						}
-						retorno=id;
-	}
-	return retorno;
-}
-
-
 
 
 /**
@@ -200,20 +104,19 @@ int buscarLugarCliente(Clientes *aArray, int cantidad)
  * \return devuelve el -1 (EXIT_ERROR) en caso de que el array sea nulo o que su tamaño sea invalido o que no haya lugar libre o devuelve 0 (EXIT_SUCCESS) en caso de exito
  *
  */
-int altaClientePorId(Clientes *aArray, int cantidad,Clientes buffer)
+int altaClientePorId(Clientes *aArray, int cantidad,Clientes buffer, int *id)
 {
 	int retorno = EXIT_ERROR;
 	int i;
-	int id;
 	i = buscarLugarCliente(aArray,cantidad);
 
 	if(aArray != NULL && cantidad > 0 && i!=EXIT_ERROR)
 	{
 		aArray[i]=buffer;
 		aArray[i].id = generarId();
-		id=aArray[i].id;
+		*id=aArray[i].id;
 		aArray[i].status = STATUS_NOT_EMPTY;
-		retorno = id;
+		retorno = EXIT_SUCCESS;
 	}
 	return retorno;
 }
@@ -352,11 +255,11 @@ int ordenarCuit (Clientes *aArray, int cantidad)
 				j--;
 			}
 		}
-
 	}
-
 	return retorno;
 }
+
+
 
 /**
  * \brief Carga Forzada de clientes
@@ -384,3 +287,5 @@ void altaForzadaClientes(Clientes *aArray,int cantidad)
 		strncpy(aArray[i].localidad,localidad[i],50);
 	}
 }
+
+

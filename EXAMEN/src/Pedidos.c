@@ -5,7 +5,7 @@
 #include <stdio_ext.h>
 #include <string.h>
 
-static int generarId();
+
 
 /**
  * \brief Genera ID irrepetible
@@ -257,6 +257,7 @@ int initLugarLibreContador(auxContador *aArray, int cantidad)
 		for(i=0;i<cantidad;i++)
 		{
 			aArray[i].status=STATUS_EMPTY;
+
 		}
 	}
 	return retorno;
@@ -460,13 +461,13 @@ int imprimirArrayPedidosCompletosConClientes(Pedidos *aArrayPed,int cantPed,Clie
 void altaForzadaPedidos(Pedidos *aArray,int cantidad)
 {
 	float kilosHdpe_1[]={12.5,1.2,8.9,9.8,10.0};
-	float kilosLdpe_2[]={12.5,1.2,8.9,9.8,10.0};
-	float kilosPp_3[]={12.5,1.2,8.9,9.8,10.0};
-	float kilosDesecho_4[]={0.00,0.00,0.00,0.00,0.00};
+	float kilosLdpe_2[]={12.5,1.2,8.9,8.8,5.0};
+	float kilosPp_3[]={10.5,1.2,8.9,9.8,10.0};
+	float kilosDesecho_4[]={2.00,0.00,0.00,1.00,5.00};
 	float kilosTotales[]={37.5,3.6,26.7,29.4,30.0};
 	//int tipo[]={1,2,3,1,1};
 	int id[]={10,3,4,2,9};
-	int status[]={1,2,2,1,2};
+	int status[]={1,1,1,1,1};
 	int idCliente[]={1,2,3,2,2};
 	int i;
 	for(i=0;i<5;i++)

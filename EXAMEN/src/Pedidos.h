@@ -32,11 +32,11 @@ typedef struct
 					int contador;
 					int idCliente;
 					//char cuit [50];
-					//float acmulador;
+					float acumulador;
 		}typedef auxContador;
 
 
-
+static int generarId();
 int initLugarLibrePedidos(Pedidos *aArray, int cantidad);
 int imprimirArrayPedidosNotEmpty(Pedidos *aArray, int cantidad);
 int imprimirArrayPedidosDistintoEmpty(Pedidos *aArray, int cantidad);
@@ -46,6 +46,7 @@ int buscarLugarPedido(Pedidos *aArray, int cantidad);
 int altaPedido(Pedidos *aArrayPed, int cantidad, Pedidos buffer);
 int buscarPedidoPorId(Pedidos *aArray, int cantidad, int id);
 int initLugarLibreContador(auxContador *aArray, int cantidad);
+
 int cantidadPedidosPendientesPorCuit(Pedidos *aArray, int cantidad, auxContador *aArrayCont, int cantCont,Clientes *aArrayClientes, int cantClientes);
 int imprimirCantidadPedidosPendientesPorCuit(auxContador *aArrayCont, int cantCont,Clientes *aArrayClientes, int cantClientes);
 int imprimirArrayPedidosPendientesConClientes(Pedidos *aArrayPed,int cantPed,Clientes *aArrayClientes,int cantClientes);
