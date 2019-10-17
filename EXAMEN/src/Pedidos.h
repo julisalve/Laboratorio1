@@ -31,12 +31,13 @@ typedef struct
 					int status;
 					int contador;
 					int idCliente;
+					char localidad [50];
 					//char cuit [50];
 					float acumulador;
 		}typedef auxContador;
 
 
-static int generarId();
+
 int initLugarLibrePedidos(Pedidos *aArray, int cantidad);
 int imprimirArrayPedidosNotEmpty(Pedidos *aArray, int cantidad);
 int imprimirArrayPedidosDistintoEmpty(Pedidos *aArray, int cantidad);

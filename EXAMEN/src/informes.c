@@ -76,6 +76,15 @@ int menuInformes(Pedidos *aArrayPed, int cantPed, Clientes *aArrayClientes, int 
 		sumaTotalesDeResiduosPorIdClienteIngresado(aArrayPed, cantPed,5,&acumulador, id);
 		printf("La suma total de residuos para el id %d es: %.2f \n",id,acumulador);
 		break;
+
+	case 'e':
+		promedioDeDesechos(aArrayPed,cantPed);
+		break;
+	case 'f':
+		ordenarPorLocalidadCliente (aArrayClientes, cantClientes);
+		imprimirArrayClientes(aArrayClientes,cantClientes);
+		cantidadKilosPorTipoPorLocalidad(aArrayPed, cantPed, aArrayCont, cantCont,aArrayClientes,cantClientes,opcion);
+		break;
 	}
 	return retorno;
 }
@@ -338,6 +347,152 @@ float sumaTotalesDeResiduosPorIdClienteIngresado(Pedidos *aArrayPed, int cantPed
 			}
 		}
 		retorno=*acumulador;
+	}
+	return retorno;
+}
+
+
+
+
+
+float promedioDeDesechos(Pedidos *aArrayPed, int cantPed)
+{
+	float retorno =EXIT_ERROR;
+	int i;
+	float acumulador=0;
+	float promedio=0.00;
+	int contador=0;
+	if(aArrayPed != NULL && cantPed > 0)
+	{
+		retorno=EXIT_SUCCESS;
+
+		for(i=0;i<cantPed;i++)
+		{
+			if(aArrayPed[i].status == STATUS_COMPLETO && aArrayPed[i].kilosDesecho_4>=0)
+			{
+				contador++;
+			}
+		}
+		sumaTotalesDeDesechos(aArrayPed,cantPed,&acumulador);
+		promedio=acumulador/contador;
+		printf("El promedio de desechos es: %.2f \n",promedio);
+	}
+return retorno;
+}
+
+
+int ordenarPorLocalidadCliente (Clientes *aArray, int cantidad)
+{
+	int retorno =EXIT_ERROR;
+	int i;
+	Clientes bCliente;
+	int j;
+	if(aArray != NULL && cantidad > 0)
+	{
+		retorno=EXIT_SUCCESS;
+		for(i=0;i<cantidad;i++)
+		{
+			j=i;
+			while (strncmp(aArray[j].localidad,aArray[j-1].localidad,50)<0 && j>0) //ordena de menor a mayor
+			{
+				bCliente=aArray[j-1];
+				aArray[j-1]=aArray[j];
+				aArray[j]=bCliente;
+				j--;
+			}
+		}
+	}
+	return retorno;
+}
+
+
+float cantidadKilosPorTipoPorLocalidad(Pedidos *aArray, int cantidad, auxContador *aArrayCont, int cantCont,Clientes *aArrayClientes, int cantClientes, int opcion)
+{
+	float retorno=EXIT_ERROR;
+	int i;
+	int j;
+	initLugarLibreContador(aArrayCont,cantCont);
+	if(aArray != NULL && cantidad>0 && aArrayClientes!=NULL && cantClientes>0)
+	{
+		retorno=EXIT_SUCCESS;
+		for(i=0;i<cantCont;i++)
+		{
+			strncpy(aArrayCont[i].localidad,aArrayClientes[i].localidad,50);
+			//aArrayCont[i].contador =0;
+			aArrayCont[i].acumulador=0;
+		}
+		for(i=0;i<cantCont;i++)
+		{
+			for(j=0;j<cantidad;j++)
+			{
+				if(aArray[j].status == STATUS_COMPLETO && strncmp(aArrayCont[i].localidad,aArrayClientes[j].localidad,50)==0)
+				{
+					switch(opcion)
+					{
+					case 1:
+						//aArrayCont[i].contador++;
+						aArrayCont[i].status=STATUS_COMPLETO;
+						aArrayCont[i].acumulador=aArrayCont[i].acumulador+aArray[j].kilosHdpe_1;
+						break;
+					case 2:
+						aArrayCont[i].status=STATUS_COMPLETO;
+						aArrayCont[i].acumulador=aArrayCont[i].acumulador+aArray[j].kilosLdpe_2;
+						break;
+					case 3:
+						aArrayCont[i].status=STATUS_COMPLETO;
+						aArrayCont[i].acumulador=aArrayCont[i].acumulador+aArray[j].kilosPp_3;
+						break;
+					case 4:
+						aArrayCont[i].status=STATUS_COMPLETO;
+						aArrayCont[i].acumulador=aArrayCont[i].acumulador+aArray[j].kilosDesecho_4;
+						break;
+					case 5:
+						aArrayCont[i].status=STATUS_COMPLETO;
+						aArrayCont[i].acumulador=aArrayCont[i].acumulador+aArray[j].kilosTotales;
+						break;
+					}
+				}
+			}
+		}
+
+		imprimirCantidadKilosPorTipoPorPorLocalidad(aArrayCont, cantCont,aArrayClientes, cantClientes,opcion);
+	}
+	return retorno;
+}
+
+int imprimirCantidadKilosPorTipoPorPorLocalidad(auxContador *aArrayCont, int cantCont,Clientes *aArrayClientes, int cantClientes, int opcion)
+{
+	int retorno =EXIT_ERROR;
+	int i;
+	int j;
+	if(aArrayCont != NULL && cantCont>0 && aArrayClientes!=NULL && cantClientes>0)
+	{
+		retorno=EXIT_SUCCESS;
+		for(i=0;i<cantCont;i++)
+		{
+			for(j=0;j<cantClientes;j++)
+				if(aArrayCont[i].status==STATUS_COMPLETO && strncmp(aArrayCont[i].localidad,aArrayCont[i+1].localidad,50)!=0 && strncmp(aArrayCont[i].localidad,aArrayClientes[j].localidad,50)==0)
+				{
+					switch(opcion)
+					{
+					case 1:
+						printf("En la localidad %s hay %.2f Kilos de HDPE\n",aArrayClientes[j].localidad,aArrayCont[i].acumulador);
+						break;
+					case 2:
+						printf("En la localidad %s hay %.2f Kilos de LDPE\n",aArrayClientes[j].localidad,aArrayCont[i].acumulador);
+						break;
+					case 3:
+						printf("En la localidad %s hay %.2f Kilos de PP\n",aArrayClientes[j].localidad,aArrayCont[i].acumulador);
+						break;
+					case 4:
+						printf("En la localidad %s hay %.2f Kilos de desecho\n",aArrayClientes[j].localidad,aArrayCont[i].acumulador);
+						break;
+					case 5:
+						printf("En la localidad %s hay %.2f Kilos Totales\n",aArrayClientes[j].localidad,aArrayCont[i].acumulador);
+						break;
+				}
+			}
+		}
 	}
 	return retorno;
 }

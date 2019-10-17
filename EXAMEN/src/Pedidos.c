@@ -5,7 +5,7 @@
 #include <stdio_ext.h>
 #include <string.h>
 
-
+static int generarId();
 
 /**
  * \brief Genera ID irrepetible
@@ -263,6 +263,7 @@ int initLugarLibreContador(auxContador *aArray, int cantidad)
 	return retorno;
 }
 
+
 /**
  * \brief Calcula cantidad de pedidos pendientes por cliente e imprime esta informacion
  * \param *aArray array de pedidos
@@ -467,7 +468,7 @@ void altaForzadaPedidos(Pedidos *aArray,int cantidad)
 	float kilosTotales[]={37.5,3.6,26.7,29.4,30.0};
 	//int tipo[]={1,2,3,1,1};
 	int id[]={10,3,4,2,9};
-	int status[]={1,1,1,1,1};
+	int status[]={1,1,1,2,1};
 	int idCliente[]={1,2,3,2,2};
 	int i;
 	for(i=0;i<5;i++)

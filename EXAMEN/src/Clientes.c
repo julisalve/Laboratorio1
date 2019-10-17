@@ -6,7 +6,7 @@
 #include <string.h>
 #include "general.h"
 
-
+static int generarId();
 /**
  * \brief Genera ID irrepetible
  *
