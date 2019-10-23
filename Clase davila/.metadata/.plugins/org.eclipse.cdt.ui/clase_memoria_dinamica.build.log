@@ -1,0 +1,15 @@
+22:00:40 **** Incremental Build of configuration Debug for project clase_memoria_dinamica ****
+make all 
+Building file: ../src/persona.c
+Invoking: GCC C Compiler
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"src/persona.d" -MT"src/persona.o" -o "src/persona.o" "../src/persona.c"
+Finished building: ../src/persona.c
+ 
+Building target: clase_memoria_dinamica
+Invoking: GCC C Linker
+gcc  -o "clase_memoria_dinamica"  ./src/clase_memoria_dinamica.o ./src/persona.o   
+Finished building target: clase_memoria_dinamica
+ 
+
+22:00:41 Build Finished. 0 errors, 0 warnings. (took 313ms)
+

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;clase_memoria_dinamica/src/persona.h&apos; to &apos;persona.c&apos;" description="Rename resource &apos;persona.h&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/persona.h" name="persona.c" stamp="1571782276960" updateReferences="true"/>
+</session>

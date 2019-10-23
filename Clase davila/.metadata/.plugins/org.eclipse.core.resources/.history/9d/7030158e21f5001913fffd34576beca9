@@ -1,0 +1,16 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "clientes.h"
+
+Cliente* new_Cliente()
+{
+	return malloc(sizeof(Cliente));
+}
+
+Cliente new_Cliente_Parametros(char* nombre, char* direccion,, char* cuit, char* localidad)
+{
+	int retorno =-1;
+	Cliente this;
+	this= new_Cliente()
+	return retorno;
+}

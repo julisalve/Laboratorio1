@@ -1,0 +1,129 @@
+
+#include <stdio.h>
+#include <stdlib.h>
+#include "persona.h"
+
+//devuelve un puntero a la entidad que se esta construyendo. SE opera sobre UNA PERSONA EN PARTICULAR
+
+Persona* new_Persona()
+{
+	return malloc(sizeof(Persona));
+}
+
+//costructor con parametros.
+Persona* new_PersonaParametros(int idPersona, int status, char* nombre, int edad, float altura)
+{
+	int retorno =-1;
+	Persona* this;
+	this=new_Persona();
+			if(this!=NULL)
+			{
+				if(per_setNombre(this,nombre)==0 &&
+					per_setEdad(this, edad)==0 &&
+					per_setAltura(this,altura)==0)
+				{
+					retorno=0;
+				}
+			}
+	return retorno;
+}
+
+
+
+void delete_Persona(Persona* this)
+{
+	free(this);
+}
+
+int per_setNombre(Persona* this, char *nombre) // setiar char que sea se copia y pega.
+{
+	int retorno =-1;
+	if(this !=NULL && isValidNombre(nombre))
+	{
+		strcpy(this->nombre,nombre);
+		retorno=0;
+	}
+	return retorno;
+}
+
+int per_getNombre(Persona* this, char *nombre) // getiar char que sea se copia y pega.
+{
+	int retorno =-1;
+	if(this !=NULL && nombre !=NULL)
+		{
+			retorno =0;
+			strcpy(nombre,this->nombre);
+		}
+	return retorno;
+
+}
+
+int isValidNombre(char *nombre)
+{
+	return 1; //tiene que validar que no sea null y que el nombre sea nombre
+}
+
+
+
+
+
+int per_setEdad(Persona* this, int edad) // setiar char que sea se copia y pega.
+{
+	int retorno =-1;
+	if(this !=NULL && isValidEdad(edad))
+	{
+		this->edad=edad;
+		retorno=0;
+	}
+	return retorno;
+}
+
+int per_getEdad(Persona* this, int* edad) // getiar char que sea se copia y pega.
+{
+	int retorno =-1;
+	if(this !=NULL && edad !=NULL)
+		{
+			retorno =0;
+			*edad=this->edad;
+		}
+	return retorno;
+
+}
+
+static int isValidEdad(int* edad)
+{
+	return 1; //tiene que validar que no sea null y que el nombre sea nombre
+}
+
+
+
+
+
+int per_setAltura(Persona* this, float* altura) // setiar char que sea se copia y pega.
+{
+	int retorno =-1;
+	if(this !=NULL && isValidAltura(altura))
+	{
+		this->altura=altura;
+		retorno=0;
+	}
+	return retorno;
+}
+
+int per_getAltura(Persona* this, float* altura) // getiar char que sea se copia y pega.
+{
+	int retorno =-1;
+	if(this !=NULL && altura !=NULL)
+		{
+			retorno =0;
+			*altura=this->edad;
+		}
+	return retorno;
+
+}
+
+static int isValidAltura(float* altura) //funcion privada, solo esta en el conexto de este archivo.
+{
+	return 1; //tiene que validar que no sea null y que el nombre sea nombre
+}
+

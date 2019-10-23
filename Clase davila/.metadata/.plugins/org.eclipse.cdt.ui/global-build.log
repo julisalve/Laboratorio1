@@ -1,0 +1,12 @@
+22:02:50 **** Incremental Build of configuration Debug for project CLIENTES ****
+make all 
+Building file: ../src/PEDIDOS.c
+Invoking: GCC C Compiler
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"src/PEDIDOS.d" -MT"src/PEDIDOS.o" -o "src/PEDIDOS.o" "../src/PEDIDOS.c"
+Finished building: ../src/PEDIDOS.c
+ 
+Building target: CLIENTES
+Invoking: GCC C Linker
+gcc  -o "CLIENTES"  ./src/CLIENTES.o ./src/MODELO.o ./src/PEDIDOS.o   
+Finished building target: CLIENTES
+ 

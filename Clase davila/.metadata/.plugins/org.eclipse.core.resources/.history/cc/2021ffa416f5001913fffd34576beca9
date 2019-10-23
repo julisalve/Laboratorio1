@@ -1,0 +1,21 @@
+/*
+ ============================================================================
+ Name        : clase_memoria_dinamica.c
+ Author      : 
+ Version     :
+ Copyright   : Your copyright notice
+ Description : Hello World in C, Ansi-style
+ ============================================================================
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void) {
+	printf("hello");
+
+	int variableEntera;
+	int *pEntero = malloc(sizeof(int)) //reserva espacio para un entero, devuelve un entero a donde se guardo espacio para la memoria , esta memoria no esta en el stack./ para reservar array de 5 enteros pongo * 5
+		int *pArrayEntero = malloc(sizeof(int)*5);
+	return 1;
+}

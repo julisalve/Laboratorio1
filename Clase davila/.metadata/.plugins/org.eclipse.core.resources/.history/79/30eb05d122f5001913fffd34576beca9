@@ -1,0 +1,54 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "clientes.h"
+
+Cliente* new_Cliente()
+{
+	return malloc(sizeof(Cliente));
+}
+
+Cliente new_Cliente_Parametros(char* nombre, char* direccion,, char* cuit, char* localidad)
+{
+	int retorno =-1;
+	Cliente this;
+	this= new_Cliente()
+			if(this!=NULL)
+			{
+				if(cli_setNombre(this,nombre)==0 &&
+					cli_setDireccion(this, direccion)==0 &&
+					cli_setCuit(this, cuit)==0 &&
+					cli_setLocalidad(this, localidad)==0)
+				{
+					retorno=0;
+				}
+			}
+	return retorno;
+}
+
+void delete_Cliente(Cliente* this)
+{
+	free(this);
+}
+
+
+
+int cli_setNombre(Cliente* this,char* nombre)
+{
+	int retorno =-1;
+	if(this!=NULL && isValidLetras(nombre))
+	{
+		strcpy(nombre,this->nombre);
+		retorno=0;
+	}
+
+	return retorno;
+}
+
+isValidLetras(char *item)
+{
+	int retorno=-1;
+	return retorno;
+}
+					cli_setDireccion(this, direccion)==0 &&
+					cli_setCuit(this, cuit)==0 &&
+					cli_setLocalidad(this, localidad)

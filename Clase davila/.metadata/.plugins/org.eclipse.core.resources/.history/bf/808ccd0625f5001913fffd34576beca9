@@ -1,0 +1,19 @@
+
+
+#ifndef CLIENTES_H_
+#define CLIENTES_H_
+
+typedef struct
+{
+	int id;
+	int status;
+	char nombre[50];
+	char direccion[50];
+	char cuit[50];
+	char localidad [50];
+}Cliente;
+
+
+Cliente* new_Cliente();
+
+#endif /* CLIENTES_H_ */

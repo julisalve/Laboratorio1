@@ -1,0 +1,145 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "CLIENTES.h"
+
+static int isValidLetras(char *item);
+Cliente* new_Cliente()
+{
+	return malloc(sizeof(Cliente));
+}
+
+Cliente new_Cliente_Parametros(char* nombre, char* direccion,, char* cuit, char* localidad)
+{
+	int retorno =-1;
+	Cliente this;
+	this= new_Cliente();
+			if(this!=NULL &&
+					cli_setNombre(this,nombre)==0 &&
+					cli_setDireccion(this, direccion)==0 &&
+					cli_setCuit(this, cuit)==0 &&
+					cli_setLocalidad(this, localidad)==0)
+			{
+					retorno=0;
+
+			}
+	return retorno;
+}
+
+void delete_Cliente(Cliente* this)
+{
+	free(this);
+}
+
+
+
+int cli_setNombre(Cliente* this,char* nombre)
+{
+	int retorno =-1;
+	if(this!=NULL && isValidLetras(nombre))
+	{
+		strcpy(this->nombre,nombre);
+		retorno=0;
+	}
+
+	return retorno;
+}
+static int isValidLetras(char *item)
+{
+	int retorno=-1;
+	return retorno;
+}
+
+int cli_getNombre(Cliente this, char* nombre)
+{
+	int retorno=1;
+	if(this!=NULL && nombre!=NULL)
+	{
+		strcpy(nombre,this-> nombre);
+		retorno=0;
+	}
+	return retorno;
+}
+
+
+
+
+int cli_setDireccion(Cliente *this, char* direccion)
+{
+	int retorno=1;
+	if(this!=NULL && isvalidLetras(direccion))
+	{
+		retorno=0;
+		strcpy(this->direccion,direccion);
+	}
+
+	return retorno;
+}
+
+int cli_getDireccion(Cliente *this, char* direccion)
+{
+	int retorno=1;
+	if(this!=NULL && isvalidLetras(direccion))
+	{
+		retorno=0;
+		strcpy(direccion,this->direccion);
+	}
+
+	return retorno;
+}
+
+
+int cli_setCuit(Cliente* this,char* cuit)
+{
+	int retorno=-1;
+	if(this!=NULL && isValidCuit(cuit))
+	{
+		retorno=0;
+		strcpy(this->cuit,cuit);
+	}
+
+	return retorno;
+}
+
+int cli_getCuit(Cliente* this,char* cuit)
+{
+	int retorno=-1;
+	if(this!=NULL && cuit!=NULL)
+	{
+		retorno=0;
+		strcpy(cuit,this->cuit);
+	}
+
+	return retorno;
+}
+
+int cli_setLocalidad(Cliente this,char* localidad)
+{
+	int retorno=-1;
+	if(this!=NULL && isValidLetras(localidad))
+	{
+		strcpy(this->localidad,localidad);
+		retorno=0;
+	}
+	return retorno;
+}
+
+int cli_getLocalidad(Cliente this,char* localidad)
+{
+	int retorno=-1;
+	if(this!=NULL && isValidLetras(localidad))
+	{
+		strcpy(localidad,this->localidad);
+		retorno=0;
+	}
+	return retorno;
+}
+
+
+
+static int isValidCuit(char *cuit)
+{
+
+
+	int retorno=-1;
+	return retorno;
+}

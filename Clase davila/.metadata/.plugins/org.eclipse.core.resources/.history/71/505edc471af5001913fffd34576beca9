@@ -1,0 +1,18 @@
+
+#include <stdio.h>
+#include <stdlib.h>
+#include "persona.h"
+
+//devuelve un puntero a la entidad que se esta construyendo. SE opera sobre UNA PERSONA EN PARTICULAR
+
+Persona* new_Persona()
+{
+	return malloc(sizeof(Persona));
+}
+
+void delete_Persona(Persona* this)
+{
+	free(this);
+}
+
+

@@ -1,0 +1,19 @@
+/*
+ * persona.h
+ *
+ *  Created on: 22 oct. 2019
+ *      Author: alumno
+ */
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include "persona.h"
+
+//devuelve un puntero a la entidad que se esta construyendo
+
+Persona* new_Persona()
+{
+	return malloc(sizeof(Persona));
+}
+

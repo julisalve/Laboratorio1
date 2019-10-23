@@ -1,0 +1,34 @@
+
+#include <stdio.h>
+#include <stdlib.h>
+#include "persona.h"
+
+//devuelve un puntero a la entidad que se esta construyendo. SE opera sobre UNA PERSONA EN PARTICULAR
+
+Persona* new_Persona()
+{
+	return malloc(sizeof(Persona));
+}
+
+void delete_Persona(Persona* this)
+{
+	free(this);
+}
+
+int setNombre(Persona* this, char *nombre)
+{
+	int retorno =-1;
+	if(this !=NULL && isValidNombre(nombre))
+	{
+		strcpy(this->nombre,nombre);
+		retorno=0;
+	}
+	return retorno;
+}
+
+
+
+int isValidNombre(char *nombre)
+{
+	return 1; //tiene que validar que no sea null y que el nombre sea nombre
+}

@@ -1,0 +1,76 @@
+
+#include <stdio.h>
+#include <stdlib.h>
+#include "persona.h"
+
+//devuelve un puntero a la entidad que se esta construyendo. SE opera sobre UNA PERSONA EN PARTICULAR
+
+Persona* new_Persona()
+{
+	return malloc(sizeof(Persona));
+}
+
+void delete_Persona(Persona* this)
+{
+	free(this);
+}
+
+int setNombre(Persona* this, char *nombre) // setiar char que sea se copia y pega.
+{
+	int retorno =-1;
+	if(this !=NULL && isValidNombre(nombre))
+	{
+		strcpy(this->nombre,nombre);
+		retorno=0;
+	}
+	return retorno;
+}
+
+int getNombre(Persona* this, char *nombre) // getiar char que sea se copia y pega.
+{
+	int retorno =-1;
+	if(this !=NULL && nombre !=NULL)
+		{
+			retorno =0;
+			strcpy(nombre,this->nombre);
+		}
+	return retorno;
+
+}
+
+int isValidNombre(char *nombre)
+{
+	return 1; //tiene que validar que no sea null y que el nombre sea nombre
+}
+
+
+
+
+
+int setEdad(Persona* this, int* edad) // setiar char que sea se copia y pega.
+{
+	int retorno =-1;
+	if(this !=NULL && isValidEdad(edad))
+	{
+		this->edad=edad;
+		retorno=0;
+	}
+	return retorno;
+}
+
+int getEdad(Persona* this, int* edad) // getiar char que sea se copia y pega.
+{
+	int retorno =-1;
+	if(this !=NULL && edad !=NULL)
+		{
+			retorno =0;
+			*edad=this->edad;
+		}
+	return retorno;
+
+}
+
+int isValidEdad(int* edad)
+{
+	return 1; //tiene que validar que no sea null y que el nombre sea nombre
+}

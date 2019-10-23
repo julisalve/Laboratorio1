@@ -1,0 +1,19 @@
+#ifndef PEDIDOS_H_
+#define PEDIDOS_H_
+
+typedef struct
+{
+	int id;
+	int status;
+	int idCliente;
+	float kilosTotales;
+	float kilosTipo_1;
+	float kilosTipo_2;
+	float kilosTipo_3;
+
+
+}Pedido;
+
+Pedido* new_Pedido();
+
+#endif /* PEDIDOS_H_ */

@@ -1,0 +1,8 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "clientes.h"
+
+Cliente* new_Cliente()
+{
+	malloc(sizeof(Cliente));
+}

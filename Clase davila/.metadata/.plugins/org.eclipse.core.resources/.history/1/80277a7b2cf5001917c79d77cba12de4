@@ -1,0 +1,154 @@
+#include "PEDIDOS.h"
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+
+Pedido* new_Pedido()
+{
+	return malloc(sizeof(Pedido));
+}
+
+
+ int new_Pedido_Parametros( float kilosTotales, float kilosTipo_1,float kilosTipo_2,float kilosTipo_3)
+{
+	int retorno =-1;
+	Pedido* this = new_Pedido();
+	//this= new_Pedido();
+//			if(this!=NULL &&
+//					ped_setKilosTotales(this,kilosTotales)==0 &&
+//					ped_setKilosTipo_1(this, kilosTipo_1)==0 &&
+//					ped_setKilosTipo_2(this, kilosTipo_2)==0 &&
+//					ped_setKilosTipo_3(this, kilosTipo_3)==0)
+//			{
+//					retorno=0;
+//			}
+	return retorno;
+}
+
+//
+//void delete_Pedidos(Pedido* this)
+//{
+//	free(this);
+//}
+//
+//
+//
+//int ped_setKilosTotales(Pedido * this,float kilosTotales)
+//{
+//	int retorno =-1;
+//	if(this!=NULL && isValidNumeros(kilosTotales))
+//	{
+//		this->kilosTotales=kilosTotales;
+//		retorno=0;
+//	}
+//
+//	return retorno;
+//}
+//
+//
+//
+//int ped_getKilosTotales(Pedido *this, float *kilosTipo_1)
+//{
+//	int retorno=1;
+//	if(this!=NULL && nombre!=NULL)
+//	{
+//		kilosTipo_1=this->kilosTipo_1);
+//		retorno=0;
+//	}
+//	return retorno;
+//}
+//
+//
+//
+//
+//int cli_setDireccion(Cliente *this, char* direccion)
+//{
+//	int retorno=1;
+//	if(this!=NULL && isValidLetras(direccion))
+//	{
+//		retorno=0;
+//		strcpy(this->direccion,direccion);
+//	}
+//	return retorno;
+//}
+//
+//int cli_getDireccion(Cliente *this, char* direccion)
+//{
+//	int retorno=1;
+//	if(this!=NULL && isValidLetras(direccion))
+//	{
+//		retorno=0;
+//		strcpy(direccion,this->direccion);
+//	}
+//	return retorno;
+//}
+//
+//
+//int cli_setCuit(Cliente* this,char* cuit)
+//{
+//	int retorno=-1;
+//	if(this!=NULL && isValidCuit(cuit))
+//	{
+//		retorno=0;
+//		strcpy(this->cuit,cuit);
+//	}
+//	return retorno;
+//}
+//
+//
+//int cli_getCuit(Cliente* this,char* cuit)
+//{
+//	int retorno=-1;
+//	if(this!=NULL && cuit!=NULL)
+//	{
+//		retorno=0;
+//		strcpy(cuit,this->cuit);
+//	}
+//
+//	return retorno;
+//}
+//
+//
+//int cli_setLocalidad(Cliente* this,char* localidad)
+//{
+//	int retorno=-1;
+//	if(this!=NULL && isValidLetras(localidad))
+//	{
+//		strcpy(this->localidad,localidad);
+//		retorno=0;
+//	}
+//	return retorno;
+//}
+//
+//
+//
+//int cli_getLocalidad(Cliente* this,char* localidad)
+//{
+//	int retorno=-1;
+//	if(this!=NULL && isValidLetras(localidad))
+//	{
+//		strcpy(localidad,this->localidad);
+//		retorno=0;
+//	}
+//	return retorno;
+//}
+//
+//
+//
+//static int isValidCuit(char *cuit)
+//{
+//	int retorno=-1;
+//	return retorno;
+//}
+//
+//
+//static int isValidLetras(char *item)
+//{
+//	int retorno=-1;
+//	return retorno;
+//}
+
+
+
