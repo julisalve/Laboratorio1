@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "../inc/LinkedList.h"
+#include "LinkedList.h"
 
 
 static Node* getNode(LinkedList* this, int nodeIndex);
@@ -576,7 +576,7 @@ int ll_map(LinkedList * this, void(*pFunc)(void*))
 	Node* pElement1;
 	if(this!=NULL && pFunc!=NULL)
 	{
-		printf("ll map");
+
 		for(i=0;i<ll_len(this);i++)
 		{
 			pElement1=ll_get(this,i);
@@ -694,6 +694,7 @@ int ll_contar(LinkedList * this, int(*pFunc)(void*))
 
 
 //CONTAR ELEMENTOS.HORAS, O SUELDO O EMPLEADOS. ACUMULADOS
+
 
 
 
