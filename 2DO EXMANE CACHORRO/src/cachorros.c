@@ -333,12 +333,13 @@ int cachorro_getGenero(Cachorro* this,char* genero)
  int Cachorro_pFuncMenos45Dias(void* cachorro)
 {
 	int dias;
-	dias=((Cachorro*)cachorro)->dias;
+	cachorro_getDias(cachorro, &dias);
+	//dias=((Cachorro*)cachorro)->dias;
 	int retorno =-1;
 
 	if(cachorro!=NULL && dias>45)
 	{
-		((Cachorro*)cachorro)->dias=dias;
+		//((Cachorro*)cachorro)->dias=dias;
 		retorno=1;
 	}
 	return retorno;
