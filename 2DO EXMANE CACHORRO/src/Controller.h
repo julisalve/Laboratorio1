@@ -15,7 +15,7 @@ int controller_sortEmployee(LinkedList* pArrayListEmployee);
 int controller_saveAsText(char* path , LinkedList* pArrayListEmployee);
 int controller_saveAsBinary(char* path , LinkedList* pArrayListEmployee);
 
-
+int controller_filtter(LinkedList* pArrayListCachorro);
 int controller_filtterMachos(LinkedList* pArrayListCachorro);
 int controller_filtterCallejeros(LinkedList* pArrayListCachorro);
 

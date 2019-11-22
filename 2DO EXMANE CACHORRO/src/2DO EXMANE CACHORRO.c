@@ -21,7 +21,7 @@ int main()
 
     LinkedList* listaCachorros;
     listaCachorros=ll_newLinkedList();
-//    LinkedList* listaFiltrada;
+    char nombreArc[128];
 
 
     do{
@@ -33,7 +33,6 @@ int main()
                 printf("5. Filtrar machos\n");
                 printf("6. Listado callejeros\n");
                 printf("7. Guardar los datos de los cachorros en el archivo data.csv (modo texto).\n");
-                //printf("9. Guardar los datos de los cachorros en el archivo data.bin (modo binario).\n");
                 printf("8. Salir\n");
 
                 getInt(&opcion,
@@ -44,44 +43,34 @@ int main()
                 		  2);
        switch(opcion)
              {
-
        	   	   case 1:
-              		controller_loadFromText("data.csv",listaCachorros);
+       	   		   getString(nombreArc,"Ingrese archivo a abrir\n","no es valido \n",1,127,2);
+              		controller_loadFromText(nombreArc,listaCachorros);
               		break;
                   case 2:
                 	  controller_addCachorro(listaCachorros);
-                	  //  controller_loadFromBinary("data.bin", listaCachorros);// incompleto
-                      break;
+                     break;
                   case 3:
                 	  controller_ListCachorro(listaCachorros);
                       break;
                   case 4:
-//                      controller_editEmployee(listaCachorros);
                       controller_filtter(listaCachorros);
                        break;
                   case 5:
                 	  controller_filtterMachos(listaCachorros);
-//                      controller_removeEmployee(listaCachorros);
                       break;
                   case 6:
                 	  controller_filtterCallejeros(listaCachorros);
                       break;
-//                  case 7:
-//                      controller_sortEmployee(listaCachorros);
-//                      break;
-//                  case 8:
-                      controller_saveAsText("data.csv",listaCachorros);
+                  case 7:
+                      controller_saveAsText("cachorros.csv",listaCachorros);
                       break;
-//                  case 9:
-//                      controller_saveAsBinary("data.bin",listaCachorros);
-                      break;
-                  case 10:
+                  case 8:
                   	ll_deleteLinkedList(listaCachorros);
                   	printf("Aplicacion cerrada \n");
                       break;
-
                 }
-          }while(opcion != 10);
+          }while(opcion != 8);
 
       }
 

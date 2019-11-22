@@ -55,10 +55,6 @@ Cachorro* cachorro_newParametros(char* idStr,char* nombreStr,char* diasStr, char
 	Cachorro* this;
 	int id;
 	int dias;
-//	char nombre [128];
-//	char raza [128];
-//	char reservado [3];
-//	char genero [3];
 	this= cachorro_new();
 	if(this!=NULL)
 	{
@@ -75,12 +71,6 @@ Cachorro* cachorro_newParametros(char* idStr,char* nombreStr,char* diasStr, char
 	{
 		retorno=this;
 	}
-	printf("nombre %s",this->nombre);
-	printf(" %s",this->nombre);
-//	else
-//	{
-//		cachorro_delete(this);
-//	}
 	}
 	return retorno;
 }
@@ -314,7 +304,6 @@ int cachorro_setGenero(Cachorro* this,char *genero)
 			strcpy(this->genero,genero);
 			retorno=0;
 		}
-
 		return retorno;
 }
 
@@ -341,107 +330,6 @@ int cachorro_getGenero(Cachorro* this,char* genero)
 
 
 
-
-
-
-
-///** \brief Ordena ID de manera ascendente
-// *
-// * \param datoUno
-// * \param datoDos
-// * \return devuelve 1 en caso de orden ascendente, -1 en orden descendente, o -1 en caso contrario
-// *
-// */
-//int employee_sortPorId( void * datoUno, void *datoDos)
-//{
-//	int idUno;
-//	int idDos;
-//	idUno=((Employee*)datoUno)->id;
-//	idDos=((Employee*)datoDos)->id;
-//	if(idUno > idDos)
-//	{
-//		return 1;
-//	}
-//	else if(idUno < idDos)
-//	{
-//		return -1;
-//	}
-//	return 0;
-//}
-//
-//
-///** \brief Ordena por NOmbre de manera ascendente
-// *
-// * \param datoUno
-// * \param datoDos
-// * \return devuelve 1 en caso de orden ascendente, -1 en orden descendente, o -1 en caso contrario
-// *
-// */
-//int employee_sortPorNombre( void * datoUno, void *datoDos)
-//{
-//
-//	if(strncmp(((Employee *)datoUno)->nombre,((Employee *)datoDos)->nombre,50)>0)
-//	{
-//		return 1;
-//	}
-//	else if(strncmp(((Employee *)datoUno)->nombre,((Employee *)datoDos)->nombre,50)<0)
-//	{
-//		return -1;
-//	}
-//	return 0;
-//}
-//
-///** \brief Ordena horas trabajadas de manera ascendente
-// *
-// * \param datoUno
-// * \param datoDos
-// * \return devuelve 1 en caso de orden ascendente, -1 en orden descendente, o -1 en caso contrario
-// *
-// */
-//int employee_sortPorHorasTrabajadas( void * datoUno, void *datoDos)
-//{
-//	int horasUno;
-//	int horasDos;
-//	horasUno=((Employee*)datoUno)->horasTrabajadas;
-//	horasDos=((Employee*)datoDos)->horasTrabajadas;
-//	if(horasUno > horasDos)
-//	{
-//		return 1;
-//	}
-//	else if(horasUno < horasDos)
-//	{
-//		return -1;
-//	}
-//	return 0;
-//}
-//
-//
-//
-///** \brief Ordena sueldo de manera ascendente
-// *
-// * \param datoUno
-// * \param datoDos
-// * \return devuelve 1 en caso de orden ascendente, -1 en orden descendente, o -1 en caso contrario
-// *
-// */
-//int employee_sortPorSueldo( void * datoUno, void *datoDos)
-//{
-//	int sueldoUno;
-//	int sueldoDos;
-//	sueldoUno=((Employee*)datoUno)->sueldo;
-//	sueldoDos=((Employee*)datoDos)->sueldo;
-//	if(sueldoUno > sueldoDos)
-//	{
-//		return 1;
-//	}
-//	else if(sueldoUno < sueldoDos)
-//	{
-//		return -1;
-//	}
-//	return 0;
-//}
-//
-//
  int Cachorro_pFuncMenos45Dias(void* cachorro)
 {
 	int dias;
@@ -450,7 +338,6 @@ int cachorro_getGenero(Cachorro* this,char* genero)
 
 	if(cachorro!=NULL && dias>45)
 	{
-
 		((Cachorro*)cachorro)->dias=dias;
 		retorno=1;
 	}
@@ -463,10 +350,10 @@ int cachorro_getGenero(Cachorro* this,char* genero)
  int Cachorro_pFuncMachos(void* cachorro)
  {
  	char genero[3];
- 	strcpy(genero,((Cachorro*)cachorro)->genero);
+ 	strncpy(genero,((Cachorro*)cachorro)->genero,3);
  	int retorno =-1;
 
- 	if(cachorro!=NULL && strcmp(genero,"f")==0)
+ 	if(cachorro!=NULL && strcmp(genero,"H")==0)
  	{
  		strcpy(((Cachorro*)cachorro)->genero,genero);
  		retorno=1;
@@ -478,11 +365,10 @@ int cachorro_getGenero(Cachorro* this,char* genero)
 
  int Cachorro_pFuncCallejeros(void* cachorro)
  {
- 	char raza[3];
+ 	char raza[128];
  	strcpy(raza,((Cachorro*)cachorro)->raza);
  	int retorno =-1;
-
- 	if(cachorro!=NULL && strcmp(raza,"callejero")==0)
+ 	if(cachorro!=NULL && strcmp(raza,"Callejero")==0)
  	{
  		strcpy(((Cachorro*)cachorro)->raza,raza);
  		retorno=1;

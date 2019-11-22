@@ -608,15 +608,13 @@ LinkedList* ll_filter(LinkedList *this, int (*pFunc)(void*))
 		for(i=0;i<ll_len(this);i++)
 		{
 			pElement1=ll_get(this,i);
-
 			if(pFunc(pElement1)==1)
 				{
-
 				ll_add(listaFiltrada,pElement1);
-		}
+				}
 		}
 	}
-	controller_ListCachorro(listaFiltrada);
+	//controller_ListCachorro(listaFiltrada);
 	return listaFiltrada;
 }
 
