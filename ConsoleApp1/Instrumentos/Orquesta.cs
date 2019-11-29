@@ -45,7 +45,10 @@ namespace Instrumentos
     //{
      // retur this.nombre;
     //}
-   }
+
+
+
+   
 
   public static void  Imprimirorquesta (Orquesta orq)
   {
@@ -65,5 +68,6 @@ namespace Instrumentos
     Console.ReadLine();
 
 
+  }
   }
 }

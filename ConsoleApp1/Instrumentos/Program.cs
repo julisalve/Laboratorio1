@@ -29,6 +29,8 @@ namespace Instrumentos
       orquestaUno.muscios.Add(musicoPrincipal);
       orquestaUno.muscios.Add(musicoSec);
 
+      Orquesta.Imprimirorquesta(orquestaUno);
+
     }
   }
 }
