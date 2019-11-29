@@ -1,0 +1,7 @@
+C:\Users\alumno\Desktop\juliana\ConsoleApp1\Instrumentos\bin\Debug\Instrumentos.exe.config
+C:\Users\alumno\Desktop\juliana\ConsoleApp1\Instrumentos\bin\Debug\Instrumentos.exe
+C:\Users\alumno\Desktop\juliana\ConsoleApp1\Instrumentos\bin\Debug\Instrumentos.pdb
+C:\Users\alumno\Desktop\juliana\ConsoleApp1\Instrumentos\obj\Debug\Practica.csprojAssemblyReference.cache
+C:\Users\alumno\Desktop\juliana\ConsoleApp1\Instrumentos\obj\Debug\Practica.csproj.CoreCompileInputs.cache
+C:\Users\alumno\Desktop\juliana\ConsoleApp1\Instrumentos\obj\Debug\Instrumentos.exe
+C:\Users\alumno\Desktop\juliana\ConsoleApp1\Instrumentos\obj\Debug\Instrumentos.pdb
